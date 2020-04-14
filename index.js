@@ -248,6 +248,63 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
             } else {
               document.getElementById("abyssal-healing-potion-profit").setAttribute("style", "background-color:green")
             }
+
+        // Empowered Proximity
+                // Cost calculation
+                var empoweredProximiyCost = zinanthidPrice * 8 + winterskissPrice * 3;
+                var empoweredProximiyCostString = empoweredProximiyCost.toString();
+                empoweredProximiyCostCopper = empoweredProximiyCostString.charAt(empoweredProximiyCostString.length-2) + empoweredProximiyCostString.charAt(empoweredProximiyCostString.length-1)
+                empoweredProximiyCostSilver = empoweredProximiyCostString.charAt(empoweredProximiyCostString.length-4) + empoweredProximiyCostString.charAt(empoweredProximiyCostString.length-3)
+                if(empoweredProximiyCostString.length == 5) {
+                  empoweredProximiyCostGold = empoweredProximiyCostString.charAt(0)
+                } else if (empoweredProximiyCostString.length == 6) {
+                  empoweredProximiyCostGold = empoweredProximiyCostString.charAt(0) + empoweredProximiyCostString.charAt(1)
+                } else if (empoweredProximiyCostString.length == 7) {
+                  empoweredProximiyCostGold = empoweredProximiyCostString.charAt(0) + empoweredProximiyCostString.charAt(1) + empoweredProximiyCostString.charAt(2)
+                }
+                document.getElementById("empowered-proximity-cost").innerHTML = `
+                ${empoweredProximiyCostGold} <img src="images/money-gold.gif"> ${empoweredProximiyCostSilver} <img src="images/money-silver.gif"> ${empoweredProximiyCostCopper} <img src="images/money-copper.gif">`             
+    
+                // Price calculation
+                var empoweredProximity = response.data.auctions.filter(function(auction){
+                    return auction.item.id === 168529
+                  });
+                  empoweredProximity.sort(function(a,b){
+                      return a.unit_price - b.unit_price
+                    })
+                var empoweredProximityPrice = empoweredProximity[0].unit_price;
+                var empoweredProximityString = empoweredProximityPrice.toString();
+                empoweredProximityCopper = empoweredProximityString.charAt(empoweredProximityString.length-2) + empoweredProximityString.charAt(empoweredProximityString.length-1)
+                empoweredProximitySilver = empoweredProximityString.charAt(empoweredProximityString.length-4) + empoweredProximityString.charAt(empoweredProximityString.length-3)
+                if(empoweredProximityString.length == 5) {
+                  empoweredProximityGold = empoweredProximityString.charAt(0)
+                } else if (empoweredProximityString.length == 6) {
+                  empoweredProximityGold = empoweredProximityString.charAt(0) + empoweredProximityString.charAt(1)
+                } else if (empoweredProximityString.length == 7) {
+                  empoweredProximityGold = empoweredProximityString.charAt(0) + empoweredProximityString.charAt(1) + empoweredProximityString.charAt(2)
+                }
+                document.getElementById("empowered-proximity-price").innerHTML = `
+                ${empoweredProximityGold} <img src="images/money-gold.gif"> ${empoweredProximitySilver} <img src="images/money-silver.gif"> ${empoweredProximityCopper} <img src="images/money-copper.gif">`
+                
+              // Profit/Loss Calculation
+              var empoweredProximityProfit = empoweredProximityPrice - empoweredProximiyCost;
+              var empoweredProximityProfitString = empoweredProximityProfit.toString();
+              empoweredProximityProfitCopper = empoweredProximityProfitString.charAt(empoweredProximityProfitString.length-2) + empoweredProximityProfitString.charAt(empoweredProximityProfitString.length-1)
+              empoweredProximityProfitSilver = empoweredProximityProfitString.charAt(empoweredProximityProfitString.length-4) + empoweredProximityProfitString.charAt(empoweredProximityProfitString.length-3)
+                if(empoweredProximityProfitString.length == 5) {
+                  empoweredProximityProfitGold = empoweredProximityProfitString.charAt(0)
+                } else if (empoweredProximityProfitString.length == 6) {
+                  empoweredProximityProfitGold = empoweredProximityProfitString.charAt(0) + empoweredProximityProfitString.charAt(1)
+                } else if (empoweredProximityProfitString.length == 7) {
+                  empoweredProximityProfitGold = empoweredProximityProfitString.charAt(0) + empoweredProximityProfitString.charAt(1) + empoweredProximityProfitString.charAt(2)
+                }
+                document.getElementById("empowered-proximity-profit").innerHTML = `
+                ${empoweredProximityProfitGold} <img src="images/money-gold.gif"> ${empoweredProximityProfitSilver} <img src="images/money-silver.gif"> ${empoweredProximityProfitCopper} <img src="images/money-copper.gif">`
+                if(Math.sign(empoweredProximityProfit) == -1){
+                  document.getElementById("empowered-proximity-profit").setAttribute("style", "background-color:red")
+                } else {
+                  document.getElementById("empowered-proximity-profit").setAttribute("style", "background-color:green")
+                }
         })
         .catch(function(error){
           console.log(error)
