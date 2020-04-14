@@ -1,5 +1,9 @@
 // const axios = require("axios");
 
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
 // Get access token via Blizzard's OAuth flow
 function render() {axios.post("https://us.battle.net/oauth/token?grant_type=client_credentials&client_id=8170587803004052b43eb6583a7a82ca&client_secret=7sFw5yUDviIfc77w1lHTIcb1Wyvu1IdQ")
   .then(function(response){
@@ -229,7 +233,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
             ${AbyssalHealingPotionGold} <img src="images/money-gold.gif"> ${AbyssalHealingPotionSilver} <img src="images/money-silver.gif"> ${AbyssalHealingPotionCopper} <img src="images/money-copper.gif">`
             
           // Profit/Loss Calculation
-          var AbyssalHealingPotionProfit = AbyssalHealingPotionPrice - AbyssalHealingPotionCost;
+          var AbyssalHealingPotionProfit = AbyssalHealingPotionPrice * 1.4  - AbyssalHealingPotionCost;
           var AbyssalHealingPotionProfitString = AbyssalHealingPotionProfit.toString();
           AbyssalHealingPotionProfitCopper = AbyssalHealingPotionProfitString.charAt(AbyssalHealingPotionProfitString.length-2) + AbyssalHealingPotionProfitString.charAt(AbyssalHealingPotionProfitString.length-1)
           AbyssalHealingPotionProfitSilver = AbyssalHealingPotionProfitString.charAt(AbyssalHealingPotionProfitString.length-4) + AbyssalHealingPotionProfitString.charAt(AbyssalHealingPotionProfitString.length-3)
@@ -286,7 +290,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
                 ${empoweredProximityGold} <img src="images/money-gold.gif"> ${empoweredProximitySilver} <img src="images/money-silver.gif"> ${empoweredProximityCopper} <img src="images/money-copper.gif">`
                 
               // Profit/Loss Calculation
-              var empoweredProximityProfit = empoweredProximityPrice - empoweredProximiyCost;
+              var empoweredProximityProfit = empoweredProximityPrice *1.4 - empoweredProximiyCost;
               var empoweredProximityProfitString = empoweredProximityProfit.toString();
               empoweredProximityProfitCopper = empoweredProximityProfitString.charAt(empoweredProximityProfitString.length-2) + empoweredProximityProfitString.charAt(empoweredProximityProfitString.length-1)
               empoweredProximityProfitSilver = empoweredProximityProfitString.charAt(empoweredProximityProfitString.length-4) + empoweredProximityProfitString.charAt(empoweredProximityProfitString.length-3)
@@ -343,7 +347,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
                 ${focusedResolveGold} <img src="images/money-gold.gif"> ${focusedResolveSilver} <img src="images/money-silver.gif"> ${focusedResolveCopper} <img src="images/money-copper.gif">`
                 
               // Profit/Loss Calculation
-              var focusedResolveProfit = focusedResolvePrice - focusedResolveCost;
+              var focusedResolveProfit = focusedResolvePrice * 1.4 - focusedResolveCost;
               var focusedResolveProfitString = focusedResolveProfit.toString();
               focusedResolveProfitCopper = focusedResolveProfitString.charAt(focusedResolveProfitString.length-2) + focusedResolveProfitString.charAt(focusedResolveProfitString.length-1)
               focusedResolveProfitSilver = focusedResolveProfitString.charAt(focusedResolveProfitString.length-4) + focusedResolveProfitString.charAt(focusedResolveProfitString.length-3)
@@ -400,7 +404,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
                 ${unbridledFuryGold} <img src="images/money-gold.gif"> ${unbridledFurySilver} <img src="images/money-silver.gif"> ${unbridledFuryCopper} <img src="images/money-copper.gif">`
                 
               // Profit/Loss Calculation
-              var unbridledFuryProfit = unbridledFuryPrice - unbridledFuryCost;
+              var unbridledFuryProfit = unbridledFuryPrice * 1.4 - unbridledFuryCost;
               var unbridledFuryProfitString = unbridledFuryProfit.toString();
               unbridledFuryProfitCopper = unbridledFuryProfitString.charAt(unbridledFuryProfitString.length-2) + unbridledFuryProfitString.charAt(unbridledFuryProfitString.length-1)
               unbridledFuryProfitSilver = unbridledFuryProfitString.charAt(unbridledFuryProfitString.length-4) + unbridledFuryProfitString.charAt(unbridledFuryProfitString.length-3)
@@ -418,6 +422,121 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
                 } else {
                   document.getElementById("unbridled-fury-profit").setAttribute("style", "background-color:green")
                 }
+
+              // Potion of Wild Mending
+                // Cost calculation
+                var wildMendingCost = zinanthidPrice * 6;
+                var wildMendingCostString = wildMendingCost.toString();
+                wildMendingCostCopper = wildMendingCostString.charAt(wildMendingCostString.length-2) + wildMendingCostString.charAt(wildMendingCostString.length-1)
+                wildMendingCostSilver = wildMendingCostString.charAt(wildMendingCostString.length-4) + wildMendingCostString.charAt(wildMendingCostString.length-3)
+                if(wildMendingCostString.length == 5) {
+                  wildMendingCostGold = wildMendingCostString.charAt(0)
+                } else if (wildMendingCostString.length == 6) {
+                  wildMendingCostGold = wildMendingCostString.charAt(0) + wildMendingCostString.charAt(1)
+                } else if (wildMendingCostString.length == 7) {
+                  wildMendingCostGold = wildMendingCostString.charAt(0) + wildMendingCostString.charAt(1) + wildMendingCostString.charAt(2)
+                }
+                document.getElementById("wild-mending-cost").innerHTML = `
+                ${wildMendingCostGold} <img src="images/money-gold.gif"> ${wildMendingCostSilver} <img src="images/money-silver.gif"> ${wildMendingCostCopper} <img src="images/money-copper.gif">`             
+    
+                // Price calculation
+                var wildMending = response.data.auctions.filter(function(auction){
+                    return auction.item.id === 169300
+                  });
+                  wildMending.sort(function(a,b){
+                      return a.unit_price - b.unit_price
+                    })
+                var wildMendingPrice = wildMending[0].unit_price;
+                console.log(wildMendingPrice);
+                var wildMendingString = wildMendingPrice.toString();
+                wildMendingPriceCopper = wildMendingString.charAt(wildMendingString.length-2) + wildMendingString.charAt(wildMendingString.length-1)
+                wildMendingPriceSilver = wildMendingString.charAt(wildMendingString.length-4) + wildMendingString.charAt(wildMendingString.length-3)
+                if(wildMendingString.length == 5) {
+                  wildMendingPriceGold = wildMendingString.charAt(0)
+                } else if (wildMendingString.length == 6) {
+                  wildMendingPriceGold = wildMendingString.charAt(0) + wildMendingString.charAt(1)
+                } else if (wildMendingString.length == 7) {
+                  wildMendingPriceGold = wildMendingString.charAt(0) + wildMendingString.charAt(1) + wildMendingString.charAt(2)
+                }
+                document.getElementById("wild-mending-price").innerHTML = `
+                ${wildMendingPriceGold} <img src="images/money-gold.gif"> ${wildMendingPriceSilver} <img src="images/money-silver.gif"> ${wildMendingPriceCopper} <img src="images/money-copper.gif">`
+                
+              // Profit/Loss Calculation
+              var wildMendingProfit = wildMendingPrice * 1.4 - wildMendingCost;
+              var wildMendingProfitString = wildMendingProfit.toString();
+              wildMendingProfitCopper = wildMendingProfitString.charAt(wildMendingProfitString.length-2) + wildMendingProfitString.charAt(wildMendingProfitString.length-1)
+              wildMendingProfitSilver = wildMendingProfitString.charAt(wildMendingProfitString.length-4) + wildMendingProfitString.charAt(wildMendingProfitString.length-3)
+                if(wildMendingProfitString.length == 5) {
+                  wildMendingProfitGold = wildMendingProfitString.charAt(0)
+                } else if (wildMendingProfitString.length == 6) {
+                  wildMendingProfitGold = wildMendingProfitString.charAt(0) + wildMendingProfitString.charAt(1)
+                } else if (wildMendingProfitString.length == 7) {
+                  wildMendingProfitGold = wildMendingProfitString.charAt(0) + wildMendingProfitString.charAt(1) + wildMendingProfitString.charAt(2)
+                }
+                document.getElementById("wild-mending-profit").innerHTML = `
+                ${wildMendingProfitGold} <img src="images/money-gold.gif"> ${wildMendingProfitSilver} <img src="images/money-silver.gif"> ${wildMendingProfitCopper} <img src="images/money-copper.gif">`
+                if(Math.sign(wildMendingProfit) == -1){
+                  document.getElementById("wild-mending-profit").setAttribute("style", "background-color:red")
+                } else {
+                  document.getElementById("wild-mending-profit").setAttribute("style", "background-color:green")
+                }
+
+              // Superior Battle Potion of Agility 
+              // Cost calculation
+              var superiorAgilityCost = zinanthidPrice * 6;
+              var wildMendingCostString = wildMendingCost.toString();
+              wildMendingCostCopper = wildMendingCostString.charAt(wildMendingCostString.length-2) + wildMendingCostString.charAt(wildMendingCostString.length-1)
+              wildMendingCostSilver = wildMendingCostString.charAt(wildMendingCostString.length-4) + wildMendingCostString.charAt(wildMendingCostString.length-3)
+              if(wildMendingCostString.length == 5) {
+                wildMendingCostGold = wildMendingCostString.charAt(0)
+              } else if (wildMendingCostString.length == 6) {
+                wildMendingCostGold = wildMendingCostString.charAt(0) + wildMendingCostString.charAt(1)
+              } else if (wildMendingCostString.length == 7) {
+                wildMendingCostGold = wildMendingCostString.charAt(0) + wildMendingCostString.charAt(1) + wildMendingCostString.charAt(2)
+              }
+              document.getElementById("wild-mending-cost").innerHTML = `
+              ${wildMendingCostGold} <img src="images/money-gold.gif"> ${wildMendingCostSilver} <img src="images/money-silver.gif"> ${wildMendingCostCopper} <img src="images/money-copper.gif">`             
+  
+              // Price calculation
+              var wildMending = response.data.auctions.filter(function(auction){
+                  return auction.item.id === 168489
+                });
+                wildMending.sort(function(a,b){
+                    return a.unit_price - b.unit_price
+                  })
+              var wildMendingPrice = wildMending[0].unit_price;
+              var wildMendingString = wildMendingPrice.toString();
+              wildMendingPriceCopper = wildMendingString.charAt(wildMendingString.length-2) + wildMendingString.charAt(wildMendingString.length-1)
+              wildMendingPriceSilver = wildMendingString.charAt(wildMendingString.length-4) + wildMendingString.charAt(wildMendingString.length-3)
+              if(wildMendingString.length == 5) {
+                wildMendingPriceGold = wildMendingString.charAt(0)
+              } else if (wildMendingString.length == 6) {
+                wildMendingPriceGold = wildMendingString.charAt(0) + wildMendingString.charAt(1)
+              } else if (wildMendingString.length == 7) {
+                wildMendingPriceGold = wildMendingString.charAt(0) + wildMendingString.charAt(1) + wildMendingString.charAt(2)
+              }
+              document.getElementById("wild-mending-price").innerHTML = `
+              ${wildMendingPriceGold} <img src="images/money-gold.gif"> ${wildMendingPriceSilver} <img src="images/money-silver.gif"> ${wildMendingPriceCopper} <img src="images/money-copper.gif">`
+              
+            // Profit/Loss Calculation
+            var wildMendingProfit = wildMendingPrice - wildMendingCost;
+            var wildMendingProfitString = wildMendingProfit.toString();
+            wildMendingProfitCopper = wildMendingProfitString.charAt(wildMendingProfitString.length-2) + wildMendingProfitString.charAt(wildMendingProfitString.length-1)
+            wildMendingProfitSilver = wildMendingProfitString.charAt(wildMendingProfitString.length-4) + wildMendingProfitString.charAt(wildMendingProfitString.length-3)
+              if(wildMendingProfitString.length == 5) {
+                wildMendingProfitGold = wildMendingProfitString.charAt(0)
+              } else if (wildMendingProfitString.length == 6) {
+                wildMendingProfitGold = wildMendingProfitString.charAt(0) + wildMendingProfitString.charAt(1)
+              } else if (wildMendingProfitString.length == 7) {
+                wildMendingProfitGold = wildMendingProfitString.charAt(0) + wildMendingProfitString.charAt(1) + wildMendingProfitString.charAt(2)
+              }
+              document.getElementById("wild-mending-profit").innerHTML = `
+              ${wildMendingProfitGold} <img src="images/money-gold.gif"> ${wildMendingProfitSilver} <img src="images/money-silver.gif"> ${wildMendingProfitCopper} <img src="images/money-copper.gif">`
+              if(Math.sign(wildMendingProfit) == -1){
+                document.getElementById("wild-mending-profit").setAttribute("style", "background-color:red")
+              } else {
+                document.getElementById("wild-mending-profit").setAttribute("style", "background-color:green")
+              }
         })
         .catch(function(error){
           console.log(error)
