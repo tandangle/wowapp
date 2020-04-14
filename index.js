@@ -385,7 +385,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
                   unbridledFury.sort(function(a,b){
                       return a.unit_price - b.unit_price
                     })
-                var unbridledFuryPrice = focusedResolve[0].unit_price;
+                var unbridledFuryPrice = unbridledFury[0].unit_price;
                 var unbridledFuryString = unbridledFuryPrice.toString();
                 unbridledFuryCopper = unbridledFuryString.charAt(unbridledFuryString.length-2) + unbridledFuryString.charAt(unbridledFuryString.length-1)
                 unbridledFurySilver = unbridledFuryString.charAt(unbridledFuryString.length-4) + unbridledFuryString.charAt(unbridledFuryString.length-3)
