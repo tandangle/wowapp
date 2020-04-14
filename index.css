@@ -6,4 +6,39 @@
 
 table, th, td {
     border: 1px solid black;
+    padding: 5px 5px 3px 5px;
   }
+
+  td {
+      font-size: 20px;
+  }
+
+img:hover {
+        width: 56px;
+        height: 56px;
+        background-color: #FFFFFF;
+        position: relative;
+        box-shadow: 0px 0px 2px 4px #BF9C33;
+}
+
+table {
+    width: 100%
+}
+
+div.table1 {
+    width: 19%;
+    display: inline-block;
+    margin: 2px;
+  }
+
+div.table2 {
+    width: 39%;
+    display: inline-block;
+    margin: 2px;
+}
+
+div.table3 {
+    width: 39%;
+    display: inline-block;
+    margin: 2px;
+}

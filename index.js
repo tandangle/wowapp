@@ -191,6 +191,15 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
             document.getElementById("anchorweed").innerHTML = `
             ${anchorweedPriceGold} <img src="images/money-gold.gif"> ${anchorweedPriceSilver} <img src="images/money-silver.gif"> ${anchorweedPriceCopper} <img src="images/money-copper.gif">`
 
+            // Flasks and Potions
+            var anchorweed = response.data.auctions.filter(function(auction){
+                return auction.item.id === 152510
+              });
+              anchorweed.sort(function(a,b){
+                  return a.unit_price - b.unit_price
+                })
+              var anchorweedPrice = anchorweed[0].unit_price;
+            
         })
         .catch(function(error){
           console.log(error)
