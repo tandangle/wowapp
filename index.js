@@ -707,7 +707,180 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
             } else {
               document.getElementById("superior-stamina-profit").setAttribute("style", "background-color:green")
             }
+
+          // Superior Strength
+// Cost calculation
+            var superiorStaminaCost = zinanthidPrice * 8 + seastalkPrice * 3;
+            var superiorStaminaCostString = superiorStaminaCost.toString();
+            superiorStaminaCostCopper = superiorStaminaCostString.charAt(superiorStaminaCostString.length-2) + superiorStaminaCostString.charAt(superiorStaminaCostString.length-1)
+            superiorStaminaCostSilver = superiorStaminaCostString.charAt(superiorStaminaCostString.length-4) + superiorStaminaCostString.charAt(superiorStaminaCostString.length-3)
+            if(superiorStaminaCostString.length == 5) {
+              superiorStaminaCostGold = superiorStaminaCostString.charAt(0)
+            } else if (superiorStaminaCostString.length == 6) {
+              superiorStaminaCostGold = superiorStaminaCostString.charAt(0) + superiorStaminaCostString.charAt(1)
+            } else if (superiorStaminaCostString.length == 7) {
+              superiorStaminaCostGold = superiorStaminaCostString.charAt(0) + superiorStaminaCostString.charAt(1) + superiorStaminaCostString.charAt(2)
+            }
+            document.getElementById("superior-stamina-cost").innerHTML = `
+            ${superiorStaminaCostGold} <img src="images/money-gold.gif"> ${superiorStaminaCostSilver} <img src="images/money-silver.gif"> ${superiorStaminaCostCopper} <img src="images/money-copper.gif">`             
+
+            // Price calculation
+            var superiorStamina = response.data.auctions.filter(function(auction){
+                return auction.item.id === 168499
+              });
+              superiorStamina.sort(function(a,b){
+                  return a.unit_price - b.unit_price
+                })
+            var superiorStaminaPrice = superiorStamina[0].unit_price;
+            var superiorStaminaPriceString = superiorStaminaPrice.toString();
+            superiorStaminaCopper = superiorStaminaPriceString.charAt(superiorStaminaPriceString.length-2) + superiorStaminaPriceString.charAt(superiorStaminaPriceString.length-1)
+            superiorStaminaSilver = superiorStaminaPriceString.charAt(superiorStaminaPriceString.length-4) + superiorStaminaPriceString.charAt(superiorStaminaPriceString.length-3)
+            if(superiorStaminaPriceString.length == 5) {
+              superiorStaminaGold = superiorStaminaPriceString.charAt(0)
+            } else if (superiorStaminaPriceString.length == 6) {
+              superiorStaminaGold = superiorStaminaPriceString.charAt(0) + superiorStaminaPriceString.charAt(1)
+            } else if (superiorStaminaPriceString.length == 7) {
+              superiorStaminaGold = superiorStaminaPriceString.charAt(0) + superiorStaminaPriceString.charAt(1) + superiorStaminaPriceString.charAt(2)
+            }
+            document.getElementById("superior-stamina-price").innerHTML = `
+            ${superiorStaminaGold} <img src="images/money-gold.gif"> ${superiorStaminaSilver} <img src="images/money-silver.gif"> ${superiorStaminaCopper} <img src="images/money-copper.gif">`
+            
+          // Profit/Loss Calculation
+          var superiorStaminaProfit = superiorStaminaPrice * 1.4 - superiorStaminaCost;
+          var superiorStaminaProfitString = superiorStaminaProfit.toString();
+          superiorStaminaProfitCopper = superiorStaminaProfitString.charAt(superiorStaminaProfitString.length-2) + superiorStaminaProfitString.charAt(superiorStaminaProfitString.length-1)
+          superiorStaminaProfitSilver = superiorStaminaProfitString.charAt(superiorStaminaProfitString.length-4) + superiorStaminaProfitString.charAt(superiorStaminaProfitString.length-3)
+            if(superiorStaminaProfitString.length == 5) {
+              superiorStaminaProfitGold = superiorStaminaProfitString.charAt(0)
+            } else if (superiorStaminaProfitString.length == 6) {
+              superiorStaminaProfitGold = superiorStaminaProfitString.charAt(0) + superiorStaminaProfitString.charAt(1)
+            } else if (superiorStaminaProfitString.length == 7) {
+              superiorStaminaProfitGold = superiorStaminaProfitString.charAt(0) + superiorStaminaProfitString.charAt(1) + superiorStaminaProfitString.charAt(2)
+            }
+            document.getElementById("superior-stamina-profit").innerHTML = `
+            ${superiorStaminaProfitGold} <img src="images/money-gold.gif"> ${superiorStaminaProfitSilver} <img src="images/money-silver.gif"> ${superiorStaminaProfitCopper} <img src="images/money-copper.gif">`
+            if(Math.sign(superiorStaminaProfit) == -1){
+              document.getElementById("superior-stamina-profit").setAttribute("style", "background-color:red")
+            } else {
+              document.getElementById("superior-stamina-profit").setAttribute("style", "background-color:green")
+            }
+          // Superior Strength
+          // Cost calculation
+          var superiorStrengthCost = zinanthidPrice * 8 + starmossPrice * 3;
+          var superiorStrengthCostString = superiorStrengthCost.toString();
+          superiorStrengthCostCopper = superiorStrengthCostString.charAt(superiorStrengthCostString.length-2) + superiorStrengthCostString.charAt(superiorStrengthCostString.length-1)
+          superiorStrengthCostSilver = superiorStrengthCostString.charAt(superiorStrengthCostString.length-4) + superiorStrengthCostString.charAt(superiorStrengthCostString.length-3)
+          if(superiorStrengthCostString.length == 5) {
+            superiorStrengthCostGold = superiorStrengthCostString.charAt(0)
+          } else if (superiorStrengthCostString.length == 6) {
+            superiorStrengthCostGold = superiorStrengthCostString.charAt(0) + superiorStrengthCostString.charAt(1)
+          } else if (superiorStrengthCostString.length == 7) {
+            superiorStrengthCostGold = superiorStrengthCostString.charAt(0) + superiorStrengthCostString.charAt(1) + superiorStrengthCostString.charAt(2)
+          }
+          document.getElementById("superior-strength-cost").innerHTML = `
+          ${superiorStrengthCostGold} <img src="images/money-gold.gif"> ${superiorStrengthCostSilver} <img src="images/money-silver.gif"> ${superiorStrengthCostCopper} <img src="images/money-copper.gif">`             
+
+          // Price calculation
+          var superiorStrength = response.data.auctions.filter(function(auction){
+              return auction.item.id === 168500
+            });
+            superiorStrength.sort(function(a,b){
+                return a.unit_price - b.unit_price
+              })
+          var superiorStrengthPrice = superiorStrength[0].unit_price;
+          var superiorStrengthPriceString = superiorStrengthPrice.toString();
+          superiorStrengthCopper = superiorStrengthPriceString.charAt(superiorStrengthPriceString.length-2) + superiorStrengthPriceString.charAt(superiorStrengthPriceString.length-1)
+          superiorStrengthSilver = superiorStrengthPriceString.charAt(superiorStrengthPriceString.length-4) + superiorStrengthPriceString.charAt(superiorStrengthPriceString.length-3)
+          if(superiorStrengthPriceString.length == 5) {
+            superiorStrengthGold = superiorStrengthPriceString.charAt(0)
+          } else if (superiorStrengthPriceString.length == 6) {
+            superiorStrengthGold = superiorStrengthPriceString.charAt(0) + superiorStrengthPriceString.charAt(1)
+          } else if (superiorStrengthPriceString.length == 7) {
+            superiorStrengthGold = superiorStrengthPriceString.charAt(0) + superiorStrengthPriceString.charAt(1) + superiorStrengthPriceString.charAt(2)
+          }
+          document.getElementById("superior-strength-price").innerHTML = `
+          ${superiorStrengthGold} <img src="images/money-gold.gif"> ${superiorStrengthSilver} <img src="images/money-silver.gif"> ${superiorStrengthCopper} <img src="images/money-copper.gif">`
+          
+        // Profit/Loss Calculation
+        var superiorStrengthProfit = superiorStrengthPrice * 1.4 - superiorStrengthCost;
+        var superiorStrengthProfitString = superiorStrengthProfit.toString();
+        superiorStrengthProfitCopper = superiorStrengthProfitString.charAt(superiorStrengthProfitString.length-2) + superiorStrengthProfitString.charAt(superiorStrengthProfitString.length-1)
+        superiorStrengthProfitSilver = superiorStrengthProfitString.charAt(superiorStrengthProfitString.length-4) + superiorStrengthProfitString.charAt(superiorStrengthProfitString.length-3)
+          if(superiorStrengthProfitString.length == 5) {
+            superiorStrengthProfitGold = superiorStrengthProfitString.charAt(0)
+          } else if (superiorStrengthProfitString.length == 6) {
+            superiorStrengthProfitGold = superiorStrengthProfitString.charAt(0) + superiorStrengthProfitString.charAt(1)
+          } else if (superiorStrengthProfitString.length == 7) {
+            superiorStrengthProfitGold = superiorStrengthProfitString.charAt(0) + superiorStrengthProfitString.charAt(1) + superiorStrengthProfitString.charAt(2)
+          }
+          document.getElementById("superior-strength-profit").innerHTML = `
+          ${superiorStrengthProfitGold} <img src="images/money-gold.gif"> ${superiorStrengthProfitSilver} <img src="images/money-silver.gif"> ${superiorStrengthProfitCopper} <img src="images/money-copper.gif">`
+          if(Math.sign(superiorStrengthProfit) == -1){
+            document.getElementById("superior-strength-profit").setAttribute("style", "background-color:red")
+          } else {
+            document.getElementById("superior-strength-profit").setAttribute("style", "background-color:green")
+          }
+        // Superior Steelskin Potion
+        // Cost calculation
+        var superiorSteelSkinCost = zinanthidPrice * 8 + akundasBitePrice * 3;
+        var superiorSteelSkinCostString = superiorSteelSkinCost.toString();
+        superiorSteelSkinCostCopper = superiorSteelSkinCostString.charAt(superiorSteelSkinCostString.length-2) + superiorSteelSkinCostString.charAt(superiorSteelSkinCostString.length-1)
+        superiorSteelSkinCostSilver = superiorSteelSkinCostString.charAt(superiorSteelSkinCostString.length-4) + superiorSteelSkinCostString.charAt(superiorSteelSkinCostString.length-3)
+        if(superiorSteelSkinCostString.length == 5) {
+          superiorSteelSkinCostGold = superiorSteelSkinCostString.charAt(0)
+        } else if (superiorSteelSkinCostString.length == 6) {
+          superiorSteelSkinCostGold = superiorSteelSkinCostString.charAt(0) + superiorSteelSkinCostString.charAt(1)
+        } else if (superiorSteelSkinCostString.length == 7) {
+          superiorSteelSkinCostGold = superiorSteelSkinCostString.charAt(0) + superiorSteelSkinCostString.charAt(1) + superiorSteelSkinCostString.charAt(2)
+        }
+        document.getElementById("superior-steelskin-cost").innerHTML = `
+        ${superiorSteelSkinCostGold} <img src="images/money-gold.gif"> ${superiorSteelSkinCostSilver} <img src="images/money-silver.gif"> ${superiorSteelSkinCostCopper} <img src="images/money-copper.gif">`             
+
+        // Price calculation
+        var superiorSteelskin = response.data.auctions.filter(function(auction){
+            return auction.item.id === 168501
+          });
+          superiorSteelskin.sort(function(a,b){
+              return a.unit_price - b.unit_price
+            })
+        var superiorSteelskinPrice = superiorSteelskin[0].unit_price;
+        var superiorSteelskinPriceString = superiorSteelskinPrice.toString();
+        superiorSteelskinCopper = superiorSteelskinPriceString.charAt(superiorSteelskinPriceString.length-2) + superiorSteelskinPriceString.charAt(superiorSteelskinPriceString.length-1)
+        superiorSteelskinSilver = superiorSteelskinPriceString.charAt(superiorSteelskinPriceString.length-4) + superiorSteelskinPriceString.charAt(superiorSteelskinPriceString.length-3)
+        if(superiorSteelskinPriceString.length == 5) {
+          superiorSteelskinGold = superiorSteelskinPriceString.charAt(0)
+        } else if (superiorSteelskinPriceString.length == 6) {
+          superiorSteelskinGold = superiorSteelskinPriceString.charAt(0) + superiorSteelskinPriceString.charAt(1)
+        } else if (superiorSteelskinPriceString.length == 7) {
+          superiorSteelskinGold = superiorSteelskinPriceString.charAt(0) + superiorSteelskinPriceString.charAt(1) + superiorSteelskinPriceString.charAt(2)
+        }
+        document.getElementById("superior-steelskin-price").innerHTML = `
+        ${superiorSteelskinGold} <img src="images/money-gold.gif"> ${superiorSteelskinSilver} <img src="images/money-silver.gif"> ${superiorSteelskinCopper} <img src="images/money-copper.gif">`
+        
+      // Profit/Loss Calculation
+      var superiorSteelskinProfit = superiorSteelskinPrice * 1.4 - superiorSteelSkinCost;
+      var superiorSteelskinProfitString = superiorSteelskinProfit.toString();
+      superiorSteelskinProfitCopper = superiorSteelskinProfitString.charAt(superiorSteelskinProfitString.length-2) + superiorSteelskinProfitString.charAt(superiorSteelskinProfitString.length-1)
+      superiorSteelskinProfitSilver = superiorSteelskinProfitString.charAt(superiorSteelskinProfitString.length-4) + superiorSteelskinProfitString.charAt(superiorSteelskinProfitString.length-3)
+        if(superiorSteelskinProfitString.length == 5) {
+          superiorSteelskinProfitGold = superiorSteelskinProfitString.charAt(0)
+        } else if (superiorSteelskinProfitString.length == 6) {
+          superiorSteelskinProfitGold = superiorSteelskinProfitString.charAt(0) + superiorSteelskinProfitString.charAt(1)
+        } else if (superiorSteelskinProfitString.length == 7) {
+          superiorSteelskinProfitGold = superiorSteelskinProfitString.charAt(0) + superiorSteelskinProfitString.charAt(1) + superiorSteelskinProfitString.charAt(2)
+        }
+        document.getElementById("superior-steelskin-profit").innerHTML = `
+        ${superiorSteelskinProfitGold} <img src="images/money-gold.gif"> ${superiorSteelskinProfitSilver} <img src="images/money-silver.gif"> ${superiorSteelskinProfitCopper} <img src="images/money-copper.gif">`
+        if(Math.sign(superiorSteelskinProfit) == -1){
+          document.getElementById("superior-steelskin-profit").setAttribute("style", "background-color:red")
+        } else {
+          document.getElementById("superior-steelskin-profit").setAttribute("style", "background-color:green")
+        }
         })
+
+      // Potion of Replenishment
+
+      
         .catch(function(error){
           console.log(error)
         });
