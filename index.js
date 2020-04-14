@@ -876,11 +876,313 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
         } else {
           document.getElementById("superior-steelskin-profit").setAttribute("style", "background-color:green")
         }
-        })
 
       // Potion of Replenishment
+        // Cost calculation
+        var replenishmentCost = sirenspollenPrice * 10 + starmossPrice * 8;
+        var replenishmentCostString = replenishmentCost.toString();
+        replenishmentCostCopper = replenishmentCostString.charAt(replenishmentCostString.length-2) + replenishmentCostString.charAt(replenishmentCostString.length-1)
+        replenishmentCostSilver = replenishmentCostString.charAt(replenishmentCostString.length-4) + replenishmentCostString.charAt(replenishmentCostString.length-3)
+        if(replenishmentCostString.length == 5) {
+          replenishmentCostGold = replenishmentCostString.charAt(0)
+        } else if (replenishmentCostString.length == 6) {
+          replenishmentCostGold = replenishmentCostString.charAt(0) + replenishmentCostString.charAt(1)
+        } else if (replenishmentCostString.length == 7) {
+          replenishmentCostGold = replenishmentCostString.charAt(0) + replenishmentCostString.charAt(1) + replenishmentCostString.charAt(2)
+        }
+        document.getElementById("replenishment-cost").innerHTML = `
+        ${replenishmentCostGold} <img src="images/money-gold.gif"> ${replenishmentCostSilver} <img src="images/money-silver.gif"> ${replenishmentCostCopper} <img src="images/money-copper.gif">`             
 
-      
+        // Price calculation
+        var replenishment = response.data.auctions.filter(function(auction){
+            return auction.item.id === 152561
+          });
+          replenishment.sort(function(a,b){
+              return a.unit_price - b.unit_price
+            })
+        var replenishmentPrice = replenishment[0].unit_price;
+        var replenishmentPriceString = replenishmentPrice.toString();
+        replenishmentPriceCopper = replenishmentPriceString.charAt(replenishmentPriceString.length-2) + replenishmentPriceString.charAt(replenishmentPriceString.length-1)
+        replenishmentPriceSilver = replenishmentPriceString.charAt(replenishmentPriceString.length-4) + replenishmentPriceString.charAt(replenishmentPriceString.length-3)
+        if(replenishmentPriceString.length == 5) {
+          replenishmentPriceGold = replenishmentPriceString.charAt(0)
+        } else if (replenishmentPriceString.length == 6) {
+          replenishmentPriceGold = replenishmentPriceString.charAt(0) + replenishmentPriceString.charAt(1)
+        } else if (replenishmentPriceString.length == 7) {
+          replenishmentPriceGold = replenishmentPriceString.charAt(0) + replenishmentPriceString.charAt(1) + replenishmentPriceString.charAt(2)
+        }
+        document.getElementById("replenishment-price").innerHTML = `
+        ${replenishmentPriceGold} <img src="images/money-gold.gif"> ${replenishmentPriceSilver} <img src="images/money-silver.gif"> ${replenishmentPriceCopper} <img src="images/money-copper.gif">`
+        
+      // Profit/Loss Calculation
+
+      var replenishmentProfit = replenishmentPrice * 1.4 - replenishmentCost;
+      var replenishmentProfitString = replenishmentProfit.toString();
+      replenishmentProfitCopper = replenishmentProfitString.charAt(replenishmentProfitString.length-2) + replenishmentProfitString.charAt(replenishmentProfitString.length-1)
+      replenishmentProfitSilver = replenishmentProfitString.charAt(replenishmentProfitString.length-4) + replenishmentProfitString.charAt(replenishmentProfitString.length-3)
+        if(replenishmentProfitString.length == 5) {
+          replenishmentProfitGold = replenishmentProfitString.charAt(0)
+        } else if (replenishmentProfitString.length == 6) {
+          replenishmentProfitGold = replenishmentProfitString.charAt(0) + replenishmentProfitString.charAt(1)
+        } else if (replenishmentProfitString.length == 7) {
+          replenishmentProfitGold = replenishmentProfitString.charAt(0) + replenishmentProfitString.charAt(1) + replenishmentProfitString.charAt(2)
+        } else {
+          replenishmentProfitGold = replenishmentProfitString.charAt(0) + replenishmentProfitString.charAt(1) + replenishmentProfitString.charAt(2) + replenishmentProfitString.charAt(3)
+        }
+        document.getElementById("replenishment-profit").innerHTML = `
+        ${replenishmentProfitGold} <img src="images/money-gold.gif"> ${replenishmentProfitSilver} <img src="images/money-silver.gif"> ${replenishmentProfitCopper} <img src="images/money-copper.gif">`
+        if(Math.sign(replenishmentProfit) == -1){
+          document.getElementById("replenishment-profit").setAttribute("style", "background-color:red")
+        } else {
+          document.getElementById("replenishment-profit").setAttribute("style", "background-color:green")
+        }
+
+      // Greater Flask of Endless Fathoms
+
+        // Cost calculation
+        var greaterFathomsCost = zinanthidPrice * 20 + riverbudPrice * 5 + anchorweedPrice * 5;
+        var greaterFathomsCostString = greaterFathomsCost.toString();
+        greaterFathomsCostCopper = greaterFathomsCostString.charAt(greaterFathomsCostString.length-2) + greaterFathomsCostString.charAt(greaterFathomsCostString.length-1)
+        greaterFathomsCostSilver = greaterFathomsCostString.charAt(greaterFathomsCostString.length-4) + greaterFathomsCostString.charAt(greaterFathomsCostString.length-3)
+        if(greaterFathomsCostString.length == 5) {
+          greaterFathomsCostGold = greaterFathomsCostString.charAt(0)
+        } else if (greaterFathomsCostString.length == 6) {
+          greaterFathomsCostGold = greaterFathomsCostString.charAt(0) + greaterFathomsCostString.charAt(1)
+        } else if (greaterFathomsCostString.length == 7) {
+          greaterFathomsCostGold = greaterFathomsCostString.charAt(0) + greaterFathomsCostString.charAt(1) + greaterFathomsCostString.charAt(2)
+        }
+        document.getElementById("greater-fathoms-cost").innerHTML = `
+        ${greaterFathomsCostGold} <img src="images/money-gold.gif"> ${greaterFathomsCostSilver} <img src="images/money-silver.gif"> ${greaterFathomsCostCopper} <img src="images/money-copper.gif">`             
+
+        // Price calculation
+        var greaterFathoms = response.data.auctions.filter(function(auction){
+            return auction.item.id === 168652
+          });
+          greaterFathoms.sort(function(a,b){
+              return a.unit_price - b.unit_price
+            })
+        var greaterFathomsPrice = greaterFathoms[0].unit_price;
+        var greaterFathomsPriceString = greaterFathomsPrice.toString();
+        greaterFathomsPriceCopper = greaterFathomsPriceString.charAt(greaterFathomsPriceString.length-2) + greaterFathomsPriceString.charAt(greaterFathomsPriceString.length-1)
+        greaterFathomsPriceSilver = greaterFathomsPriceString.charAt(greaterFathomsPriceString.length-4) + greaterFathomsPriceString.charAt(greaterFathomsPriceString.length-3)
+        if(greaterFathomsPriceString.length == 5) {
+          greaterFathomsPriceGold = greaterFathomsPriceString.charAt(0)
+        } else if (greaterFathomsPriceString.length == 6) {
+          greaterFathomsPriceGold = greaterFathomsPriceString.charAt(0) + greaterFathomsPriceString.charAt(1)
+        } else if (greaterFathomsPriceString.length == 7) {
+          greaterFathomsPriceGold = greaterFathomsPriceString.charAt(0) + greaterFathomsPriceString.charAt(1) + greaterFathomsPriceString.charAt(2)
+        }
+        document.getElementById("greater-fathoms-price").innerHTML = `
+        ${greaterFathomsPriceGold} <img src="images/money-gold.gif"> ${greaterFathomsPriceSilver} <img src="images/money-silver.gif"> ${greaterFathomsPriceCopper} <img src="images/money-copper.gif">`
+        
+      // Profit/Loss Calculation
+
+      var greaterFathomsProfit = greaterFathomsPrice * 1.4 - greaterFathomsCost;
+      var greaterFathomsProfitString = greaterFathomsProfit.toString();
+      greaterFathomsProfitCopper = greaterFathomsProfitString.charAt(greaterFathomsProfitString.length-2) + greaterFathomsProfitString.charAt(greaterFathomsProfitString.length-1)
+      greaterFathomsProfitSilver = greaterFathomsProfitString.charAt(greaterFathomsProfitString.length-4) + greaterFathomsProfitString.charAt(greaterFathomsProfitString.length-3)
+        if(greaterFathomsProfitString.length == 5) {
+          greaterFathomsProfitGold = greaterFathomsProfitString.charAt(0)
+        } else if (greaterFathomsProfitString.length == 6) {
+          greaterFathomsProfitGold = greaterFathomsProfitString.charAt(0) + greaterFathomsProfitString.charAt(1)
+        } else if (greaterFathomsProfitString.length == 7) {
+          greaterFathomsProfitGold = greaterFathomsProfitString.charAt(0) + greaterFathomsProfitString.charAt(1) + greaterFathomsProfitString.charAt(2)
+        } else {
+          greaterFathomsProfitGold = greaterFathomsProfitString.charAt(0) + greaterFathomsProfitString.charAt(1) + greaterFathomsProfitString.charAt(2) + greaterFathomsProfitString.charAt(3)
+        }
+        document.getElementById("greater-fathoms-profit").innerHTML = `
+        ${greaterFathomsProfitGold} <img src="images/money-gold.gif"> ${greaterFathomsProfitSilver} <img src="images/money-silver.gif"> ${greaterFathomsProfitCopper} <img src="images/money-copper.gif">`
+        if(Math.sign(greaterFathomsProfit) == -1){
+          document.getElementById("greater-fathoms-profit").setAttribute("style", "background-color:red")
+        } else {
+          document.getElementById("greater-fathoms-profit").setAttribute("style", "background-color:green")
+        }
+
+      // Greater Flask of the Currents
+
+        // Cost calculation
+        var greaterCurrentsCost = zinanthidPrice * 20 + seastalkPrice * 5 + anchorweedPrice * 5;
+        var greaterCurrentsCosttString = greaterCurrentsCost.toString();
+        greaterCurrentsCostCopper = greaterCurrentsCosttString.charAt(greaterCurrentsCosttString.length-2) + greaterCurrentsCosttString.charAt(greaterCurrentsCosttString.length-1)
+        greaterCurrentsCostSilver = greaterCurrentsCosttString.charAt(greaterCurrentsCosttString.length-4) + greaterCurrentsCosttString.charAt(greaterCurrentsCosttString.length-3)
+        if(greaterCurrentsCosttString.length == 5) {
+          greaterCurrentsCostGold = greaterCurrentsCosttString.charAt(0)
+        } else if (greaterCurrentsCosttString.length == 6) {
+          greaterCurrentsCostGold = greaterCurrentsCosttString.charAt(0) + greaterCurrentsCosttString.charAt(1)
+        } else if (greaterCurrentsCosttString.length == 7) {
+          greaterCurrentsCostGold = greaterCurrentsCosttString.charAt(0) + greaterCurrentsCosttString.charAt(1) + greaterCurrentsCosttString.charAt(2)
+        }
+        document.getElementById("greater-currents-cost").innerHTML = `
+        ${greaterCurrentsCostGold} <img src="images/money-gold.gif"> ${greaterCurrentsCostSilver} <img src="images/money-silver.gif"> ${greaterCurrentsCostCopper} <img src="images/money-copper.gif">`             
+
+        // Price calculation
+        var greaterCurrents = response.data.auctions.filter(function(auction){
+            return auction.item.id === 168651
+          });
+          greaterCurrents.sort(function(a,b){
+              return a.unit_price - b.unit_price
+            })
+        var greaterCurrentsPrice = greaterCurrents[0].unit_price;
+        var greaterCurrentsPriceString = greaterCurrentsPrice.toString();
+        greaterCurrentsPriceCopper = greaterCurrentsPriceString.charAt(greaterCurrentsPriceString.length-2) + greaterCurrentsPriceString.charAt(greaterCurrentsPriceString.length-1)
+        greaterCurrentsPriceSilver = greaterCurrentsPriceString.charAt(greaterCurrentsPriceString.length-4) + greaterCurrentsPriceString.charAt(greaterCurrentsPriceString.length-3)
+        if(greaterCurrentsPriceString.length == 5) {
+          greaterCurrentsPriceGold = greaterCurrentsPriceString.charAt(0)
+        } else if (greaterCurrentsPriceString.length == 6) {
+          greaterCurrentsPriceGold = greaterCurrentsPriceString.charAt(0) + greaterCurrentsPriceString.charAt(1)
+        } else if (greaterCurrentsPriceString.length == 7) {
+          greaterCurrentsPriceGold = greaterCurrentsPriceString.charAt(0) + greaterCurrentsPriceString.charAt(1) + greaterCurrentsPriceString.charAt(2)
+        }
+        document.getElementById("greater-currents-price").innerHTML = `
+        ${greaterCurrentsPriceGold} <img src="images/money-gold.gif"> ${greaterCurrentsPriceSilver} <img src="images/money-silver.gif"> ${greaterCurrentsPriceCopper} <img src="images/money-copper.gif">`
+        
+      // Profit/Loss Calculation
+
+      var greaterCurrentsProfit = greaterCurrentsPrice * 1.4 - greaterCurrentsCost;
+      var greaterCurrentsProfitString = greaterCurrentsProfit.toString();
+      greaterCurrentsProfitCopper = greaterCurrentsProfitString.charAt(greaterCurrentsProfitString.length-2) + greaterCurrentsProfitString.charAt(greaterCurrentsProfitString.length-1)
+      greaterCurrentsProfitSilver = greaterCurrentsProfitString.charAt(greaterCurrentsProfitString.length-4) + greaterCurrentsProfitString.charAt(greaterCurrentsProfitString.length-3)
+        if(greaterCurrentsProfitString.length == 5) {
+          greaterCurrentsProfitGold = greaterCurrentsProfitString.charAt(0)
+        } else if (greaterCurrentsProfitString.length == 6) {
+          greaterCurrentsProfitGold = greaterCurrentsProfitString.charAt(0) + greaterCurrentsProfitString.charAt(1)
+        } else if (greaterCurrentsProfitString.length == 7) {
+          greaterCurrentsProfitGold = greaterCurrentsProfitString.charAt(0) + greaterCurrentsProfitString.charAt(1) + greaterCurrentsProfitString.charAt(2)
+        } else {
+          greaterCurrentsProfitGold = greaterCurrentsProfitString.charAt(0) + greaterCurrentsProfitString.charAt(1) + greaterCurrentsProfitString.charAt(2) + greaterCurrentsProfitString.charAt(3)
+        }
+        document.getElementById("greater-currents-profit").innerHTML = `
+        ${greaterCurrentsProfitGold} <img src="images/money-gold.gif"> ${greaterCurrentsProfitSilver} <img src="images/money-silver.gif"> ${greaterCurrentsProfitCopper} <img src="images/money-copper.gif">`
+        if(Math.sign(greaterCurrentsProfit) == -1){
+          document.getElementById("greater-currents-profit").setAttribute("style", "background-color:red")
+        } else {
+          document.getElementById("greater-currents-profit").setAttribute("style", "background-color:green")
+        }
+
+      // Greater Flask of the Undertow
+        // Cost calculation
+        var greaterUndertowCost = zinanthidPrice * 20 + sirenspollenPrice * 5 + anchorweedPrice * 5;
+        var greaterUndertowCostString = greaterUndertowCost.toString();
+        greaterUndertowCostCopper = greaterUndertowCostString.charAt(greaterUndertowCostString.length-2) + greaterUndertowCostString.charAt(greaterUndertowCostString.length-1)
+        greaterUndertowCostSilver = greaterUndertowCostString.charAt(greaterUndertowCostString.length-4) + greaterUndertowCostString.charAt(greaterUndertowCostString.length-3)
+        if(greaterUndertowCostString.length == 5) {
+          greaterUndertowCostGold = greaterUndertowCostString.charAt(0)
+        } else if (greaterUndertowCostString.length == 6) {
+          greaterUndertowCostGold = greaterUndertowCostString.charAt(0) + greaterUndertowCostString.charAt(1)
+        } else if (greaterUndertowCostString.length == 7) {
+          greaterUndertowCostGold = greaterUndertowCostString.charAt(0) + greaterUndertowCostString.charAt(1) + greaterUndertowCostString.charAt(2)
+        }
+        document.getElementById("greater-undertow-cost").innerHTML = `
+        ${greaterUndertowCostGold} <img src="images/money-gold.gif"> ${greaterUndertowCostSilver} <img src="images/money-silver.gif"> ${greaterUndertowCostCopper} <img src="images/money-copper.gif">`             
+
+        // Price calculation
+        var greaterUndertow = response.data.auctions.filter(function(auction){
+            return auction.item.id === 168654
+          });
+          greaterUndertow.sort(function(a,b){
+              return a.unit_price - b.unit_price
+            })
+        var greaterUndertowPrice = greaterUndertow[0].unit_price;
+        var greaterUndertowPriceString = greaterUndertowPrice.toString();
+        greaterUndertowPriceCopper = greaterUndertowPriceString.charAt(greaterUndertowPriceString.length-2) + greaterUndertowPriceString.charAt(greaterUndertowPriceString.length-1)
+        greaterUndertowPriceSilver = greaterUndertowPriceString.charAt(greaterUndertowPriceString.length-4) + greaterUndertowPriceString.charAt(greaterUndertowPriceString.length-3)
+        if(greaterUndertowPriceString.length == 5) {
+          greaterUndertowPriceGold = greaterUndertowPriceString.charAt(0)
+        } else if (greaterUndertowPriceString.length == 6) {
+          greaterUndertowPriceGold = greaterUndertowPriceString.charAt(0) + greaterUndertowPriceString.charAt(1)
+        } else if (greaterUndertowPriceString.length == 7) {
+          greaterUndertowPriceGold = greaterUndertowPriceString.charAt(0) + greaterUndertowPriceString.charAt(1) + greaterUndertowPriceString.charAt(2)
+        }
+        document.getElementById("greater-undertow-price").innerHTML = `
+        ${greaterUndertowPriceGold} <img src="images/money-gold.gif"> ${greaterUndertowPriceSilver} <img src="images/money-silver.gif"> ${greaterUndertowPriceCopper} <img src="images/money-copper.gif">`
+        
+      // Profit/Loss Calculation
+
+      var greaterUndertowProfit = greaterUndertowPrice * 1.4 - greaterUndertowCost;
+      var greaterUndertowProfitString = greaterUndertowProfit.toString();
+      greaterUndertowProfitCopper = greaterUndertowProfitString.charAt(greaterUndertowProfitString.length-2) + greaterUndertowProfitString.charAt(greaterUndertowProfitString.length-1)
+      greaterUndertowProfitSilver = greaterUndertowProfitString.charAt(greaterUndertowProfitString.length-4) + greaterUndertowProfitString.charAt(greaterUndertowProfitString.length-3)
+        if(greaterUndertowProfitString.length == 5) {
+          greaterUndertowProfitGold = greaterUndertowProfitString.charAt(0)
+        } else if (greaterUndertowProfitString.length == 6) {
+          greaterUndertowProfitGold = greaterUndertowProfitString.charAt(0) + greaterUndertowProfitString.charAt(1)
+        } else if (greaterUndertowProfitString.length == 7) {
+          greaterUndertowProfitGold = greaterUndertowProfitString.charAt(0) + greaterUndertowProfitString.charAt(1) + greaterUndertowProfitString.charAt(2)
+        } else {
+          greaterUndertowProfitGold = greaterUndertowProfitString.charAt(0) + greaterUndertowProfitString.charAt(1) + greaterUndertowProfitString.charAt(2) + greaterUndertowProfitString.charAt(3)
+        }
+        document.getElementById("greater-undertow-profit").innerHTML = `
+        ${greaterUndertowProfitGold} <img src="images/money-gold.gif"> ${greaterUndertowProfitSilver} <img src="images/money-silver.gif"> ${greaterUndertowProfitCopper} <img src="images/money-copper.gif">`
+        if(Math.sign(greaterUndertowProfit) == -1){
+          document.getElementById("greater-undertow-profit").setAttribute("style", "background-color:red")
+        } else {
+          document.getElementById("greater-undertow-profit").setAttribute("style", "background-color:green")
+        }
+
+      // Greater Flask of the Vast Horizon
+        // Cost calculation
+        var greaterHorizonCost = zinanthidPrice * 20 + starmossPrice * 5 + anchorweedPrice * 5;
+        var greaterHorizonCosttString = greaterHorizonCost.toString();
+        greaterHorizonCostCopper = greaterHorizonCosttString.charAt(greaterHorizonCosttString.length-2) + greaterHorizonCosttString.charAt(greaterHorizonCosttString.length-1)
+        greaterHorizonCostSilver = greaterHorizonCosttString.charAt(greaterHorizonCosttString.length-4) + greaterHorizonCosttString.charAt(greaterHorizonCosttString.length-3)
+        if(greaterHorizonCosttString.length == 5) {
+          greaterHorizonCostGold = greaterHorizonCosttString.charAt(0)
+        } else if (greaterHorizonCosttString.length == 6) {
+          greaterHorizonCostGold = greaterHorizonCosttString.charAt(0) + greaterHorizonCosttString.charAt(1)
+        } else if (greaterHorizonCosttString.length == 7) {
+          greaterHorizonCostGold = greaterHorizonCosttString.charAt(0) + greaterHorizonCosttString.charAt(1) + greaterHorizonCosttString.charAt(2)
+        }
+        document.getElementById("greater-horizon-cost").innerHTML = `
+        ${greaterHorizonCostGold} <img src="images/money-gold.gif"> ${greaterHorizonCostSilver} <img src="images/money-silver.gif"> ${greaterHorizonCostCopper} <img src="images/money-copper.gif">`             
+
+        // Price calculation
+        var greaterHorizon = response.data.auctions.filter(function(auction){
+            return auction.item.id === 168653
+          });
+          greaterHorizon.sort(function(a,b){
+              return a.unit_price - b.unit_price
+            })
+        var greaterHorizonPrice = greaterHorizon[0].unit_price;
+        var greaterHorizonPriceString = greaterHorizonPrice.toString();
+        greaterHorizonPriceCopper = greaterHorizonPriceString.charAt(greaterHorizonPriceString.length-2) + greaterHorizonPriceString.charAt(greaterHorizonPriceString.length-1)
+        greaterHorizonPriceSilver = greaterHorizonPriceString.charAt(greaterHorizonPriceString.length-4) + greaterHorizonPriceString.charAt(greaterHorizonPriceString.length-3)
+        if(greaterHorizonPriceString.length == 5) {
+          greaterHorizonPriceGold = greaterHorizonPriceString.charAt(0)
+        } else if (greaterHorizonPriceString.length == 6) {
+          greaterHorizonPriceGold = greaterHorizonPriceString.charAt(0) + greaterHorizonPriceString.charAt(1)
+        } else if (greaterHorizonPriceString.length == 7) {
+          greaterHorizonPriceGold = greaterHorizonPriceString.charAt(0) + greaterHorizonPriceString.charAt(1) + greaterHorizonPriceString.charAt(2)
+        }
+        document.getElementById("greater-horizon-price").innerHTML = `
+        ${greaterHorizonPriceGold} <img src="images/money-gold.gif"> ${greaterHorizonPriceSilver} <img src="images/money-silver.gif"> ${greaterHorizonPriceCopper} <img src="images/money-copper.gif">`
+        
+      // Profit/Loss Calculation
+
+      var greaterHorizonProfit = greaterHorizonPrice * 1.4 - greaterHorizonCost;
+      var greaterHorizonProfitString = greaterHorizonProfit.toString();
+      greaterHorizonProfitCopper = greaterHorizonProfitString.charAt(greaterHorizonProfitString.length-2) + greaterHorizonProfitString.charAt(greaterHorizonProfitString.length-1)
+      greaterHorizonProfitSilver = greaterHorizonProfitString.charAt(greaterHorizonProfitString.length-4) + greaterHorizonProfitString.charAt(greaterHorizonProfitString.length-3)
+        if(greaterHorizonProfitString.length == 5) {
+          greaterHorizonProfitGold = greaterHorizonProfitString.charAt(0)
+        } else if (greaterHorizonProfitString.length == 6) {
+          greaterHorizonProfitGold = greaterHorizonProfitString.charAt(0) + greaterHorizonProfitString.charAt(1)
+        } else if (greaterHorizonProfitString.length == 7) {
+          greaterHorizonProfitGold = greaterHorizonProfitString.charAt(0) + greaterHorizonProfitString.charAt(1) + greaterHorizonProfitString.charAt(2)
+        } else {
+          greaterHorizonProfitGold = greaterHorizonProfitString.charAt(0) + greaterHorizonProfitString.charAt(1) + greaterHorizonProfitString.charAt(2) + greaterHorizonProfitString.charAt(3)
+        }
+        document.getElementById("greater-horizon-profit").innerHTML = `
+        ${greaterHorizonProfitGold} <img src="images/money-gold.gif"> ${greaterHorizonProfitSilver} <img src="images/money-silver.gif"> ${greaterHorizonProfitCopper} <img src="images/money-copper.gif">`
+        if(Math.sign(greaterUndertowProfit) == -1){
+          document.getElementById("greater-horizon-profit").setAttribute("style", "background-color:red")
+        } else {
+          document.getElementById("greater-horizon-profit").setAttribute("style", "background-color:green")
+        }
+
+
+
+
+        })
         .catch(function(error){
           console.log(error)
         });
