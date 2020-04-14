@@ -447,7 +447,6 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
                       return a.unit_price - b.unit_price
                     })
                 var wildMendingPrice = wildMending[0].unit_price;
-                console.log(wildMendingPrice);
                 var wildMendingString = wildMendingPrice.toString();
                 wildMendingPriceCopper = wildMendingString.charAt(wildMendingString.length-2) + wildMendingString.charAt(wildMendingString.length-1)
                 wildMendingPriceSilver = wildMendingString.charAt(wildMendingString.length-4) + wildMendingString.charAt(wildMendingString.length-3)
@@ -483,60 +482,231 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
 
               // Superior Battle Potion of Agility 
               // Cost calculation
-              var superiorAgilityCost = zinanthidPrice * 6;
-              var wildMendingCostString = wildMendingCost.toString();
-              wildMendingCostCopper = wildMendingCostString.charAt(wildMendingCostString.length-2) + wildMendingCostString.charAt(wildMendingCostString.length-1)
-              wildMendingCostSilver = wildMendingCostString.charAt(wildMendingCostString.length-4) + wildMendingCostString.charAt(wildMendingCostString.length-3)
-              if(wildMendingCostString.length == 5) {
-                wildMendingCostGold = wildMendingCostString.charAt(0)
-              } else if (wildMendingCostString.length == 6) {
-                wildMendingCostGold = wildMendingCostString.charAt(0) + wildMendingCostString.charAt(1)
-              } else if (wildMendingCostString.length == 7) {
-                wildMendingCostGold = wildMendingCostString.charAt(0) + wildMendingCostString.charAt(1) + wildMendingCostString.charAt(2)
+              var superiorAgilityCost = zinanthidPrice * 8 + riverbudPrice * 3;
+              var superiorAgilityCostString = superiorAgilityCost.toString();
+              superiorAgilityCostCopper = superiorAgilityCostString.charAt(superiorAgilityCostString.length-2) + superiorAgilityCostString.charAt(superiorAgilityCostString.length-1)
+              superiorAgilityCostSilver = superiorAgilityCostString.charAt(superiorAgilityCostString.length-4) + superiorAgilityCostString.charAt(superiorAgilityCostString.length-3)
+              if(superiorAgilityCostString.length == 5) {
+                superiorAgilityCostGold = superiorAgilityCostString.charAt(0)
+              } else if (superiorAgilityCostString.length == 6) {
+                superiorAgilityCostGold = superiorAgilityCostString.charAt(0) + superiorAgilityCostString.charAt(1)
+              } else if (superiorAgilityCostString.length == 7) {
+                superiorAgilityCostGold = superiorAgilityCostString.charAt(0) + superiorAgilityCostString.charAt(1) + superiorAgilityCostString.charAt(2)
               }
-              document.getElementById("wild-mending-cost").innerHTML = `
-              ${wildMendingCostGold} <img src="images/money-gold.gif"> ${wildMendingCostSilver} <img src="images/money-silver.gif"> ${wildMendingCostCopper} <img src="images/money-copper.gif">`             
+              document.getElementById("superior-agility-cost").innerHTML = `
+              ${superiorAgilityCostGold} <img src="images/money-gold.gif"> ${superiorAgilityCostSilver} <img src="images/money-silver.gif"> ${superiorAgilityCostCopper} <img src="images/money-copper.gif">`             
   
               // Price calculation
-              var wildMending = response.data.auctions.filter(function(auction){
+              var superiorAgility = response.data.auctions.filter(function(auction){
                   return auction.item.id === 168489
                 });
-                wildMending.sort(function(a,b){
+                superiorAgility.sort(function(a,b){
                     return a.unit_price - b.unit_price
                   })
-              var wildMendingPrice = wildMending[0].unit_price;
-              var wildMendingString = wildMendingPrice.toString();
-              wildMendingPriceCopper = wildMendingString.charAt(wildMendingString.length-2) + wildMendingString.charAt(wildMendingString.length-1)
-              wildMendingPriceSilver = wildMendingString.charAt(wildMendingString.length-4) + wildMendingString.charAt(wildMendingString.length-3)
-              if(wildMendingString.length == 5) {
-                wildMendingPriceGold = wildMendingString.charAt(0)
-              } else if (wildMendingString.length == 6) {
-                wildMendingPriceGold = wildMendingString.charAt(0) + wildMendingString.charAt(1)
-              } else if (wildMendingString.length == 7) {
-                wildMendingPriceGold = wildMendingString.charAt(0) + wildMendingString.charAt(1) + wildMendingString.charAt(2)
+              var superiorAgilityPrice = superiorAgility[0].unit_price;
+              var superiorAgiliyString = superiorAgilityPrice.toString();
+              superiorAgilityCopper = superiorAgiliyString.charAt(superiorAgiliyString.length-2) + superiorAgiliyString.charAt(superiorAgiliyString.length-1)
+              superiorAgilitySilver = superiorAgiliyString.charAt(superiorAgiliyString.length-4) + superiorAgiliyString.charAt(superiorAgiliyString.length-3)
+              if(superiorAgiliyString.length == 5) {
+                superiorAgilityGold = superiorAgiliyString.charAt(0)
+              } else if (superiorAgiliyString.length == 6) {
+                superiorAgilityGold = superiorAgiliyString.charAt(0) + superiorAgiliyString.charAt(1)
+              } else if (superiorAgiliyString.length == 7) {
+                superiorAgilityGold = superiorAgiliyString.charAt(0) + superiorAgiliyString.charAt(1) + superiorAgiliyString.charAt(2)
               }
-              document.getElementById("wild-mending-price").innerHTML = `
-              ${wildMendingPriceGold} <img src="images/money-gold.gif"> ${wildMendingPriceSilver} <img src="images/money-silver.gif"> ${wildMendingPriceCopper} <img src="images/money-copper.gif">`
+              document.getElementById("superior-agility-price").innerHTML = `
+              ${superiorAgilityGold} <img src="images/money-gold.gif"> ${superiorAgilitySilver} <img src="images/money-silver.gif"> ${superiorAgilityCopper} <img src="images/money-copper.gif">`
               
             // Profit/Loss Calculation
-            var wildMendingProfit = wildMendingPrice - wildMendingCost;
-            var wildMendingProfitString = wildMendingProfit.toString();
-            wildMendingProfitCopper = wildMendingProfitString.charAt(wildMendingProfitString.length-2) + wildMendingProfitString.charAt(wildMendingProfitString.length-1)
-            wildMendingProfitSilver = wildMendingProfitString.charAt(wildMendingProfitString.length-4) + wildMendingProfitString.charAt(wildMendingProfitString.length-3)
-              if(wildMendingProfitString.length == 5) {
-                wildMendingProfitGold = wildMendingProfitString.charAt(0)
-              } else if (wildMendingProfitString.length == 6) {
-                wildMendingProfitGold = wildMendingProfitString.charAt(0) + wildMendingProfitString.charAt(1)
-              } else if (wildMendingProfitString.length == 7) {
-                wildMendingProfitGold = wildMendingProfitString.charAt(0) + wildMendingProfitString.charAt(1) + wildMendingProfitString.charAt(2)
+            var superiorAgilityProfit = superiorAgilityPrice * 1.4 - superiorAgilityCost;
+            var superiorAgilityProfitString = superiorAgilityProfit.toString();
+            superiorAgilityProfitCopper = superiorAgilityProfitString.charAt(superiorAgilityProfitString.length-2) + superiorAgilityProfitString.charAt(superiorAgilityProfitString.length-1)
+            superiorAgilityProfitSilver = superiorAgilityProfitString.charAt(superiorAgilityProfitString.length-4) + superiorAgilityProfitString.charAt(superiorAgilityProfitString.length-3)
+              if(superiorAgilityProfitString.length == 5) {
+                superiorAgilityProfitGold = superiorAgilityProfitString.charAt(0)
+              } else if (superiorAgilityProfitString.length == 6) {
+                superiorAgilityProfitGold = superiorAgilityProfitString.charAt(0) + superiorAgilityProfitString.charAt(1)
+              } else if (superiorAgilityProfitString.length == 7) {
+                superiorAgilityProfitGold = superiorAgilityProfitString.charAt(0) + superiorAgilityProfitString.charAt(1) + superiorAgilityProfitString.charAt(2)
               }
-              document.getElementById("wild-mending-profit").innerHTML = `
-              ${wildMendingProfitGold} <img src="images/money-gold.gif"> ${wildMendingProfitSilver} <img src="images/money-silver.gif"> ${wildMendingProfitCopper} <img src="images/money-copper.gif">`
-              if(Math.sign(wildMendingProfit) == -1){
-                document.getElementById("wild-mending-profit").setAttribute("style", "background-color:red")
+              document.getElementById("superior-agility-profit").innerHTML = `
+              ${superiorAgilityProfitGold} <img src="images/money-gold.gif"> ${superiorAgilityProfitSilver} <img src="images/money-silver.gif"> ${superiorAgilityProfitCopper} <img src="images/money-copper.gif">`
+              if(Math.sign(superiorAgilityProfit) == -1){
+                document.getElementById("superior-agility-profit").setAttribute("style", "background-color:red")
               } else {
-                document.getElementById("wild-mending-profit").setAttribute("style", "background-color:green")
+                document.getElementById("superior-agility-profit").setAttribute("style", "background-color:green")
               }
+
+            // Superior Battle Potion of Intellect
+            // Cost calculation
+              var superiorIntellectCost = zinanthidPrice * 8 + sirenspollenPrice * 3;
+              var superiorIntellectCostString = superiorIntellectCost.toString();
+              superiorIntellectCostCopper = superiorIntellectCostString.charAt(superiorIntellectCostString.length-2) + superiorIntellectCostString.charAt(superiorIntellectCostString.length-1)
+              superiorIntellectCostSilver = superiorIntellectCostString.charAt(superiorIntellectCostString.length-4) + superiorIntellectCostString.charAt(superiorIntellectCostString.length-3)
+              if(superiorIntellectCostString.length == 5) {
+                superiorIntellectCostGold = superiorIntellectCostString.charAt(0)
+              } else if (superiorIntellectCostString.length == 6) {
+                superiorIntellectCostGold = superiorIntellectCostString.charAt(0) + superiorIntellectCostString.charAt(1)
+              } else if (superiorIntellectCostString.length == 7) {
+                superiorIntellectCostGold = superiorIntellectCostString.charAt(0) + superiorIntellectCostString.charAt(1) + superiorIntellectCostString.charAt(2)
+              }
+              document.getElementById("superior-intellect-cost").innerHTML = `
+              ${superiorIntellectCostGold} <img src="images/money-gold.gif"> ${superiorIntellectCostSilver} <img src="images/money-silver.gif"> ${superiorIntellectCostCopper} <img src="images/money-copper.gif">`             
+  
+              // Price calculation
+              var superiorIntellect = response.data.auctions.filter(function(auction){
+                  return auction.item.id === 168498
+                });
+                superiorIntellect.sort(function(a,b){
+                    return a.unit_price - b.unit_price
+                  })
+              var superiorIntellectPrice = superiorIntellect[0].unit_price;
+              var superiorIntellectPriceString = superiorIntellectPrice.toString();
+              superiorIntellectCopper = superiorIntellectPriceString.charAt(superiorIntellectPriceString.length-2) + superiorIntellectPriceString.charAt(superiorIntellectPriceString.length-1)
+              superiorIntellectSilver = superiorIntellectPriceString.charAt(superiorIntellectPriceString.length-4) + superiorIntellectPriceString.charAt(superiorIntellectPriceString.length-3)
+              if(superiorIntellectPriceString.length == 5) {
+                superiorIntellectGold = superiorIntellectPriceString.charAt(0)
+              } else if (superiorIntellectPriceString.length == 6) {
+                superiorIntellectGold = superiorIntellectPriceString.charAt(0) + superiorIntellectPriceString.charAt(1)
+              } else if (superiorIntellectPriceString.length == 7) {
+                superiorIntellectGold = superiorIntellectPriceString.charAt(0) + superiorIntellectPriceString.charAt(1) + superiorIntellectPriceString.charAt(2)
+              }
+              document.getElementById("superior-intellect-price").innerHTML = `
+              ${superiorIntellectGold} <img src="images/money-gold.gif"> ${superiorIntellectSilver} <img src="images/money-silver.gif"> ${superiorIntellectCopper} <img src="images/money-copper.gif">`
+              
+            // Profit/Loss Calculation
+            var superiorIntellectProfit = superiorIntellectPrice * 1.4 - superiorIntellectCost;
+            var superiorIntellectProfitString = superiorIntellectProfit.toString();
+            superiorIntellectProfitCopper = superiorIntellectProfitString.charAt(superiorIntellectProfitString.length-2) + superiorIntellectProfitString.charAt(superiorIntellectProfitString.length-1)
+            superiorIntellectProfitSilver = superiorIntellectProfitString.charAt(superiorIntellectProfitString.length-4) + superiorIntellectProfitString.charAt(superiorIntellectProfitString.length-3)
+              if(superiorIntellectProfitString.length == 5) {
+                superiorIntellectProfitGold = superiorIntellectProfitString.charAt(0)
+              } else if (superiorIntellectProfitString.length == 6) {
+                superiorIntellectProfitGold = superiorIntellectProfitString.charAt(0) + superiorIntellectProfitString.charAt(1)
+              } else if (superiorIntellectProfitString.length == 7) {
+                superiorIntellectProfitGold = superiorIntellectProfitString.charAt(0) + superiorIntellectProfitString.charAt(1) + superiorIntellectProfitString.charAt(2)
+              }
+              document.getElementById("superior-intellect-profit").innerHTML = `
+              ${superiorIntellectProfitGold} <img src="images/money-gold.gif"> ${superiorIntellectProfitSilver} <img src="images/money-silver.gif"> ${superiorIntellectProfitCopper} <img src="images/money-copper.gif">`
+              if(Math.sign(superiorIntellectProfit) == -1){
+                document.getElementById("superior-intellect-profit").setAttribute("style", "background-color:red")
+              } else {
+                document.getElementById("superior-intellect-profit").setAttribute("style", "background-color:green")
+              }
+            
+            // Superior Battle Potion of Stamina
+                        // Cost calculation
+              var superiorIntellectCost = zinanthidPrice * 8 + sirenspollenPrice * 3;
+              var superiorIntellectCostString = superiorIntellectCost.toString();
+              superiorIntellectCostCopper = superiorIntellectCostString.charAt(superiorIntellectCostString.length-2) + superiorIntellectCostString.charAt(superiorIntellectCostString.length-1)
+              superiorIntellectCostSilver = superiorIntellectCostString.charAt(superiorIntellectCostString.length-4) + superiorIntellectCostString.charAt(superiorIntellectCostString.length-3)
+              if(superiorIntellectCostString.length == 5) {
+                superiorIntellectCostGold = superiorIntellectCostString.charAt(0)
+              } else if (superiorIntellectCostString.length == 6) {
+                superiorIntellectCostGold = superiorIntellectCostString.charAt(0) + superiorIntellectCostString.charAt(1)
+              } else if (superiorIntellectCostString.length == 7) {
+                superiorIntellectCostGold = superiorIntellectCostString.charAt(0) + superiorIntellectCostString.charAt(1) + superiorIntellectCostString.charAt(2)
+              }
+              document.getElementById("superior-intellect-cost").innerHTML = `
+              ${superiorIntellectCostGold} <img src="images/money-gold.gif"> ${superiorIntellectCostSilver} <img src="images/money-silver.gif"> ${superiorIntellectCostCopper} <img src="images/money-copper.gif">`             
+  
+              // Price calculation
+              var superiorIntellect = response.data.auctions.filter(function(auction){
+                  return auction.item.id === 168498
+                });
+                superiorIntellect.sort(function(a,b){
+                    return a.unit_price - b.unit_price
+                  })
+              var superiorIntellectPrice = superiorIntellect[0].unit_price;
+              var superiorIntellectPriceString = superiorIntellectPrice.toString();
+              superiorIntellectCopper = superiorIntellectPriceString.charAt(superiorIntellectPriceString.length-2) + superiorIntellectPriceString.charAt(superiorIntellectPriceString.length-1)
+              superiorIntellectSilver = superiorIntellectPriceString.charAt(superiorIntellectPriceString.length-4) + superiorIntellectPriceString.charAt(superiorIntellectPriceString.length-3)
+              if(superiorIntellectPriceString.length == 5) {
+                superiorIntellectGold = superiorIntellectPriceString.charAt(0)
+              } else if (superiorIntellectPriceString.length == 6) {
+                superiorIntellectGold = superiorIntellectPriceString.charAt(0) + superiorIntellectPriceString.charAt(1)
+              } else if (superiorIntellectPriceString.length == 7) {
+                superiorIntellectGold = superiorIntellectPriceString.charAt(0) + superiorIntellectPriceString.charAt(1) + superiorIntellectPriceString.charAt(2)
+              }
+              document.getElementById("superior-intellect-price").innerHTML = `
+              ${superiorIntellectGold} <img src="images/money-gold.gif"> ${superiorIntellectSilver} <img src="images/money-silver.gif"> ${superiorIntellectCopper} <img src="images/money-copper.gif">`
+              
+            // Profit/Loss Calculation
+            var superiorIntellectProfit = superiorIntellectPrice * 1.4 - superiorIntellectCost;
+            var superiorIntellectProfitString = superiorIntellectProfit.toString();
+            superiorIntellectProfitCopper = superiorIntellectProfitString.charAt(superiorIntellectProfitString.length-2) + superiorIntellectProfitString.charAt(superiorIntellectProfitString.length-1)
+            superiorIntellectProfitSilver = superiorIntellectProfitString.charAt(superiorIntellectProfitString.length-4) + superiorIntellectProfitString.charAt(superiorIntellectProfitString.length-3)
+              if(superiorIntellectProfitString.length == 5) {
+                superiorIntellectProfitGold = superiorIntellectProfitString.charAt(0)
+              } else if (superiorIntellectProfitString.length == 6) {
+                superiorIntellectProfitGold = superiorIntellectProfitString.charAt(0) + superiorIntellectProfitString.charAt(1)
+              } else if (superiorIntellectProfitString.length == 7) {
+                superiorIntellectProfitGold = superiorIntellectProfitString.charAt(0) + superiorIntellectProfitString.charAt(1) + superiorIntellectProfitString.charAt(2)
+              }
+              document.getElementById("superior-intellect-profit").innerHTML = `
+              ${superiorIntellectProfitGold} <img src="images/money-gold.gif"> ${superiorIntellectProfitSilver} <img src="images/money-silver.gif"> ${superiorIntellectProfitCopper} <img src="images/money-copper.gif">`
+              if(Math.sign(superiorIntellectProfit) == -1){
+                document.getElementById("superior-intellect-profit").setAttribute("style", "background-color:red")
+              } else {
+                document.getElementById("superior-intellect-profit").setAttribute("style", "background-color:green")
+              }
+
+            // Superior Battle Potion of Stamina
+            // Cost calculation
+            var superiorStaminaCost = zinanthidPrice * 8 + seastalkPrice * 3;
+            var superiorStaminaCostString = superiorStaminaCost.toString();
+            superiorStaminaCostCopper = superiorStaminaCostString.charAt(superiorStaminaCostString.length-2) + superiorStaminaCostString.charAt(superiorStaminaCostString.length-1)
+            superiorStaminaCostSilver = superiorStaminaCostString.charAt(superiorStaminaCostString.length-4) + superiorStaminaCostString.charAt(superiorStaminaCostString.length-3)
+            if(superiorStaminaCostString.length == 5) {
+              superiorStaminaCostGold = superiorStaminaCostString.charAt(0)
+            } else if (superiorStaminaCostString.length == 6) {
+              superiorStaminaCostGold = superiorStaminaCostString.charAt(0) + superiorStaminaCostString.charAt(1)
+            } else if (superiorStaminaCostString.length == 7) {
+              superiorStaminaCostGold = superiorStaminaCostString.charAt(0) + superiorStaminaCostString.charAt(1) + superiorStaminaCostString.charAt(2)
+            }
+            document.getElementById("superior-stamina-cost").innerHTML = `
+            ${superiorStaminaCostGold} <img src="images/money-gold.gif"> ${superiorStaminaCostSilver} <img src="images/money-silver.gif"> ${superiorStaminaCostCopper} <img src="images/money-copper.gif">`             
+
+            // Price calculation
+            var superiorStamina = response.data.auctions.filter(function(auction){
+                return auction.item.id === 168499
+              });
+              superiorStamina.sort(function(a,b){
+                  return a.unit_price - b.unit_price
+                })
+            var superiorStaminaPrice = superiorStamina[0].unit_price;
+            var superiorStaminaPriceString = superiorStaminaPrice.toString();
+            superiorStaminaCopper = superiorStaminaPriceString.charAt(superiorStaminaPriceString.length-2) + superiorStaminaPriceString.charAt(superiorStaminaPriceString.length-1)
+            superiorStaminaSilver = superiorStaminaPriceString.charAt(superiorStaminaPriceString.length-4) + superiorStaminaPriceString.charAt(superiorStaminaPriceString.length-3)
+            if(superiorStaminaPriceString.length == 5) {
+              superiorStaminaGold = superiorStaminaPriceString.charAt(0)
+            } else if (superiorStaminaPriceString.length == 6) {
+              superiorStaminaGold = superiorStaminaPriceString.charAt(0) + superiorStaminaPriceString.charAt(1)
+            } else if (superiorStaminaPriceString.length == 7) {
+              superiorStaminaGold = superiorStaminaPriceString.charAt(0) + superiorStaminaPriceString.charAt(1) + superiorStaminaPriceString.charAt(2)
+            }
+            document.getElementById("superior-stamina-price").innerHTML = `
+            ${superiorStaminaGold} <img src="images/money-gold.gif"> ${superiorStaminaSilver} <img src="images/money-silver.gif"> ${superiorStaminaCopper} <img src="images/money-copper.gif">`
+            
+          // Profit/Loss Calculation
+          var superiorStaminaProfit = superiorStaminaPrice * 1.4 - superiorStaminaCost;
+          var superiorStaminaProfitString = superiorStaminaProfit.toString();
+          superiorStaminaProfitCopper = superiorStaminaProfitString.charAt(superiorStaminaProfitString.length-2) + superiorStaminaProfitString.charAt(superiorStaminaProfitString.length-1)
+          superiorStaminaProfitSilver = superiorStaminaProfitString.charAt(superiorStaminaProfitString.length-4) + superiorStaminaProfitString.charAt(superiorStaminaProfitString.length-3)
+            if(superiorStaminaProfitString.length == 5) {
+              superiorStaminaProfitGold = superiorStaminaProfitString.charAt(0)
+            } else if (superiorStaminaProfitString.length == 6) {
+              superiorStaminaProfitGold = superiorStaminaProfitString.charAt(0) + superiorStaminaProfitString.charAt(1)
+            } else if (superiorStaminaProfitString.length == 7) {
+              superiorStaminaProfitGold = superiorStaminaProfitString.charAt(0) + superiorStaminaProfitString.charAt(1) + superiorStaminaProfitString.charAt(2)
+            }
+            document.getElementById("superior-stamina-profit").innerHTML = `
+            ${superiorStaminaProfitGold} <img src="images/money-gold.gif"> ${superiorStaminaProfitSilver} <img src="images/money-silver.gif"> ${superiorStaminaProfitCopper} <img src="images/money-copper.gif">`
+            if(Math.sign(superiorStaminaProfit) == -1){
+              document.getElementById("superior-stamina-profit").setAttribute("style", "background-color:red")
+            } else {
+              document.getElementById("superior-stamina-profit").setAttribute("style", "background-color:green")
+            }
         })
         .catch(function(error){
           console.log(error)
