@@ -192,14 +192,62 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
             ${anchorweedPriceGold} <img src="images/money-gold.gif"> ${anchorweedPriceSilver} <img src="images/money-silver.gif"> ${anchorweedPriceCopper} <img src="images/money-copper.gif">`
 
             // Flasks and Potions
-            var anchorweed = response.data.auctions.filter(function(auction){
-                return auction.item.id === 152510
+              // Abyssal Healing Potion
+                // Cost calculation
+            var AbyssalHealingPotionCost = zinanthidPrice * 2;
+            var AbyssalHealingCostString = AbyssalHealingPotionCost.toString();
+            AbyssalHealingPotionCostCopper = AbyssalHealingCostString.charAt(AbyssalHealingCostString.length-2) + AbyssalHealingCostString.charAt(AbyssalHealingCostString.length-1)
+            AbyssalHealingPotionCostSilver = AbyssalHealingCostString.charAt(AbyssalHealingCostString.length-4) + AbyssalHealingCostString.charAt(AbyssalHealingCostString.length-3)
+            if(AbyssalHealingCostString.length == 5) {
+              AbyssalHealingPotionCostGold = AbyssalHealingCostString.charAt(0)
+            } else if (AbyssalHealingCostString.length == 6) {
+              AbyssalHealingPotionCostGold = AbyssalHealingCostString.charAt(0) + AbyssalHealingCostString.charAt(1)
+            } else if (AbyssalHealingCostString.length == 7) {
+              AbyssalHealingPotionCostGold = AbyssalHealingCostString.charAt(0) + AbyssalHealingCostString.charAt(1) + AbyssalHealingCostString.charAt(2)
+            }
+            document.getElementById("abyssal-healing-potion-cost").innerHTML = `
+            ${AbyssalHealingPotionCostGold} <img src="images/money-gold.gif"> ${AbyssalHealingPotionCostSilver} <img src="images/money-silver.gif"> ${AbyssalHealingPotionCostCopper} <img src="images/money-copper.gif">`             
+
+            // Price calculation
+            var AbyssalHealingPotion = response.data.auctions.filter(function(auction){
+                return auction.item.id === 169451
               });
-              anchorweed.sort(function(a,b){
+              AbyssalHealingPotion.sort(function(a,b){
                   return a.unit_price - b.unit_price
                 })
-              var anchorweedPrice = anchorweed[0].unit_price;
+            var AbyssalHealingPotionPrice = AbyssalHealingPotion[0].unit_price;
+            var AbyssalHealingString = AbyssalHealingPotionPrice.toString();
+            AbyssalHealingPotionCopper = AbyssalHealingString.charAt(AbyssalHealingString.length-2) + AbyssalHealingString.charAt(AbyssalHealingString.length-1)
+            AbyssalHealingPotionSilver = AbyssalHealingString.charAt(AbyssalHealingString.length-4) + AbyssalHealingString.charAt(AbyssalHealingString.length-3)
+            if(AbyssalHealingString.length == 5) {
+              AbyssalHealingPotionGold = AbyssalHealingString.charAt(0)
+            } else if (AbyssalHealingString.length == 6) {
+              AbyssalHealingPotionGold = AbyssalHealingString.charAt(0) + AbyssalHealingString.charAt(1)
+            } else if (AbyssalHealingString.length == 7) {
+              AbyssalHealingPotionGold = AbyssalHealingString.charAt(0) + AbyssalHealingString.charAt(1) + AbyssalHealingString.charAt(2)
+            }
+            document.getElementById("abyssal-healing-potion-price").innerHTML = `
+            ${AbyssalHealingPotionGold} <img src="images/money-gold.gif"> ${AbyssalHealingPotionSilver} <img src="images/money-silver.gif"> ${AbyssalHealingPotionCopper} <img src="images/money-copper.gif">`
             
+          // Profit/Loss Calculation
+          var AbyssalHealingPotionProfit = AbyssalHealingPotionPrice - AbyssalHealingPotionCost;
+          var AbyssalHealingPotionProfitString = AbyssalHealingPotionProfit.toString();
+          AbyssalHealingPotionProfitCopper = AbyssalHealingPotionProfitString.charAt(AbyssalHealingPotionProfitString.length-2) + AbyssalHealingPotionProfitString.charAt(AbyssalHealingPotionProfitString.length-1)
+          AbyssalHealingPotionProfitSilver = AbyssalHealingPotionProfitString.charAt(AbyssalHealingPotionProfitString.length-4) + AbyssalHealingPotionProfitString.charAt(AbyssalHealingPotionProfitString.length-3)
+            if(AbyssalHealingPotionProfitString.length == 5) {
+              AbyssalHealingPotionProfitGold = AbyssalHealingPotionProfitString.charAt(0)
+            } else if (AbyssalHealingPotionProfitString.length == 6) {
+              AbyssalHealingPotionProfitGold = AbyssalHealingPotionProfitString.charAt(0) + AbyssalHealingPotionProfitString.charAt(1)
+            } else if (AbyssalHealingPotionProfitString.length == 7) {
+              AbyssalHealingPotionProfitGold = AbyssalHealingPotionProfitString.charAt(0) + AbyssalHealingPotionProfitString.charAt(1) + AbyssalHealingPotionProfitString.charAt(2)
+            }
+            document.getElementById("abyssal-healing-potion-profit").innerHTML = `
+            ${AbyssalHealingPotionProfitGold} <img src="images/money-gold.gif"> ${AbyssalHealingPotionProfitSilver} <img src="images/money-silver.gif"> ${AbyssalHealingPotionProfitCopper} <img src="images/money-copper.gif">`
+            if(Math.sign(AbyssalHealingPotionProfit) == -1){
+              document.getElementById("abyssal-healing-potion-profit").setAttribute("style", "background-color:red")
+            } else {
+              document.getElementById("abyssal-healing-potion-profit").setAttribute("style", "background-color:green")
+            }
         })
         .catch(function(error){
           console.log(error)
