@@ -585,6 +585,8 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
                 superiorIntellectProfitGold = superiorIntellectProfitString.charAt(0) + superiorIntellectProfitString.charAt(1)
               } else if (superiorIntellectProfitString.length == 7) {
                 superiorIntellectProfitGold = superiorIntellectProfitString.charAt(0) + superiorIntellectProfitString.charAt(1) + superiorIntellectProfitString.charAt(2)
+              } else { 
+                superiorIntellectProfitGold = superiorIntellectProfitString.charAt(0) + superiorIntellectProfitString.charAt(1) + superiorIntellectProfitString.charAt(2) + superiorIntellectProfitString.charAt(3)
               }
               document.getElementById("superior-intellect-profit").innerHTML = `
               ${superiorIntellectProfitGold} <img src="images/money-gold.gif"> ${superiorIntellectProfitSilver} <img src="images/money-silver.gif"> ${superiorIntellectProfitCopper} <img src="images/money-copper.gif">`
