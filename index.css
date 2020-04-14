@@ -42,3 +42,7 @@ div.table3 {
     display: inline-block;
     margin: 2px;
 }
+
+div.tablecontainer {
+    display: flex;
+}
