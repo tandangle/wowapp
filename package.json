@@ -20,6 +20,7 @@
     "axios": "^0.19.2",
     "axios-oauth-client": "^1.2.3",
     "axios-token-interceptor": "^0.2.0",
-    "blizzapi": "^1.1.5"
+    "blizzapi": "^1.1.5",
+    "querystring": "^0.2.0"
   }
 }
