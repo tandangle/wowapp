@@ -1,0 +1,9 @@
+#buttoncontainer {
+    margin: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+table, th, td {
+    border: 1px solid black;
+  }
