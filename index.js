@@ -143,7 +143,6 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
               } else if (winterskissString.length == 7) {
                 winterskissPriceGold = winterskissString.charAt(0) + winterskissString.charAt(1) + winterskissString.charAt(2)
               }
-              console.log(`The cheapest price of Siren's Pollen is ${winterskissPriceGold}G ${winterskissPriceSilver}S ${winterskissPriceCopper}C`)
             
             document.getElementById("winterskiss").innerHTML = `
             ${winterskissPriceGold} <img src="images/money-gold.gif"> ${winterskissPriceSilver} <img src="images/money-silver.gif"> ${winterskissPriceCopper} <img src="images/money-copper.gif">`
@@ -304,6 +303,120 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
                   document.getElementById("empowered-proximity-profit").setAttribute("style", "background-color:red")
                 } else {
                   document.getElementById("empowered-proximity-profit").setAttribute("style", "background-color:green")
+                }
+
+                // Potion of Focused Resolve
+                // Cost calculation
+                var focusedResolveCost = zinanthidPrice * 8 + winterskissPrice * 3;
+                var focusedResolveCostString = focusedResolveCost.toString();
+                focusedResolveCostCopper = focusedResolveCostString.charAt(focusedResolveCostString.length-2) + focusedResolveCostString.charAt(focusedResolveCostString.length-1)
+                focusedResolveCostSilver = focusedResolveCostString.charAt(focusedResolveCostString.length-4) + focusedResolveCostString.charAt(focusedResolveCostString.length-3)
+                if(focusedResolveCostString.length == 5) {
+                  focusedResolveCostGold = focusedResolveCostString.charAt(0)
+                } else if (focusedResolveCostString.length == 6) {
+                  focusedResolveCostGold = focusedResolveCostString.charAt(0) + focusedResolveCostString.charAt(1)
+                } else if (focusedResolveCostString.length == 7) {
+                  focusedResolveCostGold = focusedResolveCostString.charAt(0) + focusedResolveCostString.charAt(1) + focusedResolveCostString.charAt(2)
+                }
+                document.getElementById("focused-resolve-cost").innerHTML = `
+                ${focusedResolveCostGold} <img src="images/money-gold.gif"> ${focusedResolveCostSilver} <img src="images/money-silver.gif"> ${focusedResolveCostCopper} <img src="images/money-copper.gif">`             
+    
+                // Price calculation
+                var focusedResolve = response.data.auctions.filter(function(auction){
+                    return auction.item.id === 168506
+                  });
+                  focusedResolve.sort(function(a,b){
+                      return a.unit_price - b.unit_price
+                    })
+                var focusedResolvePrice = focusedResolve[0].unit_price;
+                var focusedResolveString = focusedResolvePrice.toString();
+                focusedResolveCopper = focusedResolveString.charAt(focusedResolveString.length-2) + focusedResolveString.charAt(focusedResolveString.length-1)
+                focusedResolveSilver = focusedResolveString.charAt(focusedResolveString.length-4) + focusedResolveString.charAt(focusedResolveString.length-3)
+                if(focusedResolveString.length == 5) {
+                  focusedResolveGold = focusedResolveString.charAt(0)
+                } else if (focusedResolveString.length == 6) {
+                  focusedResolveGold = focusedResolveString.charAt(0) + focusedResolveString.charAt(1)
+                } else if (focusedResolveString.length == 7) {
+                  focusedResolveGold = focusedResolveString.charAt(0) + focusedResolveString.charAt(1) + focusedResolveString.charAt(2)
+                }
+                document.getElementById("focused-resolve-price").innerHTML = `
+                ${focusedResolveGold} <img src="images/money-gold.gif"> ${focusedResolveSilver} <img src="images/money-silver.gif"> ${focusedResolveCopper} <img src="images/money-copper.gif">`
+                
+              // Profit/Loss Calculation
+              var focusedResolveProfit = focusedResolvePrice - focusedResolveCost;
+              var focusedResolveProfitString = focusedResolveProfit.toString();
+              focusedResolveProfitCopper = focusedResolveProfitString.charAt(focusedResolveProfitString.length-2) + focusedResolveProfitString.charAt(focusedResolveProfitString.length-1)
+              focusedResolveProfitSilver = focusedResolveProfitString.charAt(focusedResolveProfitString.length-4) + focusedResolveProfitString.charAt(focusedResolveProfitString.length-3)
+                if(focusedResolveProfitString.length == 5) {
+                  focusedResolveProfitGold = focusedResolveProfitString.charAt(0)
+                } else if (focusedResolveProfitString.length == 6) {
+                  focusedResolveProfitGold = focusedResolveProfitString.charAt(0) + focusedResolveProfitString.charAt(1)
+                } else if (focusedResolveProfitString.length == 7) {
+                  focusedResolveProfitGold = focusedResolveProfitString.charAt(0) + focusedResolveProfitString.charAt(1) + focusedResolveProfitString.charAt(2)
+                }
+                document.getElementById("focused-resolve-profit").innerHTML = `
+                ${focusedResolveProfitGold} <img src="images/money-gold.gif"> ${focusedResolveProfitSilver} <img src="images/money-silver.gif"> ${focusedResolveProfitCopper} <img src="images/money-copper.gif">`
+                if(Math.sign(focusedResolveProfit) == -1){
+                  document.getElementById("focused-resolve-profit").setAttribute("style", "background-color:red")
+                } else {
+                  document.getElementById("focused-resolve-profit").setAttribute("style", "background-color:green")
+                }
+
+                // Potion of Unbridled Fury
+                // Cost calculation
+                var unbridledFuryCost = zinanthidPrice * 6;
+                var unbridledFuryCostString = unbridledFuryCost.toString();
+                unbridledFuryCostCopper = unbridledFuryCostString.charAt(unbridledFuryCostString.length-2) + unbridledFuryCostString.charAt(unbridledFuryCostString.length-1)
+                unbridledFuryCostSilver = unbridledFuryCostString.charAt(unbridledFuryCostString.length-4) + unbridledFuryCostString.charAt(unbridledFuryCostString.length-3)
+                if(unbridledFuryCostString.length == 5) {
+                  unbridledFuryCostGold = unbridledFuryCostString.charAt(0)
+                } else if (unbridledFuryCostString.length == 6) {
+                  unbridledFuryCostGold = unbridledFuryCostString.charAt(0) + unbridledFuryCostString.charAt(1)
+                } else if (unbridledFuryCostString.length == 7) {
+                  unbridledFuryCostGold = unbridledFuryCostString.charAt(0) + unbridledFuryCostString.charAt(1) + unbridledFuryCostString.charAt(2)
+                }
+                document.getElementById("unbridled-fury-cost").innerHTML = `
+                ${unbridledFuryCostGold} <img src="images/money-gold.gif"> ${unbridledFuryCostSilver} <img src="images/money-silver.gif"> ${unbridledFuryCostCopper} <img src="images/money-copper.gif">`             
+    
+                // Price calculation
+                var unbridledFury = response.data.auctions.filter(function(auction){
+                    return auction.item.id === 169299
+                  });
+                  unbridledFury.sort(function(a,b){
+                      return a.unit_price - b.unit_price
+                    })
+                var unbridledFuryPrice = focusedResolve[0].unit_price;
+                var unbridledFuryString = unbridledFuryPrice.toString();
+                unbridledFuryCopper = unbridledFuryString.charAt(unbridledFuryString.length-2) + unbridledFuryString.charAt(unbridledFuryString.length-1)
+                unbridledFurySilver = unbridledFuryString.charAt(unbridledFuryString.length-4) + unbridledFuryString.charAt(unbridledFuryString.length-3)
+                if(unbridledFuryString.length == 5) {
+                  unbridledFuryGold = unbridledFuryString.charAt(0)
+                } else if (unbridledFuryString.length == 6) {
+                  unbridledFuryGold = unbridledFuryString.charAt(0) + unbridledFuryString.charAt(1)
+                } else if (unbridledFuryString.length == 7) {
+                  unbridledFuryGold = unbridledFuryString.charAt(0) + unbridledFuryString.charAt(1) + unbridledFuryString.charAt(2)
+                }
+                document.getElementById("unbridled-fury-price").innerHTML = `
+                ${unbridledFuryGold} <img src="images/money-gold.gif"> ${unbridledFurySilver} <img src="images/money-silver.gif"> ${unbridledFuryCopper} <img src="images/money-copper.gif">`
+                
+              // Profit/Loss Calculation
+              var unbridledFuryProfit = unbridledFuryPrice - unbridledFuryCost;
+              var unbridledFuryProfitString = unbridledFuryProfit.toString();
+              unbridledFuryProfitCopper = unbridledFuryProfitString.charAt(unbridledFuryProfitString.length-2) + unbridledFuryProfitString.charAt(unbridledFuryProfitString.length-1)
+              unbridledFuryProfitSilver = unbridledFuryProfitString.charAt(unbridledFuryProfitString.length-4) + unbridledFuryProfitString.charAt(unbridledFuryProfitString.length-3)
+                if(unbridledFuryProfitString.length == 5) {
+                  unbridledFuryProfitGold = unbridledFuryProfitString.charAt(0)
+                } else if (unbridledFuryProfitString.length == 6) {
+                  unbridledFuryProfitGold = unbridledFuryProfitString.charAt(0) + unbridledFuryProfitString.charAt(1)
+                } else if (unbridledFuryProfitString.length == 7) {
+                  unbridledFuryProfitGold = unbridledFuryProfitString.charAt(0) + unbridledFuryProfitString.charAt(1) + unbridledFuryProfitString.charAt(2)
+                }
+                document.getElementById("unbridled-fury-profit").innerHTML = `
+                ${unbridledFuryProfitGold} <img src="images/money-gold.gif"> ${unbridledFuryProfitSilver} <img src="images/money-silver.gif"> ${unbridledFuryProfitCopper} <img src="images/money-copper.gif">`
+                if(Math.sign(unbridledFuryProfit) == -1){
+                  document.getElementById("unbridled-fury-profit").setAttribute("style", "background-color:red")
+                } else {
+                  document.getElementById("unbridled-fury-profit").setAttribute("style", "background-color:green")
                 }
         })
         .catch(function(error){
