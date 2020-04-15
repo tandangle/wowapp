@@ -233,7 +233,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
             ${AbyssalHealingPotionGold} <img src="images/money-gold.gif"> ${AbyssalHealingPotionSilver} <img src="images/money-silver.gif"> ${AbyssalHealingPotionCopper} <img src="images/money-copper.gif">`
             
           // Profit/Loss Calculation
-          var AbyssalHealingPotionProfit = AbyssalHealingPotionPrice * 1.4  - AbyssalHealingPotionCost;
+          var AbyssalHealingPotionProfit = Math.floor(AbyssalHealingPotionPrice * 1.4  - AbyssalHealingPotionCost);
           var AbyssalHealingPotionProfitString = AbyssalHealingPotionProfit.toString();
           AbyssalHealingPotionProfitCopper = AbyssalHealingPotionProfitString.charAt(AbyssalHealingPotionProfitString.length-2) + AbyssalHealingPotionProfitString.charAt(AbyssalHealingPotionProfitString.length-1)
           AbyssalHealingPotionProfitSilver = AbyssalHealingPotionProfitString.charAt(AbyssalHealingPotionProfitString.length-4) + AbyssalHealingPotionProfitString.charAt(AbyssalHealingPotionProfitString.length-3)
@@ -290,7 +290,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
                 ${empoweredProximityGold} <img src="images/money-gold.gif"> ${empoweredProximitySilver} <img src="images/money-silver.gif"> ${empoweredProximityCopper} <img src="images/money-copper.gif">`
                 
               // Profit/Loss Calculation
-              var empoweredProximityProfit = empoweredProximityPrice *1.4 - empoweredProximiyCost;
+              var empoweredProximityProfit = Math.floor(empoweredProximityPrice *1.4 - empoweredProximiyCost);
               var empoweredProximityProfitString = empoweredProximityProfit.toString();
               empoweredProximityProfitCopper = empoweredProximityProfitString.charAt(empoweredProximityProfitString.length-2) + empoweredProximityProfitString.charAt(empoweredProximityProfitString.length-1)
               empoweredProximityProfitSilver = empoweredProximityProfitString.charAt(empoweredProximityProfitString.length-4) + empoweredProximityProfitString.charAt(empoweredProximityProfitString.length-3)
@@ -347,7 +347,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
                 ${focusedResolveGold} <img src="images/money-gold.gif"> ${focusedResolveSilver} <img src="images/money-silver.gif"> ${focusedResolveCopper} <img src="images/money-copper.gif">`
                 
               // Profit/Loss Calculation
-              var focusedResolveProfit = focusedResolvePrice * 1.4 - focusedResolveCost;
+              var focusedResolveProfit = Math.floor(focusedResolvePrice * 1.4 - focusedResolveCost);
               var focusedResolveProfitString = focusedResolveProfit.toString();
               focusedResolveProfitCopper = focusedResolveProfitString.charAt(focusedResolveProfitString.length-2) + focusedResolveProfitString.charAt(focusedResolveProfitString.length-1)
               focusedResolveProfitSilver = focusedResolveProfitString.charAt(focusedResolveProfitString.length-4) + focusedResolveProfitString.charAt(focusedResolveProfitString.length-3)
@@ -404,7 +404,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
                 ${unbridledFuryGold} <img src="images/money-gold.gif"> ${unbridledFurySilver} <img src="images/money-silver.gif"> ${unbridledFuryCopper} <img src="images/money-copper.gif">`
                 
               // Profit/Loss Calculation
-              var unbridledFuryProfit = unbridledFuryPrice * 1.4 - unbridledFuryCost;
+              var unbridledFuryProfit = Math.floor(unbridledFuryPrice * 1.4 - unbridledFuryCost);
               var unbridledFuryProfitString = unbridledFuryProfit.toString();
               unbridledFuryProfitCopper = unbridledFuryProfitString.charAt(unbridledFuryProfitString.length-2) + unbridledFuryProfitString.charAt(unbridledFuryProfitString.length-1)
               unbridledFuryProfitSilver = unbridledFuryProfitString.charAt(unbridledFuryProfitString.length-4) + unbridledFuryProfitString.charAt(unbridledFuryProfitString.length-3)
@@ -461,7 +461,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
                 ${wildMendingPriceGold} <img src="images/money-gold.gif"> ${wildMendingPriceSilver} <img src="images/money-silver.gif"> ${wildMendingPriceCopper} <img src="images/money-copper.gif">`
                 
               // Profit/Loss Calculation
-              var wildMendingProfit = wildMendingPrice * 1.4 - wildMendingCost;
+              var wildMendingProfit = Math.floor(wildMendingPrice * 1.4 - wildMendingCost);
               var wildMendingProfitString = wildMendingProfit.toString();
               wildMendingProfitCopper = wildMendingProfitString.charAt(wildMendingProfitString.length-2) + wildMendingProfitString.charAt(wildMendingProfitString.length-1)
               wildMendingProfitSilver = wildMendingProfitString.charAt(wildMendingProfitString.length-4) + wildMendingProfitString.charAt(wildMendingProfitString.length-3)
@@ -518,7 +518,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
               ${superiorAgilityGold} <img src="images/money-gold.gif"> ${superiorAgilitySilver} <img src="images/money-silver.gif"> ${superiorAgilityCopper} <img src="images/money-copper.gif">`
               
             // Profit/Loss Calculation
-            var superiorAgilityProfit = superiorAgilityPrice * 1.4 - superiorAgilityCost;
+            var superiorAgilityProfit = Math.floor(superiorAgilityPrice * 1.4 - superiorAgilityCost);
             var superiorAgilityProfitString = superiorAgilityProfit.toString();
             superiorAgilityProfitCopper = superiorAgilityProfitString.charAt(superiorAgilityProfitString.length-2) + superiorAgilityProfitString.charAt(superiorAgilityProfitString.length-1)
             superiorAgilityProfitSilver = superiorAgilityProfitString.charAt(superiorAgilityProfitString.length-4) + superiorAgilityProfitString.charAt(superiorAgilityProfitString.length-3)
@@ -575,7 +575,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
               ${superiorIntellectGold} <img src="images/money-gold.gif"> ${superiorIntellectSilver} <img src="images/money-silver.gif"> ${superiorIntellectCopper} <img src="images/money-copper.gif">`
               
             // Profit/Loss Calculation
-            var superiorIntellectProfit = superiorIntellectPrice * 1.4 - superiorIntellectCost;
+            var superiorIntellectProfit = Math.floor(superiorIntellectPrice * 1.4 - superiorIntellectCost);
             var superiorIntellectProfitString = superiorIntellectProfit.toString();
             superiorIntellectProfitCopper = superiorIntellectProfitString.charAt(superiorIntellectProfitString.length-2) + superiorIntellectProfitString.charAt(superiorIntellectProfitString.length-1)
             superiorIntellectProfitSilver = superiorIntellectProfitString.charAt(superiorIntellectProfitString.length-4) + superiorIntellectProfitString.charAt(superiorIntellectProfitString.length-3)
@@ -634,7 +634,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
               ${superiorIntellectGold} <img src="images/money-gold.gif"> ${superiorIntellectSilver} <img src="images/money-silver.gif"> ${superiorIntellectCopper} <img src="images/money-copper.gif">`
               
             // Profit/Loss Calculation
-            var superiorIntellectProfit = superiorIntellectPrice * 1.4 - superiorIntellectCost;
+            var superiorIntellectProfit = Math.floor(superiorIntellectPrice * 1.4 - superiorIntellectCost);
             var superiorIntellectProfitString = superiorIntellectProfit.toString();
             superiorIntellectProfitCopper = superiorIntellectProfitString.charAt(superiorIntellectProfitString.length-2) + superiorIntellectProfitString.charAt(superiorIntellectProfitString.length-1)
             superiorIntellectProfitSilver = superiorIntellectProfitString.charAt(superiorIntellectProfitString.length-4) + superiorIntellectProfitString.charAt(superiorIntellectProfitString.length-3)
@@ -691,7 +691,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
             ${superiorStaminaGold} <img src="images/money-gold.gif"> ${superiorStaminaSilver} <img src="images/money-silver.gif"> ${superiorStaminaCopper} <img src="images/money-copper.gif">`
             
           // Profit/Loss Calculation
-          var superiorStaminaProfit = superiorStaminaPrice * 1.4 - superiorStaminaCost;
+          var superiorStaminaProfit = Math.floor(superiorStaminaPrice * 1.4 - superiorStaminaCost);
           var superiorStaminaProfitString = superiorStaminaProfit.toString();
           superiorStaminaProfitCopper = superiorStaminaProfitString.charAt(superiorStaminaProfitString.length-2) + superiorStaminaProfitString.charAt(superiorStaminaProfitString.length-1)
           superiorStaminaProfitSilver = superiorStaminaProfitString.charAt(superiorStaminaProfitString.length-4) + superiorStaminaProfitString.charAt(superiorStaminaProfitString.length-3)
@@ -748,7 +748,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
             ${superiorStaminaGold} <img src="images/money-gold.gif"> ${superiorStaminaSilver} <img src="images/money-silver.gif"> ${superiorStaminaCopper} <img src="images/money-copper.gif">`
             
           // Profit/Loss Calculation
-          var superiorStaminaProfit = superiorStaminaPrice * 1.4 - superiorStaminaCost;
+          var superiorStaminaProfit = Math.floor(superiorStaminaPrice * 1.4 - superiorStaminaCost);
           var superiorStaminaProfitString = superiorStaminaProfit.toString();
           superiorStaminaProfitCopper = superiorStaminaProfitString.charAt(superiorStaminaProfitString.length-2) + superiorStaminaProfitString.charAt(superiorStaminaProfitString.length-1)
           superiorStaminaProfitSilver = superiorStaminaProfitString.charAt(superiorStaminaProfitString.length-4) + superiorStaminaProfitString.charAt(superiorStaminaProfitString.length-3)
@@ -804,7 +804,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
           ${superiorStrengthGold} <img src="images/money-gold.gif"> ${superiorStrengthSilver} <img src="images/money-silver.gif"> ${superiorStrengthCopper} <img src="images/money-copper.gif">`
           
         // Profit/Loss Calculation
-        var superiorStrengthProfit = superiorStrengthPrice * 1.4 - superiorStrengthCost;
+        var superiorStrengthProfit = Math.floor(superiorStrengthPrice * 1.4 - superiorStrengthCost);
         var superiorStrengthProfitString = superiorStrengthProfit.toString();
         superiorStrengthProfitCopper = superiorStrengthProfitString.charAt(superiorStrengthProfitString.length-2) + superiorStrengthProfitString.charAt(superiorStrengthProfitString.length-1)
         superiorStrengthProfitSilver = superiorStrengthProfitString.charAt(superiorStrengthProfitString.length-4) + superiorStrengthProfitString.charAt(superiorStrengthProfitString.length-3)
@@ -860,7 +860,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
         ${superiorSteelskinGold} <img src="images/money-gold.gif"> ${superiorSteelskinSilver} <img src="images/money-silver.gif"> ${superiorSteelskinCopper} <img src="images/money-copper.gif">`
         
       // Profit/Loss Calculation
-      var superiorSteelskinProfit = superiorSteelskinPrice * 1.4 - superiorSteelSkinCost;
+      var superiorSteelskinProfit = Math.floor(superiorSteelskinPrice * 1.4 - superiorSteelSkinCost);
       var superiorSteelskinProfitString = superiorSteelskinProfit.toString();
       superiorSteelskinProfitCopper = superiorSteelskinProfitString.charAt(superiorSteelskinProfitString.length-2) + superiorSteelskinProfitString.charAt(superiorSteelskinProfitString.length-1)
       superiorSteelskinProfitSilver = superiorSteelskinProfitString.charAt(superiorSteelskinProfitString.length-4) + superiorSteelskinProfitString.charAt(superiorSteelskinProfitString.length-3)
@@ -918,7 +918,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
         
       // Profit/Loss Calculation
 
-      var replenishmentProfit = replenishmentPrice * 1.4 - replenishmentCost;
+      var replenishmentProfit = Math.floor(replenishmentPrice * 1.4 - replenishmentCost);
       var replenishmentProfitString = replenishmentProfit.toString();
       replenishmentProfitCopper = replenishmentProfitString.charAt(replenishmentProfitString.length-2) + replenishmentProfitString.charAt(replenishmentProfitString.length-1)
       replenishmentProfitSilver = replenishmentProfitString.charAt(replenishmentProfitString.length-4) + replenishmentProfitString.charAt(replenishmentProfitString.length-3)
@@ -979,7 +979,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
         
       // Profit/Loss Calculation
 
-      var greaterFathomsProfit = greaterFathomsPrice * 1.4 - greaterFathomsCost;
+      var greaterFathomsProfit = Math.floor(greaterFathomsPrice * 1.4 - greaterFathomsCost);
       var greaterFathomsProfitString = greaterFathomsProfit.toString();
       greaterFathomsProfitCopper = greaterFathomsProfitString.charAt(greaterFathomsProfitString.length-2) + greaterFathomsProfitString.charAt(greaterFathomsProfitString.length-1)
       greaterFathomsProfitSilver = greaterFathomsProfitString.charAt(greaterFathomsProfitString.length-4) + greaterFathomsProfitString.charAt(greaterFathomsProfitString.length-3)
@@ -1040,7 +1040,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
         
       // Profit/Loss Calculation
 
-      var greaterCurrentsProfit = greaterCurrentsPrice * 1.4 - greaterCurrentsCost;
+      var greaterCurrentsProfit = Math.floor(greaterCurrentsPrice * 1.4 - greaterCurrentsCost);
       var greaterCurrentsProfitString = greaterCurrentsProfit.toString();
       greaterCurrentsProfitCopper = greaterCurrentsProfitString.charAt(greaterCurrentsProfitString.length-2) + greaterCurrentsProfitString.charAt(greaterCurrentsProfitString.length-1)
       greaterCurrentsProfitSilver = greaterCurrentsProfitString.charAt(greaterCurrentsProfitString.length-4) + greaterCurrentsProfitString.charAt(greaterCurrentsProfitString.length-3)
@@ -1100,7 +1100,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
         
       // Profit/Loss Calculation
 
-      var greaterUndertowProfit = greaterUndertowPrice * 1.4 - greaterUndertowCost;
+      var greaterUndertowProfit = Math.floor(greaterUndertowPrice * 1.4 - greaterUndertowCost);
       var greaterUndertowProfitString = greaterUndertowProfit.toString();
       greaterUndertowProfitCopper = greaterUndertowProfitString.charAt(greaterUndertowProfitString.length-2) + greaterUndertowProfitString.charAt(greaterUndertowProfitString.length-1)
       greaterUndertowProfitSilver = greaterUndertowProfitString.charAt(greaterUndertowProfitString.length-4) + greaterUndertowProfitString.charAt(greaterUndertowProfitString.length-3)
@@ -1160,7 +1160,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
         
       // Profit/Loss Calculation
 
-      var greaterHorizonProfit = greaterHorizonPrice * 1.4 - greaterHorizonCost;
+      var greaterHorizonProfit = Math.floor(greaterHorizonPrice * 1.4 - greaterHorizonCost);
       var greaterHorizonProfitString = greaterHorizonProfit.toString();
       greaterHorizonProfitCopper = greaterHorizonProfitString.charAt(greaterHorizonProfitString.length-2) + greaterHorizonProfitString.charAt(greaterHorizonProfitString.length-1)
       greaterHorizonProfitSilver = greaterHorizonProfitString.charAt(greaterHorizonProfitString.length-4) + greaterHorizonProfitString.charAt(greaterHorizonProfitString.length-3)
