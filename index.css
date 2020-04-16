@@ -7,11 +7,13 @@
 #demo {
     display: flex;
     justify-content: center;
+    font-size: 36px;
 }
 
-#text {
+#number {
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 
 
@@ -90,4 +92,8 @@ div.table3 {
 
 div.tablecontainer {
     display: flex;
+}
+
+#slidecontainer, #number, #text {
+    display: none;
 }
