@@ -13,14 +13,27 @@ function render(procs) {axios.post("https://us.battle.net/oauth/token?grant_type
             document.getElementById("slidecontainer").style.display = "flex";
             document.getElementById("number").style.display = "block";
             // Filter all auctions for auctions of Tidespray linen
-             tidespray = response.data.auctions.filter(function(auction){
-              return auction.item.id === 152576
-            });
-            // Sort the auctions from lowest buyout price to highest buyout price
-              tidespray.sort(function(a,b){
-                return a.unit_price - b.unit_price
-              })
+            var tidesprayLinen = response.data.auctions.filter(function(auction){
+                return auction.item.id === 152576
+              });
+              tidesprayLinen.sort(function(a,b){
+                  return a.unit_price - b.unit_price
+                })
+              var tidesprayLinenPrice = tidesprayLinen[0].unit_price;
+              var tidesprayLinenPriceString = tidesprayLinenPrice.toString();
+              tidesprayLinenPriceStringCopper = tidesprayLinenPriceString.charAt(tidesprayLinenPriceString.length-2) + tidesprayLinenPriceString.charAt(tidesprayLinenPriceString.length-1)
+              tidesprayLinenPriceStringSilver = tidesprayLinenPriceString.charAt(tidesprayLinenPriceString.length-4) + tidesprayLinenPriceString.charAt(tidesprayLinenPriceString.length-3)
+              if(tidesprayLinenPriceString.length == 5) {
+                tidesprayLinenPriceStringGold = tidesprayLinenPriceString.charAt(0)
+              } else if (tidesprayLinenPriceString.length == 6) {
+                tidesprayLinenPriceStringGold = tidesprayLinenPriceString.charAt(0) + tidesprayLinenPriceString.charAt(1)
+              } else if (tidesprayLinenPriceString.length == 7) {
+                tidesprayLinenPriceStringGold = tidesprayLinenPriceString.charAt(0) + tidesprayLinenPriceString.charAt(1) + tidesprayLinenPriceString.charAt(2)
+              }
 
+            document.getElementById("tidespray").innerHTML = `
+            ${tidesprayLinenPriceStringGold} <img src="images/money-gold.gif"> ${tidesprayLinenPriceStringSilver} <img src="images/money-silver.gif"> ${tidesprayLinenPriceStringCopper} <img src="images/money-copper.gif">`
+            
             // Akunda's Bite
              akundasBite = response.data.auctions.filter(function(auction){
                 return auction.item.id === 152507
