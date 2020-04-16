@@ -78,7 +78,7 @@ th {
     background-color: #f2f2f2;
 }
 
-#herbstable tr:hover, #itemtable tr:hover, #potiontable tr:hover, #flasktable tr:hover, #scrolltable, tr:hover {
+#herbstable tr:hover, #itemtable tr:hover, #potiontable tr:hover, #flasktable tr:hover, #scrolltable tr:hover {
     background-color: #ddd;
 }
 
@@ -126,4 +126,16 @@ div.table3 {
 
 div.tablecontainer {
     display: flex;
+}
+
+#potiontable tr td:nth-child(1), #scrolltable tr td:nth-child(1), #flasktable tr td:nth-child(1) {
+  width: 265px;
+}
+
+#herbstable tr td:nth-child(1), #itemtable tr td:nth-child(1) {
+  width: 218px;
+}
+
+#potiontable tr td:nth-child(4), #scrolltable tr td:nth-child(4), #flasktable tr td:nth-child(4)  {
+  width: 164px;
 }
