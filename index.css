@@ -75,7 +75,7 @@ th {
 }
 
 #herbstable tr:nth-child(even), #itemtable tr:nth-child(even), #potiontable tr:nth-child(even), #flasktable tr:nth-child(even), #scrolltable tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #d1d1d1;
 }
 
 #herbstable tr:hover, #itemtable tr:hover, #potiontable tr:hover, #flasktable tr:hover, #scrolltable tr:hover {
