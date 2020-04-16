@@ -209,6 +209,20 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
             document.getElementById("anchorweed").innerHTML = `
             ${anchorweedPriceGold} <img src="images/money-gold.gif"> ${anchorweedPriceSilver} <img src="images/money-silver.gif"> ${anchorweedPriceCopper} <img src="images/money-copper.gif">`
 
+              // Herb prices pushed into an object
+
+            herbPrices = new Object();
+            herbPrices.akundasBite = akundasBitePrice;
+            herbPrices.riverbud = riverbudPrice;
+            herbPrices.seastalk = seastalkPrice;
+            herbPrices.starmoss = starmossPrice;
+            herbPrices.winterskiss = winterskissPrice;
+            herbPrices.zinanthid = zinanthidPrice;
+            herbPrices.anchorweed = anchorweedPrice;
+            herbPricesArray = Object.values(herbPrices);
+            lowestHerbPrice = Math.min(...herbPricesArray);
+
+        
             // Flasks and Potions
               // Abyssal Healing Potion
                 // Cost calculation
@@ -1111,7 +1125,189 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
           document.getElementById("greater-horizon-profit").setAttribute("style", "background-color:green")
         }
 
+        // Scrolls
+        // War-Scroll of Intellect
+        warscrollIntellectCost = lowestHerbPrice * 27;
+        warscrollIntellectCostString = warscrollIntellectCost.toString();
+        warscrollIntellectCostStringCopper = warscrollIntellectCostString.charAt(warscrollIntellectCostString.length-2) + warscrollIntellectCostString.charAt(warscrollIntellectCostString.length-1)
+        warscrollIntellectCostStringSilver = warscrollIntellectCostString.charAt(warscrollIntellectCostString.length-4) + warscrollIntellectCostString.charAt(warscrollIntellectCostString.length-3)
+       if(warscrollIntellectCostString.length == 5) {
+        warscrollIntellectCostStringGold = warscrollIntellectCostString.charAt(0)
+       } else if (warscrollIntellectCostString.length == 6) {
+        warscrollIntellectCostStringGold = warscrollIntellectCostString.charAt(0) + warscrollIntellectCostString.charAt(1)
+       } else if (warscrollIntellectCostString.length == 7) {
+        warscrollIntellectCostStringGold = warscrollIntellectCostString.charAt(0) + warscrollIntellectCostString.charAt(1) + warscrollIntellectCostString.charAt(2)
+       } else {
+        warscrollIntellectCostStringGold = warscrollIntellectCostString.charAt(0) + warscrollIntellectCostString.charAt(1) + warscrollIntellectCostString.charAt(2) + warscrollIntellectCostString.charAt(3)
+       }
+       document.getElementById("warscroll-intellect-cost").innerHTML = `
+       ${warscrollIntellectCostStringGold} <img src="images/money-gold.gif"> ${warscrollIntellectCostStringSilver} <img src="images/money-silver.gif"> ${warscrollIntellectCostStringCopper} <img src="images/money-copper.gif">`             
 
+       // Price calculation
+        warscrollIntellect = response.data.auctions.filter(function(auction){
+           return auction.item.id === 158201
+         });
+         warscrollIntellect.sort(function(a,b){
+             return a.unit_price - b.unit_price
+           })
+           warscrollIntellectPrice = warscrollIntellect[0].unit_price;
+           warscrollIntellectPriceString = warscrollIntellectPrice.toString();
+       warscrollIntellectPriceStringCopper = warscrollIntellectPriceString.charAt(warscrollIntellectPriceString.length-2) + warscrollIntellectPriceString.charAt(warscrollIntellectPriceString.length-1)
+       warscrollIntellectPriceStringSilver = warscrollIntellectPriceString.charAt(warscrollIntellectPriceString.length-4) + warscrollIntellectPriceString.charAt(warscrollIntellectPriceString.length-3)
+       if(warscrollIntellectPriceString.length == 5) {
+        warscrollIntellectPriceStringGold = warscrollIntellectPriceString.charAt(0)
+       } else if (warscrollIntellectPriceString.length == 6) {
+        warscrollIntellectPriceStringGold = warscrollIntellectPriceString.charAt(0) + warscrollIntellectPriceString.charAt(1)
+       } else if (warscrollIntellectPriceString.length == 7) {
+        warscrollIntellectPriceStringGold = warscrollIntellectPriceString.charAt(0) + warscrollIntellectPriceString.charAt(1) + warscrollIntellectPriceString.charAt(2)
+       }
+       document.getElementById("warscroll-intellect-price").innerHTML = `
+       ${warscrollIntellectPriceStringGold} <img src="images/money-gold.gif"> ${warscrollIntellectPriceStringSilver} <img src="images/money-silver.gif"> ${warscrollIntellectPriceStringCopper} <img src="images/money-copper.gif">`
+       
+     // Profit/Loss Calculation
+
+      warscrollIntellectProfit = Math.floor(warscrollIntellectPrice - warscrollIntellectCost);
+      warscrollIntellectProfitString = warscrollIntellectProfit.toString();
+      warscrollIntellectProfitStringCopper = warscrollIntellectProfitString.charAt(warscrollIntellectProfitString.length-2) + warscrollIntellectProfitString.charAt(warscrollIntellectProfitString.length-1)
+      warscrollIntellectProfitStringSilver = warscrollIntellectProfitString.charAt(warscrollIntellectProfitString.length-4) + warscrollIntellectProfitString.charAt(warscrollIntellectProfitString.length-3)
+       if(warscrollIntellectProfitString.length == 5) {
+        warscrollIntellectProfitStringGold = warscrollIntellectProfitString.charAt(0)
+       } else if (warscrollIntellectProfitString.length == 6) {
+        warscrollIntellectProfitStringGold = warscrollIntellectProfitString.charAt(0) + warscrollIntellectProfitString.charAt(1)
+       } else if (warscrollIntellectProfitString.length == 7) {
+        warscrollIntellectProfitStringGold = warscrollIntellectProfitString.charAt(0) + warscrollIntellectProfitString.charAt(1) + warscrollIntellectProfitString.charAt(2)
+       } else {
+        warscrollIntellectProfitStringGold = warscrollIntellectProfitString.charAt(0) + warscrollIntellectProfitString.charAt(1) + warscrollIntellectProfitString.charAt(2) + warscrollIntellectProfitString.charAt(3)
+       }
+       document.getElementById("warscroll-intellect-profit").innerHTML = `
+       ${warscrollIntellectProfitStringGold} <img src="images/money-gold.gif"> ${warscrollIntellectProfitStringSilver} <img src="images/money-silver.gif"> ${warscrollIntellectProfitStringCopper} <img src="images/money-copper.gif">`
+       if(Math.sign(warscrollIntellectProfit) == -1){
+         document.getElementById("warscroll-intellect-profit").setAttribute("style", "background-color:red")
+       } else {
+         document.getElementById("warscroll-intellect-profit").setAttribute("style", "background-color:green")
+       }
+
+       // War-scroll of Fortitude
+       warscrollFortitudeCost = lowestHerbPrice * 27;
+       warscrollFortitudeCostString = warscrollFortitudeCost.toString();
+       warscrollFortitudeCostStringCopper = warscrollFortitudeCostString.charAt(warscrollFortitudeCostString.length-2) + warscrollFortitudeCostString.charAt(warscrollFortitudeCostString.length-1)
+       warscrollFortitudeCostStringSilver = warscrollFortitudeCostString.charAt(warscrollFortitudeCostString.length-4) + warscrollFortitudeCostString.charAt(warscrollFortitudeCostString.length-3)
+      if(warscrollFortitudeCostString.length == 5) {
+        warscrollFortitudeCostStringGold = warscrollFortitudeCostString.charAt(0)
+      } else if (warscrollFortitudeCostString.length == 6) {
+        warscrollFortitudeCostStringGold = warscrollFortitudeCostString.charAt(0) + warscrollFortitudeCostString.charAt(1)
+      } else if (warscrollFortitudeCostString.length == 7) {
+        warscrollFortitudeCostStringGold = warscrollFortitudeCostString.charAt(0) + warscrollFortitudeCostString.charAt(1) + warscrollFortitudeCostString.charAt(2)
+      } else {
+        warscrollFortitudeCostStringGold = warscrollFortitudeCostString.charAt(0) + warscrollFortitudeCostString.charAt(1) + warscrollFortitudeCostString.charAt(2) + warscrollFortitudeCostString.charAt(3)
+      }
+      document.getElementById("warscroll-fortitude-cost").innerHTML = `
+      ${warscrollFortitudeCostStringGold} <img src="images/money-gold.gif"> ${warscrollFortitudeCostStringSilver} <img src="images/money-silver.gif"> ${warscrollFortitudeCostStringCopper} <img src="images/money-copper.gif">`             
+
+      // Price calculation
+       warscrollFortitude = response.data.auctions.filter(function(auction){
+          return auction.item.id === 158204
+        });
+        warscrollFortitude.sort(function(a,b){
+            return a.unit_price - b.unit_price
+          })
+          warscrollFortitudePrice = warscrollFortitude[0].unit_price;
+          warscrollFortitudePriceString = warscrollFortitudePrice.toString();
+          warscrollFortitudePriceStringCopper = warscrollFortitudePriceString.charAt(warscrollFortitudePriceString.length-2) + warscrollFortitudePriceString.charAt(warscrollFortitudePriceString.length-1)
+          warscrollFortitudePriceStringSilver = warscrollFortitudePriceString.charAt(warscrollFortitudePriceString.length-4) + warscrollFortitudePriceString.charAt(warscrollFortitudePriceString.length-3)
+      if(warscrollFortitudePriceString.length == 5) {
+        warscrollFortitudePriceStringGold = warscrollFortitudePriceString.charAt(0)
+      } else if (warscrollFortitudePriceString.length == 6) {
+        warscrollFortitudePriceStringGold = warscrollFortitudePriceString.charAt(0) + warscrollFortitudePriceString.charAt(1)
+      } else if (warscrollFortitudePriceString.length == 7) {
+        warscrollFortitudePriceStringGold = warscrollFortitudePriceString.charAt(0) + warscrollFortitudePriceString.charAt(1) + warscrollFortitudePriceString.charAt(2)
+      }
+      document.getElementById("warscroll-fortitude-price").innerHTML = `
+      ${warscrollFortitudePriceStringGold} <img src="images/money-gold.gif"> ${warscrollFortitudePriceStringSilver} <img src="images/money-silver.gif"> ${warscrollFortitudePriceStringCopper} <img src="images/money-copper.gif">`
+      
+    // Profit/Loss Calculation
+
+     warscrollFortitudeProfit = Math.floor(warscrollFortitudePrice - warscrollFortitudeCost);
+     warscrollFortitudeProfitString = warscrollFortitudeProfit.toString();
+     warscrollFortitudeProfitStringCopper = warscrollFortitudeProfitString.charAt(warscrollFortitudeProfitString.length-2) + warscrollFortitudeProfitString.charAt(warscrollFortitudeProfitString.length-1)
+     warscrollFortitudeProfitStringSilver = warscrollFortitudeProfitString.charAt(warscrollFortitudeProfitString.length-4) + warscrollFortitudeProfitString.charAt(warscrollFortitudeProfitString.length-3)
+      if(warscrollFortitudeProfitString.length == 5) {
+        warscrollFortitudeProfitStringGold = warscrollFortitudeProfitString.charAt(0)
+      } else if (warscrollFortitudeProfitString.length == 6) {
+        warscrollFortitudeProfitStringGold = warscrollFortitudeProfitString.charAt(0) + warscrollFortitudeProfitString.charAt(1)
+      } else if (warscrollFortitudeProfitString.length == 7) {
+        warscrollFortitudeProfitStringGold = warscrollFortitudeProfitString.charAt(0) + warscrollFortitudeProfitString.charAt(1) + warscrollFortitudeProfitString.charAt(2)
+      } else {
+        warscrollFortitudeProfitStringGold = warscrollFortitudeProfitString.charAt(0) + warscrollFortitudeProfitString.charAt(1) + warscrollFortitudeProfitString.charAt(2) + warscrollFortitudeProfitString.charAt(3)
+      }
+      document.getElementById("warscroll-fortitude-profit").innerHTML = `
+      ${warscrollFortitudeProfitStringGold} <img src="images/money-gold.gif"> ${warscrollFortitudeProfitStringSilver} <img src="images/money-silver.gif"> ${warscrollFortitudeProfitStringCopper} <img src="images/money-copper.gif">`
+      if(Math.sign(warscrollFortitudeProfit) == -1){
+        document.getElementById("warscroll-fortitude-profit").setAttribute("style", "background-color:red")
+      } else {
+        document.getElementById("warscroll-fortitude-profit").setAttribute("style", "background-color:green")
+      }
+
+      // War-scroll of Battle Shout
+      warscrollBattleshoutCost = lowestHerbPrice * 27;
+      warscrollBattleshoutCostString = warscrollBattleshoutCost.toString();
+      warscrollBattleshoutCostStringCopper = warscrollFortitudeCostString.charAt(warscrollFortitudeCostString.length-2) + warscrollFortitudeCostString.charAt(warscrollFortitudeCostString.length-1)
+      warscrollBattleshoutCostStringSilver = warscrollFortitudeCostString.charAt(warscrollFortitudeCostString.length-4) + warscrollFortitudeCostString.charAt(warscrollFortitudeCostString.length-3)
+     if(warscrollBattleshoutCostString.length == 5) {
+        warscrollBattleshoutCostStringGold = warscrollBattleshoutCostString.charAt(0)
+     } else if (warscrollBattleshoutCostString.length == 6) {
+        warscrollBattleshoutCostStringGold = warscrollBattleshoutCostString.charAt(0) + warscrollBattleshoutCostString.charAt(1)
+     } else if (warscrollBattleshoutCostString.length == 7) {
+        warscrollBattleshoutCostStringGold = warscrollBattleshoutCostString.charAt(0) + warscrollBattleshoutCostString.charAt(1) + warscrollBattleshoutCostString.charAt(2)
+     } else {
+        warscrollBattleshoutCostStringGold = warscrollBattleshoutCostString.charAt(0) + warscrollBattleshoutCostString.charAt(1) + warscrollBattleshoutCostString.charAt(2) + warscrollBattleshoutCostString.charAt(3)
+     }
+     document.getElementById("warscroll-battleshout-cost").innerHTML = `
+     ${warscrollBattleshoutCostStringGold} <img src="images/money-gold.gif"> ${warscrollBattleshoutCostStringSilver} <img src="images/money-silver.gif"> ${warscrollBattleshoutCostStringCopper} <img src="images/money-copper.gif">`             
+
+     // Price calculation
+      warscrollBattleshout = response.data.auctions.filter(function(auction){
+         return auction.item.id === 158202
+       });
+       warscrollBattleshout.sort(function(a,b){
+           return a.unit_price - b.unit_price
+         })
+         warscrollBattleshoutPrice = warscrollBattleshout[0].unit_price;
+         warscrollBattleshoutPriceString = warscrollBattleshoutPrice.toString();
+         warscrollBattleshoutPriceStringCopper = warscrollBattleshoutPriceString.charAt(warscrollBattleshoutPriceString.length-2) + warscrollBattleshoutPriceString.charAt(warscrollBattleshoutPriceString.length-1)
+         warscrollBattleshoutPriceStringSilver = warscrollBattleshoutPriceString.charAt(warscrollBattleshoutPriceString.length-4) + warscrollBattleshoutPriceString.charAt(warscrollBattleshoutPriceString.length-3)
+     if(warscrollBattleshoutPriceString.length == 5) {
+        warscrollBattleshoutPriceStringGold = warscrollBattleshoutPriceString.charAt(0)
+     } else if (warscrollBattleshoutPriceString.length == 6) {
+        warscrollBattleshoutPriceStringGold = warscrollBattleshoutPriceString.charAt(0) + warscrollBattleshoutPriceString.charAt(1)
+     } else if (warscrollBattleshoutPriceString.length == 7) {
+        warscrollBattleshoutPriceStringGold = warscrollBattleshoutPriceString.charAt(0) + warscrollBattleshoutPriceString.charAt(1) + warscrollBattleshoutPriceString.charAt(2)
+     }
+     document.getElementById("warscroll-battleshout-price").innerHTML = `
+     ${warscrollBattleshoutPriceStringGold} <img src="images/money-gold.gif"> ${warscrollBattleshoutPriceStringSilver} <img src="images/money-silver.gif"> ${warscrollBattleshoutPriceStringCopper} <img src="images/money-copper.gif">`
+     
+   // Profit/Loss Calculation
+
+    warscrollBattleshoutProfit = Math.floor(warscrollBattleshoutPrice - warscrollBattleshoutCost);
+    warscrollBattleshoutProfitString = warscrollBattleshoutProfit.toString();
+    warscrollBattleshoutProfitStringCopper = warscrollBattleshoutProfitString.charAt(warscrollBattleshoutProfitString.length-2) + warscrollBattleshoutProfitString.charAt(warscrollBattleshoutProfitString.length-1)
+    warscrollBattleshoutProfitStringSilver = warscrollBattleshoutProfitString.charAt(warscrollBattleshoutProfitString.length-4) + warscrollBattleshoutProfitString.charAt(warscrollBattleshoutProfitString.length-3)
+     if(warscrollBattleshoutProfitString.length == 5) {
+        warscrollBattleshoutProfitStringGold = warscrollBattleshoutProfitString.charAt(0)
+     } else if (warscrollBattleshoutProfitString.length == 6) {
+        warscrollBattleshoutProfitStringGold = warscrollBattleshoutProfitString.charAt(0) + warscrollBattleshoutProfitString.charAt(1)
+     } else if (warscrollBattleshoutProfitString.length == 7) {
+        warscrollBattleshoutProfitStringGold = warscrollBattleshoutProfitString.charAt(0) + warscrollBattleshoutProfitString.charAt(1) + warscrollBattleshoutProfitString.charAt(2)
+     } else {
+        warscrollBattleshoutProfitStringGold = warscrollBattleshoutProfitString.charAt(0) + warscrollBattleshoutProfitString.charAt(1) + warscrollBattleshoutProfitString.charAt(2) + warscrollBattleshoutProfitString.charAt(3)
+     }
+     document.getElementById("warscroll-battleshout-profit").innerHTML = `
+     ${warscrollBattleshoutProfitStringGold} <img src="images/money-gold.gif"> ${warscrollBattleshoutProfitStringSilver} <img src="images/money-silver.gif"> ${warscrollBattleshoutProfitStringCopper} <img src="images/money-copper.gif">`
+     if(Math.sign(warscrollFortitudeProfit) == -1){
+       document.getElementById("warscroll-battleshout-profit").setAttribute("style", "background-color:red")
+     } else {
+       document.getElementById("warscroll-battleshout-profit").setAttribute("style", "background-color:green")
+     }
 
 
         })
