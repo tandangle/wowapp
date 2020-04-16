@@ -4,6 +4,7 @@ $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
 
+
 // Get access token via Blizzard's OAuth flow
 function render() {axios.post("https://us.battle.net/oauth/token?grant_type=client_credentials&client_id=8170587803004052b43eb6583a7a82ca&client_secret=7sFw5yUDviIfc77w1lHTIcb1Wyvu1IdQ")
   .then(function(response){
@@ -272,7 +273,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
               AbyssalHealingPotionProfitGold = AbyssalHealingPotionProfitString.charAt(0) + AbyssalHealingPotionProfitString.charAt(1)
             } else if (AbyssalHealingPotionProfitString.length == 7) {
               AbyssalHealingPotionProfitGold = AbyssalHealingPotionProfitString.charAt(0) + AbyssalHealingPotionProfitString.charAt(1) + AbyssalHealingPotionProfitString.charAt(2)
-            } else {
+            } else if (AbyssalHealingPotionProfitString.length == 8) {
             AbyssalHealingPotionProfitGold = AbyssalHealingPotionProfitString.charAt(0) + AbyssalHealingPotionProfitString.charAt(1) + AbyssalHealingPotionProfitString.charAt(2) + AbyssalHealingPotionProfitString.charAt(3)
             };
             document.getElementById("abyssal-healing-potion-profit").innerHTML = `
@@ -331,7 +332,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
                   empoweredProximityProfitGold = empoweredProximityProfitString.charAt(0) + empoweredProximityProfitString.charAt(1)
                 } else if (empoweredProximityProfitString.length == 7) {
                   empoweredProximityProfitGold = empoweredProximityProfitString.charAt(0) + empoweredProximityProfitString.charAt(1) + empoweredProximityProfitString.charAt(2)
-                } else {
+                } else if (empoweredProximityProfitString.length == 8) {
                     empoweredProximityProfitGold = empoweredProximityProfitString.charAt(0) + empoweredProximityProfitString.charAt(1) + empoweredProximityProfitString.charAt(2) + empoweredProximityProfitString.charAt(3)
                 }
                 document.getElementById("empowered-proximity-profit").innerHTML = `
@@ -390,7 +391,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
                   focusedResolveProfitGold = focusedResolveProfitString.charAt(0) + focusedResolveProfitString.charAt(1)
                 } else if (focusedResolveProfitString.length == 7) {
                   focusedResolveProfitGold = focusedResolveProfitString.charAt(0) + focusedResolveProfitString.charAt(1) + focusedResolveProfitString.charAt(2)
-                } else {
+                } else if (focusedResolveProfitString.length == 8) {
                     focusedResolveProfitGold = focusedResolveProfitString.charAt(0) + focusedResolveProfitString.charAt(1) + focusedResolveProfitString.charAt(2) + focusedResolveProfitString.charAt(3)
                 }
                 document.getElementById("focused-resolve-profit").innerHTML = `
@@ -449,7 +450,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
                   unbridledFuryProfitGold = unbridledFuryProfitString.charAt(0) + unbridledFuryProfitString.charAt(1)
                 } else if (unbridledFuryProfitString.length == 7) {
                   unbridledFuryProfitGold = unbridledFuryProfitString.charAt(0) + unbridledFuryProfitString.charAt(1) + unbridledFuryProfitString.charAt(2)
-                } else {
+                } else if (unbridledFuryProfitString.length == 8) {
                     unbridledFuryProfitGold = unbridledFuryProfitString.charAt(0) + unbridledFuryProfitString.charAt(1) + unbridledFuryProfitString.charAt(2) + unbridledFuryProfitString.charAt(3)  
                 }
                 document.getElementById("unbridled-fury-profit").innerHTML = `
@@ -508,7 +509,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
                   wildMendingProfitGold = wildMendingProfitString.charAt(0) + wildMendingProfitString.charAt(1)
                 } else if (wildMendingProfitString.length == 7) {
                   wildMendingProfitGold = wildMendingProfitString.charAt(0) + wildMendingProfitString.charAt(1) + wildMendingProfitString.charAt(2)
-                } else {
+                } else if (wildMendingProfitString.length == 8) {
                     wildMendingProfitGold = wildMendingProfitString.charAt(0) + wildMendingProfitString.charAt(1) + wildMendingProfitString.charAt(2) + wildMendingProfitString.charAt(3)  
                 }
                 document.getElementById("wild-mending-profit").innerHTML = `
@@ -567,7 +568,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
                 superiorAgilityProfitGold = superiorAgilityProfitString.charAt(0) + superiorAgilityProfitString.charAt(1)
               } else if (superiorAgilityProfitString.length == 7) {
                 superiorAgilityProfitGold = superiorAgilityProfitString.charAt(0) + superiorAgilityProfitString.charAt(1) + superiorAgilityProfitString.charAt(2)
-              } else {
+              } else if (superiorAgilityProfitString.length == 8) {
                 superiorAgilityProfitGold = superiorAgilityProfitString.charAt(0) + superiorAgilityProfitString.charAt(1) + superiorAgilityProfitString.charAt(2) + superiorAgilityProfitString.charAt(3)
               }
               document.getElementById("superior-agility-profit").innerHTML = `
@@ -626,7 +627,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
                 superiorIntellectProfitGold = superiorIntellectProfitString.charAt(0) + superiorIntellectProfitString.charAt(1)
               } else if (superiorIntellectProfitString.length == 7) {
                 superiorIntellectProfitGold = superiorIntellectProfitString.charAt(0) + superiorIntellectProfitString.charAt(1) + superiorIntellectProfitString.charAt(2)
-              } else { 
+              } else if (superiorIntellectProfitString.length == 8) { 
                 superiorIntellectProfitGold = superiorIntellectProfitString.charAt(0) + superiorIntellectProfitString.charAt(1) + superiorIntellectProfitString.charAt(2) + superiorIntellectProfitString.charAt(3)
               }
               document.getElementById("superior-intellect-profit").innerHTML = `
@@ -685,7 +686,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
               superiorStaminaProfitGold = superiorStaminaProfitString.charAt(0) + superiorStaminaProfitString.charAt(1)
             } else if (superiorStaminaProfitString.length == 7) {
               superiorStaminaProfitGold = superiorStaminaProfitString.charAt(0) + superiorStaminaProfitString.charAt(1) + superiorStaminaProfitString.charAt(2)
-            } else {
+            } else if (superiorStaminaProfitString.length == 8) {
                 superiorStaminaProfitGold = superiorStaminaProfitString.charAt(0) + superiorStaminaProfitString.charAt(1) + superiorStaminaProfitString.charAt(2) + superiorStaminaProfitString.charAt(3)
             }
             document.getElementById("superior-stamina-profit").innerHTML = `
@@ -744,7 +745,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
             superiorStrengthProfitGold = superiorStrengthProfitString.charAt(0) + superiorStrengthProfitString.charAt(1)
           } else if (superiorStrengthProfitString.length == 7) {
             superiorStrengthProfitGold = superiorStrengthProfitString.charAt(0) + superiorStrengthProfitString.charAt(1) + superiorStrengthProfitString.charAt(2)
-          } else {
+          } else if (superiorStrengthProfitString.length == 8) {
             superiorStrengthProfitGold = superiorStrengthProfitString.charAt(0) + superiorStrengthProfitString.charAt(1) + superiorStrengthProfitString.charAt(2) + superiorStrengthProfitString.charAt(3)
           }
           document.getElementById("superior-strength-profit").innerHTML = `
@@ -802,7 +803,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
           superiorSteelskinProfitGold = superiorSteelskinProfitString.charAt(0) + superiorSteelskinProfitString.charAt(1)
         } else if (superiorSteelskinProfitString.length == 7) {
           superiorSteelskinProfitGold = superiorSteelskinProfitString.charAt(0) + superiorSteelskinProfitString.charAt(1) + superiorSteelskinProfitString.charAt(2)
-        } else {
+        } else if (superiorSteelskinProfitString.length == 8) {
             superiorSteelskinProfitGold = superiorSteelskinProfitString.charAt(0) + superiorSteelskinProfitString.charAt(1) + superiorSteelskinProfitString.charAt(2) + superiorSteelskinProfitString.charAt(3)
         }
         document.getElementById("superior-steelskin-profit").innerHTML = `
@@ -862,7 +863,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
           replenishmentProfitGold = replenishmentProfitString.charAt(0) + replenishmentProfitString.charAt(1)
         } else if (replenishmentProfitString.length == 7) {
           replenishmentProfitGold = replenishmentProfitString.charAt(0) + replenishmentProfitString.charAt(1) + replenishmentProfitString.charAt(2)
-        } else {
+        } else if (replenishmentProfitString.length == 8) {
           replenishmentProfitGold = replenishmentProfitString.charAt(0) + replenishmentProfitString.charAt(1) + replenishmentProfitString.charAt(2) + replenishmentProfitString.charAt(3)
         }
         document.getElementById("replenishment-profit").innerHTML = `
@@ -927,7 +928,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
           greaterFathomsProfitGold = greaterFathomsProfitString.charAt(0) + greaterFathomsProfitString.charAt(1) + greaterFathomsProfitString.charAt(2)
         } else if (greaterFathomsProfitString.length == 8) {
           greaterFathomsProfitGold = greaterFathomsProfitString.charAt(0) + greaterFathomsProfitString.charAt(1) + greaterFathomsProfitString.charAt(2) + greaterFathomsProfitString.charAt(3)
-        } else {
+        } else if (greaterFathomsProfitString.length == 9){
             greaterFathomsProfitGold = greaterFathomsProfitString.charAt(0) + greaterFathomsProfitString.charAt(1) + greaterFathomsProfitString.charAt(2) + greaterFathomsProfitString.charAt(3) + greaterFathomsProfitString.charAt(4)
         }
         document.getElementById("greater-fathoms-profit").innerHTML = `
@@ -1052,7 +1053,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
           greaterUndertowProfitGold = greaterUndertowProfitString.charAt(0) + greaterUndertowProfitString.charAt(1)
         } else if (greaterUndertowProfitString.length == 7) {
           greaterUndertowProfitGold = greaterUndertowProfitString.charAt(0) + greaterUndertowProfitString.charAt(1) + greaterUndertowProfitString.charAt(2)
-        } else {
+        } else if (greaterUndertowProfitString.length == 8)  {
           greaterUndertowProfitGold = greaterUndertowProfitString.charAt(0) + greaterUndertowProfitString.charAt(1) + greaterUndertowProfitString.charAt(2) + greaterUndertowProfitString.charAt(3)
         }
         document.getElementById("greater-undertow-profit").innerHTML = `
@@ -1114,7 +1115,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
           greaterHorizonProfitGold = greaterHorizonProfitString.charAt(0) + greaterHorizonProfitString.charAt(1)
         } else if (greaterHorizonProfitString.length == 7) {
           greaterHorizonProfitGold = greaterHorizonProfitString.charAt(0) + greaterHorizonProfitString.charAt(1) + greaterHorizonProfitString.charAt(2)
-        } else {
+        } else if (greaterHorizonProfitString.length == 8) {
           greaterHorizonProfitGold = greaterHorizonProfitString.charAt(0) + greaterHorizonProfitString.charAt(1) + greaterHorizonProfitString.charAt(2) + greaterHorizonProfitString.charAt(3)
         }
         document.getElementById("greater-horizon-profit").innerHTML = `
@@ -1176,7 +1177,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
         warscrollIntellectProfitStringGold = warscrollIntellectProfitString.charAt(0) + warscrollIntellectProfitString.charAt(1)
        } else if (warscrollIntellectProfitString.length == 7) {
         warscrollIntellectProfitStringGold = warscrollIntellectProfitString.charAt(0) + warscrollIntellectProfitString.charAt(1) + warscrollIntellectProfitString.charAt(2)
-       } else {
+       } else if (warscrollIntellectProfitString.length == 8) {
         warscrollIntellectProfitStringGold = warscrollIntellectProfitString.charAt(0) + warscrollIntellectProfitString.charAt(1) + warscrollIntellectProfitString.charAt(2) + warscrollIntellectProfitString.charAt(3)
        }
        document.getElementById("warscroll-intellect-profit").innerHTML = `
@@ -1237,7 +1238,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
         warscrollFortitudeProfitStringGold = warscrollFortitudeProfitString.charAt(0) + warscrollFortitudeProfitString.charAt(1)
       } else if (warscrollFortitudeProfitString.length == 7) {
         warscrollFortitudeProfitStringGold = warscrollFortitudeProfitString.charAt(0) + warscrollFortitudeProfitString.charAt(1) + warscrollFortitudeProfitString.charAt(2)
-      } else {
+      } else if (warscrollFortitudeProfitString.length == 8) {
         warscrollFortitudeProfitStringGold = warscrollFortitudeProfitString.charAt(0) + warscrollFortitudeProfitString.charAt(1) + warscrollFortitudeProfitString.charAt(2) + warscrollFortitudeProfitString.charAt(3)
       }
       document.getElementById("warscroll-fortitude-profit").innerHTML = `
@@ -1298,7 +1299,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
         warscrollBattleshoutProfitStringGold = warscrollBattleshoutProfitString.charAt(0) + warscrollBattleshoutProfitString.charAt(1)
      } else if (warscrollBattleshoutProfitString.length == 7) {
         warscrollBattleshoutProfitStringGold = warscrollBattleshoutProfitString.charAt(0) + warscrollBattleshoutProfitString.charAt(1) + warscrollBattleshoutProfitString.charAt(2)
-     } else {
+     } else if (warscrollBattleshoutProfitString.length == 8) {
         warscrollBattleshoutProfitStringGold = warscrollBattleshoutProfitString.charAt(0) + warscrollBattleshoutProfitString.charAt(1) + warscrollBattleshoutProfitString.charAt(2) + warscrollBattleshoutProfitString.charAt(3)
      }
      document.getElementById("warscroll-battleshout-profit").innerHTML = `
@@ -1365,7 +1366,7 @@ empoweredProximityProfit = Math.floor(empoweredProximityPrice * this.value - emp
                   empoweredProximityProfitGold = empoweredProximityProfitString.charAt(0) + empoweredProximityProfitString.charAt(1)
                 } else if (empoweredProximityProfitString.length == 7) {
                   empoweredProximityProfitGold = empoweredProximityProfitString.charAt(0) + empoweredProximityProfitString.charAt(1) + empoweredProximityProfitString.charAt(2)
-                } else {
+                } else if (empoweredProximityProfitString.length == 8) {
                     empoweredProximityProfitGold = empoweredProximityProfitString.charAt(0) + empoweredProximityProfitString.charAt(1) + empoweredProximityProfitString.charAt(2) + empoweredProximityProfitString.charAt(3)   
                 }
                 document.getElementById("empowered-proximity-profit").innerHTML = `
@@ -1386,7 +1387,7 @@ focusedResolveProfit = Math.floor(focusedResolvePrice * this.value - focusedReso
                   focusedResolveProfitGold = focusedResolveProfitString.charAt(0) + focusedResolveProfitString.charAt(1)
                 } else if (focusedResolveProfitString.length == 7) {
                   focusedResolveProfitGold = focusedResolveProfitString.charAt(0) + focusedResolveProfitString.charAt(1) + focusedResolveProfitString.charAt(2)
-                } else {
+                } else if (focusedResolveProfitString.length == 8) {
                     focusedResolveProfitGold = focusedResolveProfitString.charAt(0) + focusedResolveProfitString.charAt(1) + focusedResolveProfitString.charAt(2) + focusedResolveProfitString.charAt(3)  
                 }
                 document.getElementById("focused-resolve-profit").innerHTML = `
@@ -1407,7 +1408,7 @@ unbridledFuryProfit = Math.floor(unbridledFuryPrice * this.value - unbridledFury
                   unbridledFuryProfitGold = unbridledFuryProfitString.charAt(0) + unbridledFuryProfitString.charAt(1)
                 } else if (unbridledFuryProfitString.length == 7) {
                   unbridledFuryProfitGold = unbridledFuryProfitString.charAt(0) + unbridledFuryProfitString.charAt(1) + unbridledFuryProfitString.charAt(2)
-                } else {
+                } else if (unbridledFuryProfitString.length == 8) {
                     unbridledFuryProfitGold = unbridledFuryProfitString.charAt(0) + unbridledFuryProfitString.charAt(1) + unbridledFuryProfitString.charAt(2) +  unbridledFuryProfitString.charAt(3)  
                 }
                 document.getElementById("unbridled-fury-profit").innerHTML = `
@@ -1428,7 +1429,7 @@ wildMendingProfit = Math.floor(wildMendingPrice * this.value - wildMendingCost);
                   wildMendingProfitGold = wildMendingProfitString.charAt(0) + wildMendingProfitString.charAt(1)
                 } else if (wildMendingProfitString.length == 7) {
                   wildMendingProfitGold = wildMendingProfitString.charAt(0) + wildMendingProfitString.charAt(1) + wildMendingProfitString.charAt(2)
-                } else {
+                } else if (wildMendingProfitString.length == 8) {
                     wildMendingProfitGold = wildMendingProfitString.charAt(0) + wildMendingProfitString.charAt(1) + wildMendingProfitString.charAt(2) + wildMendingProfitString.charAt(3)
                 }
                 document.getElementById("wild-mending-profit").innerHTML = `
@@ -1449,7 +1450,7 @@ superiorAgilityProfit = Math.floor(superiorAgilityPrice * this.value - superiorA
                 superiorAgilityProfitGold = superiorAgilityProfitString.charAt(0) + superiorAgilityProfitString.charAt(1)
               } else if (superiorAgilityProfitString.length == 7) {
                 superiorAgilityProfitGold = superiorAgilityProfitString.charAt(0) + superiorAgilityProfitString.charAt(1) + superiorAgilityProfitString.charAt(2)
-              } else {
+              } else if (superiorAgilityProfitString.length == 8) {
                 superiorAgilityProfitGold = superiorAgilityProfitString.charAt(0) + superiorAgilityProfitString.charAt(1) + superiorAgilityProfitString.charAt(2) + superiorAgilityProfitString.charAt(3)
               }
               document.getElementById("superior-agility-profit").innerHTML = `
@@ -1470,7 +1471,7 @@ superiorIntellectProfit = Math.floor(superiorIntellectPrice * this.value - super
                 superiorIntellectProfitGold = superiorIntellectProfitString.charAt(0) + superiorIntellectProfitString.charAt(1)
               } else if (superiorIntellectProfitString.length == 7) {
                 superiorIntellectProfitGold = superiorIntellectProfitString.charAt(0) + superiorIntellectProfitString.charAt(1) + superiorIntellectProfitString.charAt(2)
-              } else { 
+              } else if (superiorIntellectProfitString.length == 8) { 
                 superiorIntellectProfitGold = superiorIntellectProfitString.charAt(0) + superiorIntellectProfitString.charAt(1) + superiorIntellectProfitString.charAt(2) + superiorIntellectProfitString.charAt(3)
               }
               document.getElementById("superior-intellect-profit").innerHTML = `
@@ -1491,7 +1492,7 @@ superiorStaminaProfit = Math.floor(superiorStaminaPrice * this.value - superiorS
               superiorStaminaProfitGold = superiorStaminaProfitString.charAt(0) + superiorStaminaProfitString.charAt(1)
             } else if (superiorStaminaProfitString.length == 7) {
               superiorStaminaProfitGold = superiorStaminaProfitString.charAt(0) + superiorStaminaProfitString.charAt(1) + superiorStaminaProfitString.charAt(2)
-            } else {
+            } else if (superiorStaminaProfitString.length == 8) {
                 superiorStaminaProfitGold = superiorStaminaProfitString.charAt(0) + superiorStaminaProfitString.charAt(1) + superiorStaminaProfitString.charAt(2) + superiorStaminaProfitString.charAt(3)  
             }
             document.getElementById("superior-stamina-profit").innerHTML = `
@@ -1515,7 +1516,7 @@ superiorStrengthProfit = Math.floor(superiorStrengthPrice * this.value - superio
             superiorStrengthProfitGold = superiorStrengthProfitString.charAt(0) + superiorStrengthProfitString.charAt(1) + superiorStrengthProfitString.charAt(2)
           } else if (superiorStrengthProfitString.length == 8)  {
             superiorStrengthProfitGold = superiorStrengthProfitString.charAt(0) + superiorStrengthProfitString.charAt(1) + superiorStrengthProfitString.charAt(2) + superiorStrengthProfitString.charAt(3) 
-          } else {
+          } else if (superiorStrengthProfitString.length == 9) {
             superiorStrengthProfitGold = superiorStrengthProfitString.charAt(0) + superiorStrengthProfitString.charAt(1) + superiorStrengthProfitString.charAt(2) + superiorStrengthProfitString.charAt(3) + superiorStrengthProfitString.charAt(4)
           }
           document.getElementById("superior-strength-profit").innerHTML = `
@@ -1537,7 +1538,7 @@ superiorSteelskinProfit = Math.floor(superiorSteelskinPrice * this.value - super
           superiorSteelskinProfitGold = superiorSteelskinProfitString.charAt(0) + superiorSteelskinProfitString.charAt(1)
         } else if (superiorSteelskinProfitString.length == 7) {
           superiorSteelskinProfitGold = superiorSteelskinProfitString.charAt(0) + superiorSteelskinProfitString.charAt(1) + superiorSteelskinProfitString.charAt(2)
-        } else {
+        } else if (superiorSteelskinProfitString.length == 8) {
             superiorSteelskinProfitGold = superiorSteelskinProfitString.charAt(0) + superiorSteelskinProfitString.charAt(1) + superiorSteelskinProfitString.charAt(2) + superiorSteelskinProfitString.charAt(3)  
         }
         document.getElementById("superior-steelskin-profit").innerHTML = `
@@ -1558,7 +1559,7 @@ replenishmentProfit = Math.floor(replenishmentPrice * this.value - replenishment
           replenishmentProfitGold = replenishmentProfitString.charAt(0) + replenishmentProfitString.charAt(1)
         } else if (replenishmentProfitString.length == 7) {
           replenishmentProfitGold = replenishmentProfitString.charAt(0) + replenishmentProfitString.charAt(1) + replenishmentProfitString.charAt(2)
-        } else {
+        } else if (replenishmentProfitString.length == 8)  {
           replenishmentProfitGold = replenishmentProfitString.charAt(0) + replenishmentProfitString.charAt(1) + replenishmentProfitString.charAt(2) + replenishmentProfitString.charAt(3)
         }
         document.getElementById("replenishment-profit").innerHTML = `
@@ -1581,7 +1582,7 @@ greaterFathomsProfit = Math.floor(greaterFathomsPrice * this.value - greaterFath
           greaterFathomsProfitGold = greaterFathomsProfitString.charAt(0) + greaterFathomsProfitString.charAt(1)
         } else if (greaterFathomsProfitString.length == 7) {
           greaterFathomsProfitGold = greaterFathomsProfitString.charAt(0) + greaterFathomsProfitString.charAt(1) + greaterFathomsProfitString.charAt(2)
-        } else {
+        } else if (greaterFathomsProfitString.length == 8) {
           greaterFathomsProfitGold = greaterFathomsProfitString.charAt(0) + greaterFathomsProfitString.charAt(1) + greaterFathomsProfitString.charAt(2) + greaterFathomsProfitString.charAt(3)
         }
         document.getElementById("greater-fathoms-profit").innerHTML = `
@@ -1604,7 +1605,7 @@ greaterCurrentsProfit = Math.floor(greaterCurrentsPrice * this.value - greaterCu
           greaterCurrentsProfitGold = greaterCurrentsProfitString.charAt(0) + greaterCurrentsProfitString.charAt(1)
         } else if (greaterCurrentsProfitString.length == 7) {
           greaterCurrentsProfitGold = greaterCurrentsProfitString.charAt(0) + greaterCurrentsProfitString.charAt(1) + greaterCurrentsProfitString.charAt(2)
-        } else {
+        } else if (greaterCurrentsProfitString.length == 8) {
           greaterCurrentsProfitGold = greaterCurrentsProfitString.charAt(0) + greaterCurrentsProfitString.charAt(1) + greaterCurrentsProfitString.charAt(2) + greaterCurrentsProfitString.charAt(3)
         }
         document.getElementById("greater-currents-profit").innerHTML = `
@@ -1626,7 +1627,7 @@ greaterUndertowProfit = Math.floor(greaterUndertowPrice * this.value - greaterUn
           greaterUndertowProfitGold = greaterUndertowProfitString.charAt(0) + greaterUndertowProfitString.charAt(1)
         } else if (greaterUndertowProfitString.length == 7) {
           greaterUndertowProfitGold = greaterUndertowProfitString.charAt(0) + greaterUndertowProfitString.charAt(1) + greaterUndertowProfitString.charAt(2)
-        } else {
+        } else if (greaterUndertowProfitString.length == 8) {
           greaterUndertowProfitGold = greaterUndertowProfitString.charAt(0) + greaterUndertowProfitString.charAt(1) + greaterUndertowProfitString.charAt(2) + greaterUndertowProfitString.charAt(3)
         }
         document.getElementById("greater-undertow-profit").innerHTML = `
@@ -1649,7 +1650,7 @@ greaterHorizonProfit = Math.floor(greaterHorizonPrice * this.value - greaterHori
           greaterHorizonProfitGold = greaterHorizonProfitString.charAt(0) + greaterHorizonProfitString.charAt(1)
         } else if (greaterHorizonProfitString.length == 7) {
           greaterHorizonProfitGold = greaterHorizonProfitString.charAt(0) + greaterHorizonProfitString.charAt(1) + greaterHorizonProfitString.charAt(2)
-        } else {
+        } else if (greaterHorizonProfitString.length == 8) {
           greaterHorizonProfitGold = greaterHorizonProfitString.charAt(0) + greaterHorizonProfitString.charAt(1) + greaterHorizonProfitString.charAt(2) + greaterHorizonProfitString.charAt(3)
         }
         document.getElementById("greater-horizon-profit").innerHTML = `
