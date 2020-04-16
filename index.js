@@ -274,7 +274,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
               AbyssalHealingPotionProfitGold = AbyssalHealingPotionProfitString.charAt(0) + AbyssalHealingPotionProfitString.charAt(1) + AbyssalHealingPotionProfitString.charAt(2)
             } else {
             AbyssalHealingPotionProfitGold = AbyssalHealingPotionProfitString.charAt(0) + AbyssalHealingPotionProfitString.charAt(1) + AbyssalHealingPotionProfitString.charAt(2) + AbyssalHealingPotionProfitString.charAt(3)
-            }
+            };
             document.getElementById("abyssal-healing-potion-profit").innerHTML = `
             ${AbyssalHealingPotionProfitGold} <img src="images/money-gold.gif"> ${AbyssalHealingPotionProfitSilver} <img src="images/money-silver.gif"> ${AbyssalHealingPotionProfitCopper} <img src="images/money-copper.gif">`
             if(Math.sign(AbyssalHealingPotionProfit) == -1){
@@ -285,19 +285,19 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
 
         // Empowered Proximity
                 // Cost calculation
-                 empoweredProximiyCost = zinanthidPrice * 8 + winterskissPrice * 3;
-                 empoweredProximiyCostString = empoweredProximiyCost.toString();
-                empoweredProximiyCostCopper = empoweredProximiyCostString.charAt(empoweredProximiyCostString.length-2) + empoweredProximiyCostString.charAt(empoweredProximiyCostString.length-1)
-                empoweredProximiyCostSilver = empoweredProximiyCostString.charAt(empoweredProximiyCostString.length-4) + empoweredProximiyCostString.charAt(empoweredProximiyCostString.length-3)
-                if(empoweredProximiyCostString.length == 5) {
-                  empoweredProximiyCostGold = empoweredProximiyCostString.charAt(0)
-                } else if (empoweredProximiyCostString.length == 6) {
-                  empoweredProximiyCostGold = empoweredProximiyCostString.charAt(0) + empoweredProximiyCostString.charAt(1)
-                } else if (empoweredProximiyCostString.length == 7) {
-                  empoweredProximiyCostGold = empoweredProximiyCostString.charAt(0) + empoweredProximiyCostString.charAt(1) + empoweredProximiyCostString.charAt(2)
+                 empoweredProximityCost = zinanthidPrice * 8 + winterskissPrice * 3;
+                 empoweredProximityCostString = empoweredProximityCost.toString();
+                empoweredProximityCostCopper = empoweredProximityCostString.charAt(empoweredProximityCostString.length-2) + empoweredProximityCostString.charAt(empoweredProximityCostString.length-1)
+                empoweredProximityCostSilver = empoweredProximityCostString.charAt(empoweredProximityCostString.length-4) + empoweredProximityCostString.charAt(empoweredProximityCostString.length-3)
+                if(empoweredProximityCostString.length == 5) {
+                  empoweredProximityCostGold = empoweredProximityCostString.charAt(0)
+                } else if (empoweredProximityCostString.length == 6) {
+                  empoweredProximityCostGold = empoweredProximityCostString.charAt(0) + empoweredProximityCostString.charAt(1)
+                } else if (empoweredProximityCostString.length == 7) {
+                  empoweredProximityCostGold = empoweredProximityCostString.charAt(0) + empoweredProximityCostString.charAt(1) + empoweredProximityCostString.charAt(2)
                 }
                 document.getElementById("empowered-proximity-cost").innerHTML = `
-                ${empoweredProximiyCostGold} <img src="images/money-gold.gif"> ${empoweredProximiyCostSilver} <img src="images/money-silver.gif"> ${empoweredProximiyCostCopper} <img src="images/money-copper.gif">`             
+                ${empoweredProximityCostGold} <img src="images/money-gold.gif"> ${empoweredProximityCostSilver} <img src="images/money-silver.gif"> ${empoweredProximityCostCopper} <img src="images/money-copper.gif">`             
     
                 // Price calculation
                  empoweredProximity = response.data.auctions.filter(function(auction){
@@ -321,7 +321,7 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
                 ${empoweredProximityGold} <img src="images/money-gold.gif"> ${empoweredProximitySilver} <img src="images/money-silver.gif"> ${empoweredProximityCopper} <img src="images/money-copper.gif">`
                 
               // Profit/Loss Calculation
-               empoweredProximityProfit = Math.floor(empoweredProximityPrice *1.4 - empoweredProximiyCost);
+               empoweredProximityProfit = Math.floor(empoweredProximityPrice *1.4 - empoweredProximityCost);
                empoweredProximityProfitString = empoweredProximityProfit.toString();
               empoweredProximityProfitCopper = empoweredProximityProfitString.charAt(empoweredProximityProfitString.length-2) + empoweredProximityProfitString.charAt(empoweredProximityProfitString.length-1)
               empoweredProximityProfitSilver = empoweredProximityProfitString.charAt(empoweredProximityProfitString.length-4) + empoweredProximityProfitString.charAt(empoweredProximityProfitString.length-3)
@@ -1332,16 +1332,19 @@ slider.oninput = function() {
   document.getElementById("potiontable").rows[0].cells[3].innerHTML = `Profit/Loss assuming procs (${this.value}x per craft)`;
   document.getElementById("flasktable").rows[0].cells[3].innerHTML = `Profit/Loss assuming procs (${this.value}x per craft)`;
   AbyssalHealingPotionProfit = Math.floor(AbyssalHealingPotionPrice * this.value - AbyssalHealingPotionCost);
+  console.log(AbyssalHealingPotionProfit);
         AbyssalHealingPotionProfitString = AbyssalHealingPotionProfit.toString();
         AbyssalHealingPotionProfitCopper = AbyssalHealingPotionProfitString.charAt(AbyssalHealingPotionProfitString.length-2) + AbyssalHealingPotionProfitString.charAt(AbyssalHealingPotionProfitString.length-1)
         AbyssalHealingPotionProfitSilver = AbyssalHealingPotionProfitString.charAt(AbyssalHealingPotionProfitString.length-4) + AbyssalHealingPotionProfitString.charAt(AbyssalHealingPotionProfitString.length-3)
-            if(AbyssalHealingPotionProfitString.length == 5) {
+            if(AbyssalHealingPotionProfitString.length == 4) {
+              AbyssalHealingPotionProfitGold = 0
+            } else if (AbyssalHealingPotionProfitString.length == 5) {
               AbyssalHealingPotionProfitGold = AbyssalHealingPotionProfitString.charAt(0)
             } else if (AbyssalHealingPotionProfitString.length == 6) {
               AbyssalHealingPotionProfitGold = AbyssalHealingPotionProfitString.charAt(0) + AbyssalHealingPotionProfitString.charAt(1)
             } else if (AbyssalHealingPotionProfitString.length == 7) {
               AbyssalHealingPotionProfitGold = AbyssalHealingPotionProfitString.charAt(0) + AbyssalHealingPotionProfitString.charAt(1) + AbyssalHealingPotionProfitString.charAt(2)
-            } else {
+            } else if (AbyssalHealingPotionProfitString.length == 8) {
                 AbyssalHealingPotionProfitGold = AbyssalHealingPotionProfitString.charAt(0) + AbyssalHealingPotionProfitString.charAt(1) + AbyssalHealingPotionProfitString.charAt(2) + AbyssalHealingPotionProfitString.charAt(3)  
             }
             document.getElementById("abyssal-healing-potion-profit").innerHTML = `
@@ -1352,7 +1355,7 @@ slider.oninput = function() {
               document.getElementById("abyssal-healing-potion-profit").setAttribute("style", "background-color:green")
             };
 //
-empoweredProximityProfit = Math.floor(empoweredProximityPrice * this.value - empoweredProximiyCost);
+empoweredProximityProfit = Math.floor(empoweredProximityPrice * this.value - empoweredProximityCost);
                empoweredProximityProfitString = empoweredProximityProfit.toString();
               empoweredProximityProfitCopper = empoweredProximityProfitString.charAt(empoweredProximityProfitString.length-2) + empoweredProximityProfitString.charAt(empoweredProximityProfitString.length-1)
               empoweredProximityProfitSilver = empoweredProximityProfitString.charAt(empoweredProximityProfitString.length-4) + empoweredProximityProfitString.charAt(empoweredProximityProfitString.length-3)
