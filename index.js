@@ -5,22 +5,35 @@ $(function () {
 })
 
 // Get access token via Blizzard's OAuth flow
-function render(procs) {axios.post("https://us.battle.net/oauth/token?grant_type=client_credentials&client_id=8170587803004052b43eb6583a7a82ca&client_secret=7sFw5yUDviIfc77w1lHTIcb1Wyvu1IdQ")
-  .then(function(response, procs){
+function render() {axios.post("https://us.battle.net/oauth/token?grant_type=client_credentials&client_id=8170587803004052b43eb6583a7a82ca&client_secret=7sFw5yUDviIfc77w1lHTIcb1Wyvu1IdQ")
+  .then(function(response){
     // Get all auctions from the realm
     axios.get(`https://us.api.blizzard.com/data/wow/connected-realm/73/auctions?namespace=dynamic-us&:region=us`, {headers:{Authorization: "Bearer " + response.data.access_token}})
-        .then(function(response, procs){
+        .then(function(response){
             document.getElementById("slidecontainer").style.display = "flex";
             document.getElementById("number").style.display = "block";
             // Filter all auctions for auctions of Tidespray linen
-             tidespray = response.data.auctions.filter(function(auction){
-              return auction.item.id === 152576
-            });
-            // Sort the auctions from lowest buyout price to highest buyout price
-              tidespray.sort(function(a,b){
-                return a.unit_price - b.unit_price
-              })
+            var tidesprayLinen = response.data.auctions.filter(function(auction){
+                return auction.item.id === 152576
+              });
+              tidesprayLinen.sort(function(a,b){
+                  return a.unit_price - b.unit_price
+                })
+              var tidesprayLinenPrice = tidesprayLinen[0].unit_price;
+              var tidesprayLinenPriceString = tidesprayLinenPrice.toString();
+              tidesprayLinenPriceStringCopper = tidesprayLinenPriceString.charAt(tidesprayLinenPriceString.length-2) + tidesprayLinenPriceString.charAt(tidesprayLinenPriceString.length-1)
+              tidesprayLinenPriceStringSilver = tidesprayLinenPriceString.charAt(tidesprayLinenPriceString.length-4) + tidesprayLinenPriceString.charAt(tidesprayLinenPriceString.length-3)
+              if(tidesprayLinenPriceString.length == 5) {
+                tidesprayLinenPriceStringGold = tidesprayLinenPriceString.charAt(0)
+              } else if (tidesprayLinenPriceString.length == 6) {
+                tidesprayLinenPriceStringGold = tidesprayLinenPriceString.charAt(0) + tidesprayLinenPriceString.charAt(1)
+              } else if (tidesprayLinenPriceString.length == 7) {
+                tidesprayLinenPriceStringGold = tidesprayLinenPriceString.charAt(0) + tidesprayLinenPriceString.charAt(1) + tidesprayLinenPriceString.charAt(2)
+              }
 
+            document.getElementById("tidespray").innerHTML = `
+            ${tidesprayLinenPriceStringGold} <img src="images/money-gold.gif"> ${tidesprayLinenPriceStringSilver} <img src="images/money-silver.gif"> ${tidesprayLinenPriceStringCopper} <img src="images/money-copper.gif">`
+            
             // Akunda's Bite
              akundasBite = response.data.auctions.filter(function(auction){
                 return auction.item.id === 152507
@@ -245,6 +258,8 @@ function render(procs) {axios.post("https://us.battle.net/oauth/token?grant_type
               AbyssalHealingPotionProfitGold = AbyssalHealingPotionProfitString.charAt(0) + AbyssalHealingPotionProfitString.charAt(1)
             } else if (AbyssalHealingPotionProfitString.length == 7) {
               AbyssalHealingPotionProfitGold = AbyssalHealingPotionProfitString.charAt(0) + AbyssalHealingPotionProfitString.charAt(1) + AbyssalHealingPotionProfitString.charAt(2)
+            } else {
+            AbyssalHealingPotionProfitGold = AbyssalHealingPotionProfitString.charAt(0) + AbyssalHealingPotionProfitString.charAt(1) + AbyssalHealingPotionProfitString.charAt(2) + AbyssalHealingPotionProfitString.charAt(3)
             }
             document.getElementById("abyssal-healing-potion-profit").innerHTML = `
             ${AbyssalHealingPotionProfitGold} <img src="images/money-gold.gif"> ${AbyssalHealingPotionProfitSilver} <img src="images/money-silver.gif"> ${AbyssalHealingPotionProfitCopper} <img src="images/money-copper.gif">`
@@ -302,6 +317,8 @@ function render(procs) {axios.post("https://us.battle.net/oauth/token?grant_type
                   empoweredProximityProfitGold = empoweredProximityProfitString.charAt(0) + empoweredProximityProfitString.charAt(1)
                 } else if (empoweredProximityProfitString.length == 7) {
                   empoweredProximityProfitGold = empoweredProximityProfitString.charAt(0) + empoweredProximityProfitString.charAt(1) + empoweredProximityProfitString.charAt(2)
+                } else {
+                    empoweredProximityProfitGold = empoweredProximityProfitString.charAt(0) + empoweredProximityProfitString.charAt(1) + empoweredProximityProfitString.charAt(2) + empoweredProximityProfitString.charAt(3)
                 }
                 document.getElementById("empowered-proximity-profit").innerHTML = `
                 ${empoweredProximityProfitGold} <img src="images/money-gold.gif"> ${empoweredProximityProfitSilver} <img src="images/money-silver.gif"> ${empoweredProximityProfitCopper} <img src="images/money-copper.gif">`
@@ -359,6 +376,8 @@ function render(procs) {axios.post("https://us.battle.net/oauth/token?grant_type
                   focusedResolveProfitGold = focusedResolveProfitString.charAt(0) + focusedResolveProfitString.charAt(1)
                 } else if (focusedResolveProfitString.length == 7) {
                   focusedResolveProfitGold = focusedResolveProfitString.charAt(0) + focusedResolveProfitString.charAt(1) + focusedResolveProfitString.charAt(2)
+                } else {
+                    focusedResolveProfitGold = focusedResolveProfitString.charAt(0) + focusedResolveProfitString.charAt(1) + focusedResolveProfitString.charAt(2) + focusedResolveProfitString.charAt(3)
                 }
                 document.getElementById("focused-resolve-profit").innerHTML = `
                 ${focusedResolveProfitGold} <img src="images/money-gold.gif"> ${focusedResolveProfitSilver} <img src="images/money-silver.gif"> ${focusedResolveProfitCopper} <img src="images/money-copper.gif">`
@@ -416,6 +435,8 @@ function render(procs) {axios.post("https://us.battle.net/oauth/token?grant_type
                   unbridledFuryProfitGold = unbridledFuryProfitString.charAt(0) + unbridledFuryProfitString.charAt(1)
                 } else if (unbridledFuryProfitString.length == 7) {
                   unbridledFuryProfitGold = unbridledFuryProfitString.charAt(0) + unbridledFuryProfitString.charAt(1) + unbridledFuryProfitString.charAt(2)
+                } else {
+                    unbridledFuryProfitGold = unbridledFuryProfitString.charAt(0) + unbridledFuryProfitString.charAt(1) + unbridledFuryProfitString.charAt(2) + unbridledFuryProfitString.charAt(3)  
                 }
                 document.getElementById("unbridled-fury-profit").innerHTML = `
                 ${unbridledFuryProfitGold} <img src="images/money-gold.gif"> ${unbridledFuryProfitSilver} <img src="images/money-silver.gif"> ${unbridledFuryProfitCopper} <img src="images/money-copper.gif">`
@@ -473,6 +494,8 @@ function render(procs) {axios.post("https://us.battle.net/oauth/token?grant_type
                   wildMendingProfitGold = wildMendingProfitString.charAt(0) + wildMendingProfitString.charAt(1)
                 } else if (wildMendingProfitString.length == 7) {
                   wildMendingProfitGold = wildMendingProfitString.charAt(0) + wildMendingProfitString.charAt(1) + wildMendingProfitString.charAt(2)
+                } else {
+                    wildMendingProfitGold = wildMendingProfitString.charAt(0) + wildMendingProfitString.charAt(1) + wildMendingProfitString.charAt(2) + wildMendingProfitString.charAt(3)  
                 }
                 document.getElementById("wild-mending-profit").innerHTML = `
                 ${wildMendingProfitGold} <img src="images/money-gold.gif"> ${wildMendingProfitSilver} <img src="images/money-silver.gif"> ${wildMendingProfitCopper} <img src="images/money-copper.gif">`
@@ -530,6 +553,8 @@ function render(procs) {axios.post("https://us.battle.net/oauth/token?grant_type
                 superiorAgilityProfitGold = superiorAgilityProfitString.charAt(0) + superiorAgilityProfitString.charAt(1)
               } else if (superiorAgilityProfitString.length == 7) {
                 superiorAgilityProfitGold = superiorAgilityProfitString.charAt(0) + superiorAgilityProfitString.charAt(1) + superiorAgilityProfitString.charAt(2)
+              } else {
+                superiorAgilityProfitGold = superiorAgilityProfitString.charAt(0) + superiorAgilityProfitString.charAt(1) + superiorAgilityProfitString.charAt(2) + superiorAgilityProfitString.charAt(3)
               }
               document.getElementById("superior-agility-profit").innerHTML = `
               ${superiorAgilityProfitGold} <img src="images/money-gold.gif"> ${superiorAgilityProfitSilver} <img src="images/money-silver.gif"> ${superiorAgilityProfitCopper} <img src="images/money-copper.gif">`
@@ -646,6 +671,8 @@ function render(procs) {axios.post("https://us.battle.net/oauth/token?grant_type
               superiorStaminaProfitGold = superiorStaminaProfitString.charAt(0) + superiorStaminaProfitString.charAt(1)
             } else if (superiorStaminaProfitString.length == 7) {
               superiorStaminaProfitGold = superiorStaminaProfitString.charAt(0) + superiorStaminaProfitString.charAt(1) + superiorStaminaProfitString.charAt(2)
+            } else {
+                superiorStaminaProfitGold = superiorStaminaProfitString.charAt(0) + superiorStaminaProfitString.charAt(1) + superiorStaminaProfitString.charAt(2) + superiorStaminaProfitString.charAt(3)
             }
             document.getElementById("superior-stamina-profit").innerHTML = `
             ${superiorStaminaProfitGold} <img src="images/money-gold.gif"> ${superiorStaminaProfitSilver} <img src="images/money-silver.gif"> ${superiorStaminaProfitCopper} <img src="images/money-copper.gif">`
@@ -703,6 +730,8 @@ function render(procs) {axios.post("https://us.battle.net/oauth/token?grant_type
             superiorStrengthProfitGold = superiorStrengthProfitString.charAt(0) + superiorStrengthProfitString.charAt(1)
           } else if (superiorStrengthProfitString.length == 7) {
             superiorStrengthProfitGold = superiorStrengthProfitString.charAt(0) + superiorStrengthProfitString.charAt(1) + superiorStrengthProfitString.charAt(2)
+          } else {
+            superiorStrengthProfitGold = superiorStrengthProfitString.charAt(0) + superiorStrengthProfitString.charAt(1) + superiorStrengthProfitString.charAt(2) + superiorStrengthProfitString.charAt(3)
           }
           document.getElementById("superior-strength-profit").innerHTML = `
           ${superiorStrengthProfitGold} <img src="images/money-gold.gif"> ${superiorStrengthProfitSilver} <img src="images/money-silver.gif"> ${superiorStrengthProfitCopper} <img src="images/money-copper.gif">`
@@ -759,6 +788,8 @@ function render(procs) {axios.post("https://us.battle.net/oauth/token?grant_type
           superiorSteelskinProfitGold = superiorSteelskinProfitString.charAt(0) + superiorSteelskinProfitString.charAt(1)
         } else if (superiorSteelskinProfitString.length == 7) {
           superiorSteelskinProfitGold = superiorSteelskinProfitString.charAt(0) + superiorSteelskinProfitString.charAt(1) + superiorSteelskinProfitString.charAt(2)
+        } else {
+            superiorSteelskinProfitGold = superiorSteelskinProfitString.charAt(0) + superiorSteelskinProfitString.charAt(1) + superiorSteelskinProfitString.charAt(2) + superiorSteelskinProfitString.charAt(3)
         }
         document.getElementById("superior-steelskin-profit").innerHTML = `
         ${superiorSteelskinProfitGold} <img src="images/money-gold.gif"> ${superiorSteelskinProfitSilver} <img src="images/money-silver.gif"> ${superiorSteelskinProfitCopper} <img src="images/money-copper.gif">`
@@ -841,6 +872,8 @@ function render(procs) {axios.post("https://us.battle.net/oauth/token?grant_type
           greaterFathomsCostGold = greaterFathomsCostString.charAt(0) + greaterFathomsCostString.charAt(1)
         } else if (greaterFathomsCostString.length == 7) {
           greaterFathomsCostGold = greaterFathomsCostString.charAt(0) + greaterFathomsCostString.charAt(1) + greaterFathomsCostString.charAt(2)
+        } else {
+            greaterFathomsCostGold = greaterFathomsCostString.charAt(0) + greaterFathomsCostString.charAt(1) + greaterFathomsCostString.charAt(2) + greaterFathomsCostString.charAt(3)
         }
         document.getElementById("greater-fathoms-cost").innerHTML = `
         ${greaterFathomsCostGold} <img src="images/money-gold.gif"> ${greaterFathomsCostSilver} <img src="images/money-silver.gif"> ${greaterFathomsCostCopper} <img src="images/money-copper.gif">`             
@@ -878,8 +911,10 @@ function render(procs) {axios.post("https://us.battle.net/oauth/token?grant_type
           greaterFathomsProfitGold = greaterFathomsProfitString.charAt(0) + greaterFathomsProfitString.charAt(1)
         } else if (greaterFathomsProfitString.length == 7) {
           greaterFathomsProfitGold = greaterFathomsProfitString.charAt(0) + greaterFathomsProfitString.charAt(1) + greaterFathomsProfitString.charAt(2)
-        } else {
+        } else if (greaterFathomsProfitString.length == 8) {
           greaterFathomsProfitGold = greaterFathomsProfitString.charAt(0) + greaterFathomsProfitString.charAt(1) + greaterFathomsProfitString.charAt(2) + greaterFathomsProfitString.charAt(3)
+        } else {
+            greaterFathomsProfitGold = greaterFathomsProfitString.charAt(0) + greaterFathomsProfitString.charAt(1) + greaterFathomsProfitString.charAt(2) + greaterFathomsProfitString.charAt(3) + greaterFathomsProfitString.charAt(4)
         }
         document.getElementById("greater-fathoms-profit").innerHTML = `
         ${greaterFathomsProfitGold} <img src="images/money-gold.gif"> ${greaterFathomsProfitSilver} <img src="images/money-silver.gif"> ${greaterFathomsProfitCopper} <img src="images/money-copper.gif">`
@@ -902,7 +937,9 @@ function render(procs) {axios.post("https://us.battle.net/oauth/token?grant_type
           greaterCurrentsCostGold = greaterCurrentsCosttString.charAt(0) + greaterCurrentsCosttString.charAt(1)
         } else if (greaterCurrentsCosttString.length == 7) {
           greaterCurrentsCostGold = greaterCurrentsCosttString.charAt(0) + greaterCurrentsCosttString.charAt(1) + greaterCurrentsCosttString.charAt(2)
-        }
+        } else {
+            greaterCurrentsCostGold = greaterCurrentsCosttString.charAt(0) + greaterCurrentsCosttString.charAt(1) + greaterCurrentsCosttString.charAt(2) + greaterCurrentsCosttString.charAt(3)
+         }
         document.getElementById("greater-currents-cost").innerHTML = `
         ${greaterCurrentsCostGold} <img src="images/money-gold.gif"> ${greaterCurrentsCostSilver} <img src="images/money-silver.gif"> ${greaterCurrentsCostCopper} <img src="images/money-copper.gif">`             
 
@@ -962,6 +999,8 @@ function render(procs) {axios.post("https://us.battle.net/oauth/token?grant_type
           greaterUndertowCostGold = greaterUndertowCostString.charAt(0) + greaterUndertowCostString.charAt(1)
         } else if (greaterUndertowCostString.length == 7) {
           greaterUndertowCostGold = greaterUndertowCostString.charAt(0) + greaterUndertowCostString.charAt(1) + greaterUndertowCostString.charAt(2)
+        } else {
+            greaterUndertowCostGold = greaterUndertowCostString.charAt(0) + greaterUndertowCostString.charAt(1) + greaterUndertowCostString.charAt(2) + greaterUndertowCostString.charAt(3)
         }
         document.getElementById("greater-undertow-cost").innerHTML = `
         ${greaterUndertowCostGold} <img src="images/money-gold.gif"> ${greaterUndertowCostSilver} <img src="images/money-silver.gif"> ${greaterUndertowCostCopper} <img src="images/money-copper.gif">`             
@@ -1022,6 +1061,8 @@ function render(procs) {axios.post("https://us.battle.net/oauth/token?grant_type
           greaterHorizonCostGold = greaterHorizonCosttString.charAt(0) + greaterHorizonCosttString.charAt(1)
         } else if (greaterHorizonCosttString.length == 7) {
           greaterHorizonCostGold = greaterHorizonCosttString.charAt(0) + greaterHorizonCosttString.charAt(1) + greaterHorizonCosttString.charAt(2)
+        } else {
+            greaterHorizonCostGold = greaterHorizonCosttString.charAt(0) + greaterHorizonCosttString.charAt(1) + greaterHorizonCosttString.charAt(2) + greaterHorizonCosttString.charAt(3)
         }
         document.getElementById("greater-horizon-cost").innerHTML = `
         ${greaterHorizonCostGold} <img src="images/money-gold.gif"> ${greaterHorizonCostSilver} <img src="images/money-silver.gif"> ${greaterHorizonCostCopper} <img src="images/money-copper.gif">`             
@@ -1104,6 +1145,8 @@ slider.oninput = function() {
               AbyssalHealingPotionProfitGold = AbyssalHealingPotionProfitString.charAt(0) + AbyssalHealingPotionProfitString.charAt(1)
             } else if (AbyssalHealingPotionProfitString.length == 7) {
               AbyssalHealingPotionProfitGold = AbyssalHealingPotionProfitString.charAt(0) + AbyssalHealingPotionProfitString.charAt(1) + AbyssalHealingPotionProfitString.charAt(2)
+            } else {
+                AbyssalHealingPotionProfitGold = AbyssalHealingPotionProfitString.charAt(0) + AbyssalHealingPotionProfitString.charAt(1) + AbyssalHealingPotionProfitString.charAt(2) + AbyssalHealingPotionProfitString.charAt(3)  
             }
             document.getElementById("abyssal-healing-potion-profit").innerHTML = `
             ${AbyssalHealingPotionProfitGold} <img src="images/money-gold.gif"> ${AbyssalHealingPotionProfitSilver} <img src="images/money-silver.gif"> ${AbyssalHealingPotionProfitCopper} <img src="images/money-copper.gif">`
@@ -1123,6 +1166,8 @@ empoweredProximityProfit = Math.floor(empoweredProximityPrice * this.value - emp
                   empoweredProximityProfitGold = empoweredProximityProfitString.charAt(0) + empoweredProximityProfitString.charAt(1)
                 } else if (empoweredProximityProfitString.length == 7) {
                   empoweredProximityProfitGold = empoweredProximityProfitString.charAt(0) + empoweredProximityProfitString.charAt(1) + empoweredProximityProfitString.charAt(2)
+                } else {
+                    empoweredProximityProfitGold = empoweredProximityProfitString.charAt(0) + empoweredProximityProfitString.charAt(1) + empoweredProximityProfitString.charAt(2) + empoweredProximityProfitString.charAt(3)   
                 }
                 document.getElementById("empowered-proximity-profit").innerHTML = `
                 ${empoweredProximityProfitGold} <img src="images/money-gold.gif"> ${empoweredProximityProfitSilver} <img src="images/money-silver.gif"> ${empoweredProximityProfitCopper} <img src="images/money-copper.gif">`
@@ -1142,6 +1187,8 @@ focusedResolveProfit = Math.floor(focusedResolvePrice * this.value - focusedReso
                   focusedResolveProfitGold = focusedResolveProfitString.charAt(0) + focusedResolveProfitString.charAt(1)
                 } else if (focusedResolveProfitString.length == 7) {
                   focusedResolveProfitGold = focusedResolveProfitString.charAt(0) + focusedResolveProfitString.charAt(1) + focusedResolveProfitString.charAt(2)
+                } else {
+                    focusedResolveProfitGold = focusedResolveProfitString.charAt(0) + focusedResolveProfitString.charAt(1) + focusedResolveProfitString.charAt(2) + focusedResolveProfitString.charAt(3)  
                 }
                 document.getElementById("focused-resolve-profit").innerHTML = `
                 ${focusedResolveProfitGold} <img src="images/money-gold.gif"> ${focusedResolveProfitSilver} <img src="images/money-silver.gif"> ${focusedResolveProfitCopper} <img src="images/money-copper.gif">`
@@ -1161,6 +1208,8 @@ unbridledFuryProfit = Math.floor(unbridledFuryPrice * this.value - unbridledFury
                   unbridledFuryProfitGold = unbridledFuryProfitString.charAt(0) + unbridledFuryProfitString.charAt(1)
                 } else if (unbridledFuryProfitString.length == 7) {
                   unbridledFuryProfitGold = unbridledFuryProfitString.charAt(0) + unbridledFuryProfitString.charAt(1) + unbridledFuryProfitString.charAt(2)
+                } else {
+                    unbridledFuryProfitGold = unbridledFuryProfitString.charAt(0) + unbridledFuryProfitString.charAt(1) + unbridledFuryProfitString.charAt(2) +  unbridledFuryProfitString.charAt(3)  
                 }
                 document.getElementById("unbridled-fury-profit").innerHTML = `
                 ${unbridledFuryProfitGold} <img src="images/money-gold.gif"> ${unbridledFuryProfitSilver} <img src="images/money-silver.gif"> ${unbridledFuryProfitCopper} <img src="images/money-copper.gif">`
@@ -1180,6 +1229,8 @@ wildMendingProfit = Math.floor(wildMendingPrice * this.value - wildMendingCost);
                   wildMendingProfitGold = wildMendingProfitString.charAt(0) + wildMendingProfitString.charAt(1)
                 } else if (wildMendingProfitString.length == 7) {
                   wildMendingProfitGold = wildMendingProfitString.charAt(0) + wildMendingProfitString.charAt(1) + wildMendingProfitString.charAt(2)
+                } else {
+                    wildMendingProfitGold = wildMendingProfitString.charAt(0) + wildMendingProfitString.charAt(1) + wildMendingProfitString.charAt(2) + wildMendingProfitString.charAt(3)
                 }
                 document.getElementById("wild-mending-profit").innerHTML = `
                 ${wildMendingProfitGold} <img src="images/money-gold.gif"> ${wildMendingProfitSilver} <img src="images/money-silver.gif"> ${wildMendingProfitCopper} <img src="images/money-copper.gif">`
@@ -1199,6 +1250,8 @@ superiorAgilityProfit = Math.floor(superiorAgilityPrice * this.value - superiorA
                 superiorAgilityProfitGold = superiorAgilityProfitString.charAt(0) + superiorAgilityProfitString.charAt(1)
               } else if (superiorAgilityProfitString.length == 7) {
                 superiorAgilityProfitGold = superiorAgilityProfitString.charAt(0) + superiorAgilityProfitString.charAt(1) + superiorAgilityProfitString.charAt(2)
+              } else {
+                superiorAgilityProfitGold = superiorAgilityProfitString.charAt(0) + superiorAgilityProfitString.charAt(1) + superiorAgilityProfitString.charAt(2) + superiorAgilityProfitString.charAt(3)
               }
               document.getElementById("superior-agility-profit").innerHTML = `
               ${superiorAgilityProfitGold} <img src="images/money-gold.gif"> ${superiorAgilityProfitSilver} <img src="images/money-silver.gif"> ${superiorAgilityProfitCopper} <img src="images/money-copper.gif">`
@@ -1239,6 +1292,8 @@ superiorStaminaProfit = Math.floor(superiorStaminaPrice * this.value - superiorS
               superiorStaminaProfitGold = superiorStaminaProfitString.charAt(0) + superiorStaminaProfitString.charAt(1)
             } else if (superiorStaminaProfitString.length == 7) {
               superiorStaminaProfitGold = superiorStaminaProfitString.charAt(0) + superiorStaminaProfitString.charAt(1) + superiorStaminaProfitString.charAt(2)
+            } else {
+                superiorStaminaProfitGold = superiorStaminaProfitString.charAt(0) + superiorStaminaProfitString.charAt(1) + superiorStaminaProfitString.charAt(2) + superiorStaminaProfitString.charAt(3)  
             }
             document.getElementById("superior-stamina-profit").innerHTML = `
             ${superiorStaminaProfitGold} <img src="images/money-gold.gif"> ${superiorStaminaProfitSilver} <img src="images/money-silver.gif"> ${superiorStaminaProfitCopper} <img src="images/money-copper.gif">`
@@ -1253,12 +1308,16 @@ superiorStrengthProfit = Math.floor(superiorStrengthPrice * this.value - superio
          superiorStrengthProfitString = superiorStrengthProfit.toString();
         superiorStrengthProfitCopper = superiorStrengthProfitString.charAt(superiorStrengthProfitString.length-2) + superiorStrengthProfitString.charAt(superiorStrengthProfitString.length-1)
         superiorStrengthProfitSilver = superiorStrengthProfitString.charAt(superiorStrengthProfitString.length-4) + superiorStrengthProfitString.charAt(superiorStrengthProfitString.length-3)
-          if(superiorStrengthProfitString.length == 5) {
+        if(superiorStrengthProfitString.length == 5) {
             superiorStrengthProfitGold = superiorStrengthProfitString.charAt(0)
           } else if (superiorStrengthProfitString.length == 6) {
             superiorStrengthProfitGold = superiorStrengthProfitString.charAt(0) + superiorStrengthProfitString.charAt(1)
           } else if (superiorStrengthProfitString.length == 7) {
             superiorStrengthProfitGold = superiorStrengthProfitString.charAt(0) + superiorStrengthProfitString.charAt(1) + superiorStrengthProfitString.charAt(2)
+          } else if (superiorStrengthProfitString.length == 8)  {
+            superiorStrengthProfitGold = superiorStrengthProfitString.charAt(0) + superiorStrengthProfitString.charAt(1) + superiorStrengthProfitString.charAt(2) + superiorStrengthProfitString.charAt(3) 
+          } else {
+            superiorStrengthProfitGold = superiorStrengthProfitString.charAt(0) + superiorStrengthProfitString.charAt(1) + superiorStrengthProfitString.charAt(2) + superiorStrengthProfitString.charAt(3) + superiorStrengthProfitString.charAt(4)
           }
           document.getElementById("superior-strength-profit").innerHTML = `
           ${superiorStrengthProfitGold} <img src="images/money-gold.gif"> ${superiorStrengthProfitSilver} <img src="images/money-silver.gif"> ${superiorStrengthProfitCopper} <img src="images/money-copper.gif">`
@@ -1279,6 +1338,8 @@ superiorSteelskinProfit = Math.floor(superiorSteelskinPrice * this.value - super
           superiorSteelskinProfitGold = superiorSteelskinProfitString.charAt(0) + superiorSteelskinProfitString.charAt(1)
         } else if (superiorSteelskinProfitString.length == 7) {
           superiorSteelskinProfitGold = superiorSteelskinProfitString.charAt(0) + superiorSteelskinProfitString.charAt(1) + superiorSteelskinProfitString.charAt(2)
+        } else {
+            superiorSteelskinProfitGold = superiorSteelskinProfitString.charAt(0) + superiorSteelskinProfitString.charAt(1) + superiorSteelskinProfitString.charAt(2) + superiorSteelskinProfitString.charAt(3)  
         }
         document.getElementById("superior-steelskin-profit").innerHTML = `
         ${superiorSteelskinProfitGold} <img src="images/money-gold.gif"> ${superiorSteelskinProfitSilver} <img src="images/money-silver.gif"> ${superiorSteelskinProfitCopper} <img src="images/money-copper.gif">`
