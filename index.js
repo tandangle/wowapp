@@ -5,11 +5,11 @@ $(function () {
 })
 
 // Get access token via Blizzard's OAuth flow
-function render() {axios.post("https://us.battle.net/oauth/token?grant_type=client_credentials&client_id=8170587803004052b43eb6583a7a82ca&client_secret=7sFw5yUDviIfc77w1lHTIcb1Wyvu1IdQ")
-  .then(function(response){
+function render(procs) {axios.post("https://us.battle.net/oauth/token?grant_type=client_credentials&client_id=8170587803004052b43eb6583a7a82ca&client_secret=7sFw5yUDviIfc77w1lHTIcb1Wyvu1IdQ")
+  .then(function(response, procs){
     // Get all auctions from the realm
     axios.get(`https://us.api.blizzard.com/data/wow/connected-realm/73/auctions?namespace=dynamic-us&:region=us`, {headers:{Authorization: "Bearer " + response.data.access_token}})
-        .then(function(response){
+        .then(function(response, procs){
             // Filter all auctions for auctions of Tidespray linen
             var tidespray = response.data.auctions.filter(function(auction){
               return auction.item.id === 152576
@@ -233,7 +233,11 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
             ${AbyssalHealingPotionGold} <img src="images/money-gold.gif"> ${AbyssalHealingPotionSilver} <img src="images/money-silver.gif"> ${AbyssalHealingPotionCopper} <img src="images/money-copper.gif">`
             
           // Profit/Loss Calculation
-          var AbyssalHealingPotionProfit = Math.floor(AbyssalHealingPotionPrice * 1.4  - AbyssalHealingPotionCost);
+          if(procs){ 
+            var AbyssalHealingPotionProfit = Math.floor(AbyssalHealingPotionPrice * procs  - AbyssalHealingPotionCost);
+          } else {
+            var AbyssalHealingPotionProfit = Math.floor(AbyssalHealingPotionPrice * 1.4  - AbyssalHealingPotionCost);
+          }
           var AbyssalHealingPotionProfitString = AbyssalHealingPotionProfit.toString();
           AbyssalHealingPotionProfitCopper = AbyssalHealingPotionProfitString.charAt(AbyssalHealingPotionProfitString.length-2) + AbyssalHealingPotionProfitString.charAt(AbyssalHealingPotionProfitString.length-1)
           AbyssalHealingPotionProfitSilver = AbyssalHealingPotionProfitString.charAt(AbyssalHealingPotionProfitString.length-4) + AbyssalHealingPotionProfitString.charAt(AbyssalHealingPotionProfitString.length-3)
@@ -1195,3 +1199,16 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
 }
 
 document.getElementById("pullData").addEventListener("click", render)
+
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value; // Display the default slider value
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+
+slider.oninput = function() {
+    render(this.value)
+}
