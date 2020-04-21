@@ -4,6 +4,65 @@ $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
 
+var herbsAuctionItemIds = [
+  // Tidespray Linen
+  152576,
+  // Akunda's Bite
+  152507,
+  // Riverbud
+  152505,
+  // Sea Stalk
+  152511,
+  // Siren's Pollen
+  152509,
+  // Star Moss
+  152506,
+  // Winter's Kiss
+  152508,
+  // Zin'anthid
+  168487,
+  // Anchor Weed
+  152510
+]
+
+var consumablesAuctionItemIds = [
+  // Abyssal Healing Potion
+  169451,
+  // Empowered Proximity
+  168529,
+  // Focused Resolve
+  168506,
+  // Unbridled Fury
+  169299,
+  // Wild Mending
+  169300,
+  // Superior Agility
+  168489,
+  // Superior Intellect
+  168498,
+  // Superior Stamina
+  168499,
+  // Superior Strength
+  168500,
+  // Steelskin Potion
+  168501,
+  // Potion of Replenishment
+  152561,
+  // Endless Fathoms
+  168652,
+  // Currents
+  168651,
+  // Undetow
+  168654,
+  // Vast Horizon
+  168653,
+  // War-Scroll of Intellect
+  158201,
+  // War-scroll of Fortitude
+  158204,
+  // War-scroll of Battle Shout
+  158202
+]
 
 // Get access token via Blizzard's OAuth flow
 function render() {axios.post("https://us.battle.net/oauth/token?grant_type=client_credentials&client_id=8170587803004052b43eb6583a7a82ca&client_secret=7sFw5yUDviIfc77w1lHTIcb1Wyvu1IdQ")
@@ -1099,6 +1158,8 @@ function render() {axios.post("https://us.battle.net/oauth/token?grant_type=clie
           greaterHorizonPriceGold = greaterHorizonPriceString.charAt(0) + greaterHorizonPriceString.charAt(1)
         } else if (greaterHorizonPriceString.length == 7) {
           greaterHorizonPriceGold = greaterHorizonPriceString.charAt(0) + greaterHorizonPriceString.charAt(1) + greaterHorizonPriceString.charAt(2)
+        } else { 
+          greaterHorizonPriceGold = greaterHorizonPriceString.charAt(0) + greaterHorizonPriceString.charAt(1) + greaterHorizonPriceString.charAt(2) + greaterHorizonPriceString.charAt(3)
         }
         document.getElementById("greater-horizon-price").innerHTML = `
         ${greaterHorizonPriceGold} <img src="images/money-gold.gif"> ${greaterHorizonPriceSilver} <img src="images/money-silver.gif"> ${greaterHorizonPriceCopper} <img src="images/money-copper.gif">`
